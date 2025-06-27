@@ -137,7 +137,7 @@ nav a.active {
 /* Booking Section */
 .booking-section {
     background: white;
-    padding: 3rem 0;
+    padding: 4rem 0;
     margin-top: -100px;
     position: relative;
     z-index: 100;
@@ -151,8 +151,15 @@ nav a.active {
 }
 
 .booking-container h2 {
+    font-size: 2rem;
     color: black;
     margin-bottom: 2rem;
+}
+
+.booking-container p {
+    font-size: 1.3rem;
+    font-weight: 600;
+    line-height: 1.5rem;
 }
 
 .booking-container h2 .highlight-blue {
@@ -184,6 +191,10 @@ nav a.active {
     color: #333;
 }
 
+.form-group input {
+    color: grey;
+}
+
 .form-group input, .form-group select {
     padding: 0.75rem;
     border: 2px solid #e5e7eb;
@@ -207,6 +218,7 @@ nav a.active {
     cursor: pointer;
     height: fit-content;
     transition: all 0.3s;
+    margin-bottom: 0.2rem;
 }
 
 .search-btn:hover {
@@ -261,10 +273,16 @@ nav a.active {
 
 .about-content h2 {
     color: white;
-    font-size: 2.2rem;
+    font-size: 1.8rem;
     font-weight: 700;
-    margin-bottom: 1.2rem;
+    margin-bottom: 2rem;
     line-height: 1.2;
+}
+
+.about-content span {
+    font-size: 4rem;
+    font-family: 'Playfair Display', serif;
+    line-height: 4rem;
 }
 
 .about-content .highlight-main {
@@ -423,7 +441,6 @@ nav a.active {
     transition: all 0.3s ease;
     box-shadow: 0 4px 15px rgba(30, 58, 138, 0.3);
     outline: none;
-    box-shadow: 0 0 0 3px #fbd40b80;
 }
 
 .check-rooms-btn:hover {

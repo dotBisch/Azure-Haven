@@ -187,13 +187,13 @@ nav .update-profile-information {
 
 /* Story Section */
 .story-section {
-    padding: 5rem 0;
     text-align: left;
 }
 
 .story-section h2 {
     font-family: var(--heading-font);
     font-size: 2.8rem;
+    padding: 5rem 0 0 0;
     margin-bottom: 3rem;
     color: black;
 }
