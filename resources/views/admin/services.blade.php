@@ -115,7 +115,7 @@
 
                                 <button class="add-btn">
                                     <i class="fa-solid fa-plus"></i>
-                                    <span>Add Booking</span>
+                                    <span>Add Service</span>
                                 </button>
                             </div>
                         </div>
