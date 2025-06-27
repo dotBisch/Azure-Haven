@@ -65,7 +65,7 @@ class AdminController extends Controller
     }
     public function rooms()
     {
-        $rooms = Room::all();
+        $rooms = Room::paginate(5);
         return view('admin.ManageRooms', compact('rooms'));
     }
     public function guests()
