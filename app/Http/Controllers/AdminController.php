@@ -80,7 +80,7 @@ class AdminController extends Controller
     }
     public function services()
     {
-        $services = Service::all();
+        $services = Service::paginate(5);
         return view('admin.services', compact('services'));
     }
     public function userbookings()
