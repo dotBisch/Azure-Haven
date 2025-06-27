@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Booking;
+use App\Models\Room;
 
 class AdminController extends Controller
 {
@@ -63,7 +64,8 @@ class AdminController extends Controller
     }
     public function rooms()
     {
-        return view('admin.ManageRooms');
+        $rooms = Room::all();
+        return view('admin.ManageRooms', compact('rooms'));
     }
     public function guests()
     {
@@ -72,7 +74,8 @@ class AdminController extends Controller
     } 
     public function staffs()
     {
-        return view('admin.ManageStaffs');
+        $staffs = User::where('usertype', 'admin')->get();
+        return view('admin.ManageStaffs', compact('staffs'));
     }
     public function services()
     {

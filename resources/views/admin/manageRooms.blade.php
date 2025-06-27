@@ -96,6 +96,7 @@
                 <div class="room-dashboard">
                     <div class="rt-panel">
                         <span class="rd-title">Rooms</span>
+                        <button class="add-room-btn" style="margin-left: 20px; padding: 8px 16px; background: #007bff; color: #fff; border: none; border-radius: 4px; cursor: pointer;">Add Room</button>
                         <div class="rr-panel">
                             <div class="rr-button">
                                 <button class="sort-btn">
@@ -119,49 +120,31 @@
                         <table id="rooms-page">
                             <thead>
                                 <tr>
-                                    <th>Room</th>
-                                    <th>Name</th>
-                                    <th>Check-In</th>
-                                    <th>Check-Out</th>
-                                    <th>Amount</th>
-                                    <th>Payment</th>
+                                    <th>Room Number</th>
+                                    <th>Type</th>
+                                    <th>Price</th>
+                                    <th>Description</th>
+                                    <th>Pax</th>
+                                    <th>Features</th>
+                                    <th>Inclusions</th>
+                                    <th>Status</th>
                                     <th></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td >S01</td>
-                                    <td>Harry Potter</td>
-                                    <td>10/10/2025</td>
-                                    <td>10/30/2025</td>
-                                    <td>1,200.00</td>
-                                    <td>Paid</td>
-                                    <td>
-                                        <button class="edit">•••</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td >S01</td>
-                                    <td>Harry Potter</td>
-                                    <td>10/10/2025</td>
-                                    <td>10/30/2025</td>
-                                    <td>1,200.00</td>
-                                    <td>Paid</td>
-                                    <td>
-                                        <button class="edit">•••</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td >S01</td>
-                                    <td>Harry Potter</td>
-                                    <td>10/10/2025</td>
-                                    <td>10/30/2025</td>
-                                    <td>1,200.00</td>
-                                    <td>Paid</td>
-                                    <td>
-                                        <button class="edit">•••</button>
-                                    </td>
-                                </tr>
+                                @foreach($rooms as $room)
+                                    <tr>
+                                        <td>{{ $room->room_number }}</td>
+                                        <td>{{ $room->room_type }}</td>
+                                        <td>{{ $room->room_price }}</td>
+                                        <td>{{ $room->room_description }}</td>
+                                        <td>{{ $room->room_pax }}</td>
+                                        <td>{{ $room->room_features }}</td>
+                                        <td>{{ $room->room_inclusions }}</td>
+                                        <td>{{ $room->room_status }}</td>
+                                        <td><button class="edit">•••</button></td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

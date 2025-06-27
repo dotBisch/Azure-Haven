@@ -96,6 +96,7 @@
                 <div class="staff-dashboard">
                     <div class="ft-panel">
                         <span class="fd-title">Staffs</span>
+                        <button class="add-staff-btn" style="margin-left: 20px; padding: 8px 16px; background: #007bff; color: #fff; border: none; border-radius: 4px; cursor: pointer;">Add Staff</button>
                         <div class="fr-panel">
                             <div class="fr-button">
                                 <button class="sort-btn">
@@ -119,49 +120,27 @@
                         <table id="staffs-page">
                             <thead>
                                 <tr>
-                                    <th>Room</th>
-                                    <th>Name</th>
-                                    <th>Check-In</th>
-                                    <th>Check-Out</th>
-                                    <th>Amount</th>
-                                    <th>Payment</th>
+                                    <th>ID</th>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Usertype</th>
                                     <th></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td >S01</td>
-                                    <td>Harry Potter</td>
-                                    <td>10/10/2025</td>
-                                    <td>10/30/2025</td>
-                                    <td>1,200.00</td>
-                                    <td>Paid</td>
-                                    <td>
-                                        <button class="edit">•••</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td >S01</td>
-                                    <td>Harry Potter</td>
-                                    <td>10/10/2025</td>
-                                    <td>10/30/2025</td>
-                                    <td>1,200.00</td>
-                                    <td>Paid</td>
-                                    <td>
-                                        <button class="edit">•••</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td >S01</td>
-                                    <td>Harry Potter</td>
-                                    <td>10/10/2025</td>
-                                    <td>10/30/2025</td>
-                                    <td>1,200.00</td>
-                                    <td>Paid</td>
-                                    <td>
-                                        <button class="edit">•••</button>
-                                    </td>
-                                </tr>
+                                @foreach($staffs as $staff)
+                                    <tr>
+                                        <td>{{ $staff->id }}</td>
+                                        <td>{{ $staff->first_name }}</td>
+                                        <td>{{ $staff->last_name }}</td>
+                                        <td>{{ $staff->email }}</td>
+                                        <td>{{ $staff->phone }}</td>
+                                        <td>{{ $staff->usertype }}</td>
+                                        <td><button class="edit">•••</button></td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
