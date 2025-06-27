@@ -86,7 +86,7 @@
                 </div>
 
                 <span class="hotel-logo">
-                    <img src="assets/AzureHaven_Logo.png" alt="Azure Haven Logo">
+                    <img src="{{ asset('Admin/assets/AzureHaven_Logo.png') }}" alt="Azure Haven Logo">
                 </span>
             </div>
         </nav>
@@ -94,9 +94,13 @@
         <section class="booking">
             <div class="booking-panel">
                 <div class="booking-dashboard">
+                    <span class="bd-title">Bookings</span>
                     <div class="bt-panel">
-                        <span class="bd-title">Bookings</span>
-                        <button class="add-booking-btn" style="margin-left: 20px; padding: 8px 16px; background: #007bff; color: #fff; border: none; border-radius: 4px; cursor: pointer;">Add Booking</button>
+                        <div class="search-wrapper">
+                            <img src="{{ asset('Admin/assets/search_icon.png') }}" alt="">
+                            <input type="text" placeholder="Search">
+                        </div>
+                        
                         <div class="br-panel">
                             <div class="br-button">
                                 <button class="sort-btn">
@@ -108,11 +112,11 @@
                                     <i class="fa-solid fa-filter"></i> 
                                     <span>Filter</span>
                                 </button>
-                            </div>
 
-                            <div class="search-wrapper">
-                                <img src="assets/search_icon.png" alt="">
-                                <input type="text" placeholder="Search">
+                                <button class="add-btn">
+                                    <i class="fa-solid fa-plus"></i>
+                                    <span>Add Booking</span>
+                                </button>
                             </div>
                         </div>
                     </div>

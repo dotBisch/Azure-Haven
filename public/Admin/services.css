@@ -194,8 +194,9 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: center;
   overflow: hidden;
+  padding: 10px 10px 0 10px;
 }
 
 .sr-panel {
@@ -206,7 +207,7 @@ body {
 
 .sr-button {
   display: flex;
-  gap: 15px;
+  gap: 5px;
 }
 
 .sd-title {
@@ -214,24 +215,46 @@ body {
   font-weight: bold;
   color: black;
   width: 60%;
+  margin-bottom: 10px;
 }
 
 .filter-btn,
-.sort-btn {
+.sort-btn,
+.add-btn {
   background: none;
   border: none;
   margin-left: 8px;
   cursor: pointer;
-  font-size: 16px;
-  color: black;
   display: flex;
   gap: 10px;
   align-items: center;
+  border-radius: 5px;
 }
 
-.filter-btn:hover i,
-.sort-btn:hover i {
-  color: var(--blue);
+.filter-btn,
+.sort-btn {
+  color: black;
+  border: 1px solid grey;
+  font-size: 16px;
+  padding: 5px 10px;
+}
+
+.sort-btn {
+  padding: 5px 20px;
+}
+
+.add-btn {
+  background-color: var(--blue);
+  color: white;
+  border: none;
+  font-size: 18px;
+  padding: 8px 15px 8px 15px;
+}
+
+.filter-btn:hover,
+.sort-btn:hover {
+  color: white;
+  background-color: var(--blue);
 }
 
 .search-wrapper {
@@ -241,7 +264,8 @@ body {
   padding: 0 15px;
   border: 1px solid grey;
   border-radius: 10px;
-  height: 40px;
+  height: 45px;
+  width: 30%;
 }
 
 .search-wrapper input::placeholder {
@@ -377,7 +401,7 @@ body {
   }
 
   .st-panel {
-    align-items: flex-start;
+    width: 100%;
     gap: 10px;
   }
 
@@ -392,11 +416,33 @@ body {
 
   .sr-button {
     gap: 5px;
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .sort-btn span,
+  .filter-btn span {
+    display: none;
   }
 
   .sort-btn,
   .filter-btn {
-    font-size: 15px;
+    border: none;
+    gap: 0;
+  }
+
+  .sort-btn {
+    margin-right: -20px;
+  }
+
+  .sort-btn:hover,
+  .filter-btn:hover {
+    color: var(--blue);
+    background-color: transparent;
+  }
+
+  .search-wrapper {
+    width: 50%;
   }
 
   .search-wrapper img {
@@ -497,7 +543,7 @@ body {
     display: none;
   }
 
-  .bd-title {
+  .sd-title {
     font-size: 22px;
     text-align: center;
   }
@@ -525,8 +571,7 @@ body {
   }
 
   .st-panel {
-    flex-direction: column;
-    align-items: flex-start;
+    flex-direction: row;
     gap: 10px;
   }
 
@@ -535,6 +580,7 @@ body {
   }
 
   .search-wrapper {
+    width: 80%;
     padding: 10px;
   }
 
@@ -548,8 +594,19 @@ body {
   }
 
   .sort-btn span,
-  .filter-btn span {
+  .filter-btn span,
+  .add-btn span {
     display: none;
+  }
+
+  .sort-btn, 
+  .filter-btn {
+    border: none;
+  }
+
+  .sort-btn {
+    padding: 5px 15px;
+    margin-right: -20px;
   }
 
   .table-panel {
