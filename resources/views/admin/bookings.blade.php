@@ -140,7 +140,7 @@
                                     <tr>
                                         <td>{{ $booking->booking_id }}</td>
                                         <td>{{ $booking->room_id }}</td>
-                                        <td>{{ $booking->service_id }}</td>
+                                        <td>{{ $booking->services->pluck('id')->implode(', ') }}</td>
                                         <td>{{ $booking->user_id }}</td>
                                         <td>{{ $booking->booking_status }}</td>
                                         <td>{{ $booking->total_amount }}</td>

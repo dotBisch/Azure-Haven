@@ -2,7 +2,7 @@
 
     <header class="main-header">
         <div class="header-container">
-            <a href="#" class="logo">
+            <a href="{{ url('home') }}" class="logo">
                 <img src="/assets/images/azure_logo.png" alt="Azure Haven Logo">
             </a>
             <nav>

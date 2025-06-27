@@ -129,8 +129,6 @@
                                     <th>Price</th>
                                     <th>Description</th>
                                     <th>Pax</th>
-                                    <th>Features</th>
-                                    <th>Inclusions</th>
                                     <th>Status</th>
                                     <th></th>
                                 </tr>
@@ -143,14 +141,13 @@
                                         <td>{{ $room->room_price }}</td>
                                         <td>{{ $room->room_description }}</td>
                                         <td>{{ $room->room_pax }}</td>
-                                        <td>{{ $room->room_features }}</td>
-                                        <td>{{ $room->room_inclusions }}</td>
                                         <td>{{ $room->room_status }}</td>
                                         <td><button class="edit">•••</button></td>
                                     </tr>
                                 @endforeach
                             </tbody>
                         </table>
+                        {!! $rooms->links('vendor.pagination.simple') !!}
                     </div>
                 </div>
             </div>

@@ -39,12 +39,19 @@ return new class extends Migration
             Schema::create('bookings', function (Blueprint $table) {
                 $table->id('booking_id');
                 $table->foreignId('room_id')->constrained('rooms');
-                $table->foreignId('service_id')->nullable()->constrained('services');
                 $table->foreignId('user_id')->constrained('users');
                 $table->enum('booking_status', ['pending', 'confirmed', 'cancelled']);
                 $table->decimal('total_amount', 10, 2);
                 $table->date('check_in_date');
                 $table->date('check_out_date');
+                $table->timestamps();
+            });
+
+            Schema::create('booking_service', function (Blueprint $table) {
+                $table->id();
+                $table->unsignedBigInteger('booking_id');
+                $table->foreign('booking_id')->references('booking_id')->on('bookings')->onDelete('cascade');
+                $table->foreignId('service_id')->constrained('services')->onDelete('cascade');
                 $table->timestamps();
             });
         }
@@ -56,6 +63,7 @@ return new class extends Migration
 
         public function down(): void
         {
+            Schema::dropIfExists('booking_service');
             Schema::dropIfExists('bookings');
             Schema::dropIfExists('services');
             Schema::dropIfExists('rooms');

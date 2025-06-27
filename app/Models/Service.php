@@ -15,4 +15,9 @@ class Service extends Model
         'service_description',
         'service_pax',
     ];
+
+    public function bookings()
+    {
+        return $this->belongsToMany(\App\Models\Booking::class, 'booking_service');
+    }
 } 

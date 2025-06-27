@@ -1,0 +1,188 @@
+Assets: Rooms
+#	Room Name	Description	Sleeps	Price (₱/night)
+1	Deluxe Queen Room	Elegant room with a queen-size bed, city view, private bath, and workspace. Ideal for solo travelers or couples.	2	₱3,200
+2	Superior Twin Room	Two cozy single beds with modern decor, smart TV, and free breakfast. Great for friends or work trips.	2	₱3,500
+3	Executive King Suite	Spacious suite with king-size bed, living area, large windows, mini bar, and premium toiletries.	2	₱5,800
+4	Family Room	One queen bed and two single beds, perfect for small families. Comes with Netflix-ready smart TV and fridge.	4	₱4,700
+5	Budget Single Room	Compact but clean and modern room with single bed, private shower, and desk. Great for short stays.	1	₱1,500
+6	Junior Suite	Stylish room with queen bed, small living area, bath tub, and balcony view.	2	₱4,200
+7	Penthouse Suite	Top-floor luxury suite with panoramic seaside view, king bed, sofa lounge, jacuzzi, and dedicated concierge.	2	₱12,000
+8	Barkada Room	Dorm-style room with 4 bunk beds, shared bath, lockers, and common lounge area.	8	₱3,000
+9	Accessible Room	Queen-size bed with accessible layout, support rails in bathroom, wide doorway, and emergency alert system.	2	₱2,900
+10	Honeymoon Suite	Romantic suite with canopy king bed, mood lighting, tub for two, complimentary wine, and room service.	2	₱6,500
+
+
+
+
+
+Addtnl.
+
+Deluxe Queen Room
+Inclusions:
+●	Complimentary Wi-Fi
+●	Daily housekeeping
+●	Coffee & tea making facilities
+●	Air-conditioning
+●	Toiletries & towels
+Features:
+●	1 Bathroom
+●	2 Wall outlets
+●	1 Mini bar
+●	1 TV
+●	1 Armchair
+●	1 Iron and ironing board
+●	1 Phone
+●	1 Hairdryer
+Superior Twin Room
+Inclusions:
+●	Complimentary breakfast
+●	Free high-speed Wi-Fi
+●	Air-conditioning
+●	In-room safe
+●	Toiletries & slippers
+●	Bottled water daily
+Features:
+●	1 Bathroom
+●	4 Wall outlets
+●	1 TV
+●	2 Armchairs
+●	1 Iron and ironing board
+●	1 Phone
+●	1 Hairdryer
+
+Executive King Suite
+Inclusions:
+●	Complimentary minibar
+●	Bathrobe & premium toiletries
+●	Daily breakfast for two
+●	Free Wi-Fi & smart TV
+●	24-hour room service
+●	Welcome drink upon arrival
+Features:
+●	2 Bathrooms
+●	8 Wall outlets
+●	2 Mini bars
+●	2 TVs
+●	4 Armchairs
+●	2 Iron and ironing boards
+2 Phones
+●	2 Hairdryers
+Family Room
+Inclusions:
+●	Netflix-ready smart TV
+●	Mini fridge
+●	Complimentary bottled water
+●	Board games upon request
+●	Daily housekeeping
+●	Wi-Fi access for multiple devices
+Features:
+●	1 Bathroom
+●	6 Wall outlets
+●	1 TV
+●	2 Armchairs
+●	1 Iron and ironing board
+●	1 Phone
+●	1 Hairdryer
+
+
+Budget Single Room
+Inclusions:
+●	Free Wi-Fi
+●	Fresh towels & toiletries
+●	Air-conditioning
+●	Desk with reading lamp
+●	Daily housekeeping
+●	Complimentary bottled water
+Features:
+●	1 Bathroom
+●	2 Wall outlets
+●	1 TV
+●	1 Armchair
+●	1 Phone
+●	1 Hairdryer
+Junior Suite
+Inclusions:
+●	Balcony with seating area
+●	Complimentary bath salts
+●	Coffee & tea maker
+●	Free Wi-Fi & smart TV
+●	Soft bathrobes & slippers
+●	Daily breakfast for two
+Features:
+●	1 Bathroom with bathtub
+●	4 Wall outlets
+●	1 Mini bar
+●	1 TV
+●	2 Armchairs
+●	1 Iron and ironing board
+●	1 Phone
+●	1 Hairdryer
+
+
+Penthouse Suite
+Inclusions:
+●	Panoramic view lounge access
+●	Private jacuzzi with bath amenities
+●	Premium minibar & wine selection
+●	Concierge service
+●	Complimentary breakfast and dinner
+●	Late check-out (subject to availability)
+●	Welcome fruit basket & champagne
+Features:
+●	2 Bathrooms
+●	10 Wall outlets
+●	2 Mini bars
+●	2 TVs
+●	4 Armchairs
+●	2 Iron and ironing boards
+●	2 Phones
+●	2 Hairdryers
+Barkada Room
+Inclusions:
+●	Individual lockers with key
+●	Shared bathroom with hot & cold shower
+●	Free Wi-Fi
+●	Lounge area with board games & TV
+●	Drinking water station
+●	Towel rental available
+Features:
+●	2 Shared 
+●	8 Wall outlets
+●	1 TV
+●	4 Armchairs
+●	1 Iron and ironing board
+●	1 Hairdryer
+
+Accessible Room
+Inclusions:
+●	Wheelchair-accessible layout
+●	Emergency alert system
+●	Bathroom support rails
+●	Lowered bed height & furniture
+●	Free Wi-Fi
+●	On-call staff assistance
+Features:
+●	1 Accessible Bathroom
+●	4 Wall outlets
+●	1 TV
+●	2 Armchairs
+●	1 Phone
+●	1 Hairdryer
+Honeymoon Suite
+Inclusions:
+●	Complimentary bottle of wine
+●	Romantic room decor with rose petals
+●	Breakfast in bed
+●	Private tub for two
+●	Mood lighting control
+●	24/7 room service
+●	Welcome dessert plate
+Features:
+●	1 Bathroom with tub
+●	6 Wall outlets
+●	1 Mini bar
+●	1 TV
+●	2 Armchairs
+●	1 Iron and ironing board
+●	1 Phone
+●	1 Hairdryer

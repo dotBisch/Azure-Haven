@@ -60,12 +60,12 @@ class AdminController extends Controller
     }
     public function bookings()
     {
-        $bookings = Booking::all();
+        $bookings = Booking::with('services')->paginate(7);
         return view('admin.bookings', compact('bookings'));
     }
     public function rooms()
     {
-        $rooms = Room::all();
+        $rooms = Room::paginate(5);
         return view('admin.ManageRooms', compact('rooms'));
     }
     public function guests()
@@ -80,7 +80,7 @@ class AdminController extends Controller
     }
     public function services()
     {
-        $services = Service::all();
+        $services = Service::paginate(5);
         return view('admin.services', compact('services'));
     }
     public function userbookings()
