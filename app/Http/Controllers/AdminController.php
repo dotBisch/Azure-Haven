@@ -60,7 +60,7 @@ class AdminController extends Controller
     }
     public function bookings()
     {
-        $bookings = Booking::all();
+        $bookings = Booking::with('services')->paginate(7);
         return view('admin.bookings', compact('bookings'));
     }
     public function rooms()
