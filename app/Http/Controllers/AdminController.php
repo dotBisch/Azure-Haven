@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Booking;
 use App\Models\Room;
+use App\Models\Service;
 
 class AdminController extends Controller
 {
@@ -79,7 +80,8 @@ class AdminController extends Controller
     }
     public function services()
     {
-        return view('admin.services');
+        $services = Service::all();
+        return view('admin.services', compact('services'));
     }
     public function userbookings()
     {
