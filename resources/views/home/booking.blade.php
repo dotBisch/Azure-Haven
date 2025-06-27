@@ -2,7 +2,7 @@
     <div class="booking-container">
         <p>Ready to Relax?</p>
         <h2><span class="highlight-blue">Book</span> your room today!</h2>
-        <form class="booking-form">
+        <form class="booking-form" action="{{ route('userbookings') }}" method="GET">
             <div class="form-group">
                 <label for="checkin">Check-In</label>
                 <input type="date" id="checkin" name="checkin">

@@ -75,4 +75,8 @@ class AdminController extends Controller
     {
         return view('admin.services');
     }
+    public function userbookings()
+    {
+        return view('bookings.index');
+    }
 }

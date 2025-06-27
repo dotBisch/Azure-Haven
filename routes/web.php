@@ -57,6 +57,9 @@ route::get('/services', [
     AdminController::class, 'services'
 ])->name('services');
 
+route::get('/userbookings', [
+    AdminController::class, 'userbookings'
+])->name('userbookings');
 // route::get('/home', [
 //      AdminController::class, 'home'
 // ])->name('home');
