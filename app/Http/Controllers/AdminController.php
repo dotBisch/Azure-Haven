@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Booking;
 
 class AdminController extends Controller
 {
@@ -57,7 +58,8 @@ class AdminController extends Controller
     }
     public function bookings()
     {
-        return view('admin.bookings');
+        $bookings = Booking::all();
+        return view('admin.bookings', compact('bookings'));
     }
     public function rooms()
     {
@@ -65,7 +67,8 @@ class AdminController extends Controller
     }
     public function guests()
     {
-        return view('admin.ManageGuests');
+        $guests = User::where('usertype', 'user')->get();
+        return view('admin.ManageGuests', compact('guests'));
     } 
     public function staffs()
     {

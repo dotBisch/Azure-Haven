@@ -96,6 +96,7 @@
                 <div class="guest-dashboard">
                     <div class="gt-panel">
                         <span class="gd-title">Guests</span>
+                        <button class="add-guest-btn" style="margin-left: 20px; padding: 8px 16px; background: #0A2E4C; color: #fff; border: none; border-radius: 4px; cursor: pointer;">Add Guest</button>
                         <div class="gr-panel">
                             <div class="gr-button">
                                 <button class="sort-btn">
@@ -119,49 +120,27 @@
                         <table id="guests-page">
                             <thead>
                                 <tr>
-                                    <th>Room</th>
-                                    <th>Name</th>
-                                    <th>Check-In</th>
-                                    <th>Check-Out</th>
-                                    <th>Amount</th>
-                                    <th>Payment</th>
+                                    <th>ID</th>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Usertype</th>
                                     <th></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td >S01</td>
-                                    <td>Harry Potter</td>
-                                    <td>10/10/2025</td>
-                                    <td>10/30/2025</td>
-                                    <td>1,200.00</td>
-                                    <td>Paid</td>
-                                    <td>
-                                        <button class="edit">•••</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td >S01</td>
-                                    <td>Harry Potter</td>
-                                    <td>10/10/2025</td>
-                                    <td>10/30/2025</td>
-                                    <td>1,200.00</td>
-                                    <td>Paid</td>
-                                    <td>
-                                        <button class="edit">•••</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td >S01</td>
-                                    <td>Harry Potter</td>
-                                    <td>10/10/2025</td>
-                                    <td>10/30/2025</td>
-                                    <td>1,200.00</td>
-                                    <td>Paid</td>
-                                    <td>
-                                        <button class="edit">•••</button>
-                                    </td>
-                                </tr>
+                                @foreach($guests as $guest)
+                                    <tr>
+                                        <td>{{ $guest->id }}</td>
+                                        <td>{{ $guest->first_name }}</td>
+                                        <td>{{ $guest->last_name }}</td>
+                                        <td>{{ $guest->email }}</td>
+                                        <td>{{ $guest->phone }}</td>
+                                        <td>{{ $guest->usertype }}</td>
+                                        <td><button class="edit">•••</button></td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

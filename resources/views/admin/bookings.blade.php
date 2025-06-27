@@ -96,6 +96,7 @@
                 <div class="booking-dashboard">
                     <div class="bt-panel">
                         <span class="bd-title">Bookings</span>
+                        <button class="add-booking-btn" style="margin-left: 20px; padding: 8px 16px; background: #007bff; color: #fff; border: none; border-radius: 4px; cursor: pointer;">Add Booking</button>
                         <div class="br-panel">
                             <div class="br-button">
                                 <button class="sort-btn">
@@ -117,53 +118,35 @@
                     </div>
                     <div class="table-panel">
                         <table id="bookings-page">
-                                <thead>
+                            <thead>
+                                <tr>
+                                    <th>Booking ID</th>
+                                    <th>Room ID</th>
+                                    <th>Service ID</th>
+                                    <th>User ID</th>
+                                    <th>Status</th>
+                                    <th>Total Amount</th>
+                                    <th>Check-In</th>
+                                    <th>Check-Out</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($bookings as $booking)
                                     <tr>
-                                        <th>Room</th>
-                                        <th>Name</th>
-                                        <th>Check-In</th>
-                                        <th>Check-Out</th>
-                                        <th>Amount</th>
-                                        <th>Payment</th>
-                                        <th></th>
+                                        <td>{{ $booking->booking_id }}</td>
+                                        <td>{{ $booking->room_id }}</td>
+                                        <td>{{ $booking->service_id }}</td>
+                                        <td>{{ $booking->user_id }}</td>
+                                        <td>{{ $booking->booking_status }}</td>
+                                        <td>{{ $booking->total_amount }}</td>
+                                        <td>{{ $booking->check_in_date }}</td>
+                                        <td>{{ $booking->check_out_date }}</td>
+                                        <td><button class="edit">•••</button></td>
                                     </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td >S01</td>
-                                        <td>Harry Potter</td>
-                                        <td>10/10/2025</td>
-                                        <td>10/30/2025</td>
-                                        <td>1,200.00</td>
-                                        <td>Paid</td>
-                                        <td>
-                                            <button class="edit">•••</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td >S01</td>
-                                        <td>Harry Potter</td>
-                                        <td>10/10/2025</td>
-                                        <td>10/30/2025</td>
-                                        <td>1,200.00</td>
-                                        <td>Paid</td>
-                                        <td>
-                                            <button class="edit">•••</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td >S01</td>
-                                        <td>Harry Potter</td>
-                                        <td>10/10/2025</td>
-                                        <td>10/30/2025</td>
-                                        <td>1,200.00</td>
-                                        <td>Paid</td>
-                                        <td>
-                                            <button class="edit">•••</button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
