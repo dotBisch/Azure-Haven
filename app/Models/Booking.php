@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Booking extends Model
 {
     use HasFactory;
+
+    public function services()
+    {
+        return $this->belongsToMany(\App\Models\Service::class, 'booking_service');
+    }
 }
