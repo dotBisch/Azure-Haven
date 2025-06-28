@@ -147,6 +147,7 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        {!! $staffs->links('vendor.pagination.simple') !!}
                     </div>
                 </div>
             </div>

@@ -75,7 +75,7 @@ class AdminController extends Controller
     } 
     public function staffs()
     {
-        $staffs = User::where('usertype', 'admin')->get();
+        $staffs = User::where('usertype', 'admin')->paginate(4);
         return view('admin.ManageStaffs', compact('staffs'));
     }
     public function services()
