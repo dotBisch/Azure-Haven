@@ -70,7 +70,7 @@ class AdminController extends Controller
     }
     public function guests()
     {
-        $guests = User::where('usertype', 'user')->get();
+        $guests = User::where('usertype', 'user')->paginate(7);
         return view('admin.ManageGuests', compact('guests'));
     } 
     public function staffs()

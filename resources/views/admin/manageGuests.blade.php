@@ -147,6 +147,7 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        {!! $guests->links('vendor.pagination.simple') !!}
                     </div>
                 </div>
             </div>
