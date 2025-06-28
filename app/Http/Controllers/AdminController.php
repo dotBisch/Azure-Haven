@@ -213,4 +213,28 @@ class AdminController extends Controller
 
         return redirect()->route('staffs')->with('success', 'User added successfully!');
     }
+
+    public function addService()
+    {
+        return view('admin.add-service');
+    }
+
+    public function storeService(Request $request)
+    {
+        $request->validate([
+            'service_name' => 'required|string|max:255',
+            'service_price' => 'required|numeric|min:0',
+            'service_description' => 'required|string',
+            'service_pax' => 'required|integer|min:1',
+        ]);
+
+        Service::create([
+            'service_name' => $request->service_name,
+            'service_price' => $request->service_price,
+            'service_description' => $request->service_description,
+            'service_pax' => $request->service_pax,
+        ]);
+
+        return redirect()->route('services')->with('success', 'Service added successfully!');
+    }
 }
