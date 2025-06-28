@@ -73,6 +73,14 @@ route::post('/store-booking', [
     AdminController::class, 'storeBooking'
 ])->name('store-booking');
 
+route::get('/add-room', [
+    AdminController::class, 'addRoom'
+])->name('add-room');
+
+route::post('/store-room', [
+    AdminController::class, 'storeRoom'
+])->name('store-room');
+
 // route::get('/home', [
 //      AdminController::class, 'home'
 // ])->name('home');

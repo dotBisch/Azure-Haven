@@ -143,4 +143,37 @@ class AdminController extends Controller
 
         return redirect()->route('bookings')->with('success', 'Booking created successfully!');
     }
+
+    public function addRoom()
+    {
+        return view('admin.add-room');
+    }
+
+    public function storeRoom(Request $request)
+    {
+        $request->validate([
+            'room_number' => 'required|string|unique:rooms,room_number',
+            'room_type' => 'required|string',
+            'room_price' => 'required|numeric|min:0',
+            'room_description' => 'required|string',
+            'room_pax' => 'required|integer|min:1',
+            'room_features' => 'nullable|string',
+            'room_inclusions' => 'nullable|string',
+            'room_image' => 'nullable|string',
+        ]);
+
+        Room::create([
+            'room_number' => $request->room_number,
+            'room_type' => $request->room_type,
+            'room_price' => $request->room_price,
+            'room_description' => $request->room_description,
+            'room_pax' => $request->room_pax,
+            'room_features' => $request->room_features,
+            'room_inclusions' => $request->room_inclusions,
+            'room_image' => $request->room_image ?: 'default-room.jpg',
+            'room_status' => 'available',
+        ]);
+
+        return redirect()->route('rooms')->with('success', 'Room added successfully!');
+    }
 }

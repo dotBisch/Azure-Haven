@@ -113,10 +113,10 @@
                                     <span>Filter</span>
                                 </button>
 
-                                <button class="add-btn">
+                                <a href="{{ route('add-room') }}" class="add-btn" style="text-decoration: none; color: white;">
                                     <i class="fa-solid fa-plus"></i>
                                     <span>Add Room</span>
-                                </button>
+                                </a>
                             </div>
                         </div>
                     </div>
