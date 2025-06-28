@@ -185,4 +185,32 @@ class AdminController extends Controller
 
         return redirect()->route('rooms')->with('success', 'Room added successfully!');
     }
+
+    public function addStaff()
+    {
+        return view('admin.add-staff');
+    }
+
+    public function storeStaff(Request $request)
+    {
+        $request->validate([
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users,email',
+            'phone' => 'nullable|string|max:20',
+            'usertype' => 'required|in:user,admin',
+            'password' => 'required|string|min:8|confirmed',
+        ]);
+
+        User::create([
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'usertype' => $request->usertype,
+            'password' => bcrypt($request->password),
+        ]);
+
+        return redirect()->route('staffs')->with('success', 'User added successfully!');
+    }
 }

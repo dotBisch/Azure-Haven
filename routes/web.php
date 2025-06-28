@@ -81,6 +81,14 @@ route::post('/store-room', [
     AdminController::class, 'storeRoom'
 ])->name('store-room');
 
+route::get('/add-staff', [
+    AdminController::class, 'addStaff'
+])->name('add-staff');
+
+route::post('/store-staff', [
+    AdminController::class, 'storeStaff'
+])->name('store-staff');
+
 // route::get('/home', [
 //      AdminController::class, 'home'
 // ])->name('home');
