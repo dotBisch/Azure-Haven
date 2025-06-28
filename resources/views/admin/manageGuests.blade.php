@@ -149,7 +149,11 @@
                                             <div class="action-popup" style="display: none;">
                                                 <a href="{{ route('view-staff', $guest->id) }}?back=guests" class="popup-btn view-btn" title="Show"><i class="fa-solid fa-eye"></i></a>
                                                 <a href="{{ route('edit-guest', $guest->id) }}" class="popup-btn edit-btn" title="Edit"><i class="fa-solid fa-pen-to-square"></i></a>
-                                                <button class="popup-btn delete-btn" title="Delete"><i class="fa-solid fa-trash"></i></button>
+                                                <form action="{{ route('delete-guest', $guest->id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this guest?');">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button class="popup-btn delete-btn" title="Delete"><i class="fa-solid fa-trash"></i></button>
+                                                </form>
                                             </div>
                                         </td>
                                     </tr>

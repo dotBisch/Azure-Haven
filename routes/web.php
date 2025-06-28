@@ -130,6 +130,12 @@ route::put('/update-guest/{id}', [AdminController::class, 'updateGuest'])->name(
 route::get('/edit-service/{id}', [AdminController::class, 'editService'])->name('edit-service');
 route::put('/update-service/{id}', [AdminController::class, 'updateService'])->name('update-service');
 
+route::delete('/delete-booking/{id}', [AdminController::class, 'deleteBooking'])->name('delete-booking');
+route::delete('/delete-room/{id}', [AdminController::class, 'deleteRoom'])->name('delete-room');
+route::delete('/delete-staff/{id}', [AdminController::class, 'deleteStaff'])->name('delete-staff');
+route::delete('/delete-guest/{id}', [AdminController::class, 'deleteGuest'])->name('delete-guest');
+route::delete('/delete-service/{id}', [AdminController::class, 'deleteService'])->name('delete-service');
+
 // route::get('/home', [
 //      AdminController::class, 'home'
 // ])->name('home');

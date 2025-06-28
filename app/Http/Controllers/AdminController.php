@@ -393,4 +393,25 @@ class AdminController extends Controller
         $service->update($request->all());
         return redirect()->route('services')->with('success', 'Service updated successfully!');
     }
+
+    public function deleteBooking($id) {
+        Booking::findOrFail($id)->delete();
+        return redirect()->route('bookings')->with('success', 'Booking deleted successfully!');
+    }
+    public function deleteRoom($id) {
+        Room::findOrFail($id)->delete();
+        return redirect()->route('rooms')->with('success', 'Room deleted successfully!');
+    }
+    public function deleteStaff($id) {
+        User::where('usertype', 'admin')->findOrFail($id)->delete();
+        return redirect()->route('staffs')->with('success', 'Staff deleted successfully!');
+    }
+    public function deleteGuest($id) {
+        User::where('usertype', 'user')->findOrFail($id)->delete();
+        return redirect()->route('guests')->with('success', 'Guest deleted successfully!');
+    }
+    public function deleteService($id) {
+        Service::findOrFail($id)->delete();
+        return redirect()->route('services')->with('success', 'Service deleted successfully!');
+    }
 }
