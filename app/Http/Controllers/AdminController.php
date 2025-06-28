@@ -237,4 +237,28 @@ class AdminController extends Controller
 
         return redirect()->route('services')->with('success', 'Service added successfully!');
     }
+
+    public function viewBooking($id)
+    {
+        $booking = Booking::with(['services', 'room', 'guest'])->findOrFail($id);
+        return view('admin.view-booking', compact('booking'));
+    }
+
+    public function viewRoom($id)
+    {
+        $room = Room::findOrFail($id);
+        return view('admin.view-room', compact('room'));
+    }
+
+    public function viewStaff($id)
+    {
+        $staff = User::findOrFail($id);
+        return view('admin.view-staff', compact('staff'));
+    }
+
+    public function viewService($id)
+    {
+        $service = Service::findOrFail($id);
+        return view('admin.view-service', compact('service'));
+    }
 }

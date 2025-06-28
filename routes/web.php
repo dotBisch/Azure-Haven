@@ -97,6 +97,22 @@ route::post('/store-service', [
     AdminController::class, 'storeService'
 ])->name('store-service');
 
+route::get('/view-booking/{id}', [
+    AdminController::class, 'viewBooking'
+])->name('view-booking');
+
+route::get('/view-room/{id}', [
+    AdminController::class, 'viewRoom'
+])->name('view-room');
+
+route::get('/view-staff/{id}', [
+    AdminController::class, 'viewStaff'
+])->name('view-staff');
+
+route::get('/view-service/{id}', [
+    AdminController::class, 'viewService'
+])->name('view-service');
+
 // route::get('/home', [
 //      AdminController::class, 'home'
 // ])->name('home');
