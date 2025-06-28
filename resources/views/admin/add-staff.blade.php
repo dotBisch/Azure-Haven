@@ -170,9 +170,24 @@
                 grid-template-columns: 1fr;
             }
             
+            .room-type-options {
+                grid-template-columns: 1fr;
+            }
+            
             .form-buttons {
                 flex-direction: column;
             }
+        }
+
+        /* Active navigation states */
+        .link-4 {
+            background-color: var(--background);
+            box-shadow: 0px 3px 5px var(--shadow-1);
+        }
+
+        .link-5 {
+            background-color: var(--background);
+            box-shadow: 0px 3px 5px var(--shadow-1);
         }
     </style>
 </head>
@@ -221,13 +236,13 @@
                             <span class="nav-text">Manage Rooms</span>
                         </a>
                     </li>
-                    <li class="nav-link link-4">
+                    <li class="nav-link {{ request('back') === 'staffs' ? 'link-4' : '' }}">
                         <a href="{{ route('staffs') }}">
                             <i class="fa-solid fa-headset"></i>
                             <span class="nav-text">Manage Staffs</span>
                         </a>
                     </li>
-                    <li class="nav-link link-5">
+                    <li class="nav-link {{ request('back') === 'guests' ? 'link-5' : '' }}">
                         <a href="{{ route('guests') }}">
                             <i class="fa-solid fa-users"></i>
                             <span class="nav-text">Manage Guests</span>
@@ -316,8 +331,8 @@
                     <label for="usertype" class="form-label">User Type</label>
                     <select name="usertype" id="usertype" class="form-select" required>
                         <option value="">Select user type</option>
-                        <option value="user">User (Guest)</option>
-                        <option value="admin">Admin (Staff)</option>
+                        <option value="user" {{ (request('usertype') == 'user') ? 'selected' : '' }}>User (Guest)</option>
+                        <option value="admin" {{ (request('usertype') == 'admin') ? 'selected' : '' }}>Admin (Staff)</option>
                     </select>
                     @error('usertype')
                         <div class="error-message">{{ $message }}</div>
@@ -352,8 +367,8 @@
                     <button type="submit" class="btn btn-primary">
                         <i class="fa-solid fa-plus"></i> Add User/Staff
                     </button>
-                    <a href="{{ route('staffs') }}" class="btn btn-secondary">
-                        <i class="fa-solid fa-arrow-left"></i> Back to Staff
+                    <a href="{{ request('back') === 'guests' ? route('guests') : route('staffs') }}" class="btn btn-secondary">
+                        <i class="fa-solid fa-arrow-left"></i> Back
                     </a>
                 </div>
             </form>

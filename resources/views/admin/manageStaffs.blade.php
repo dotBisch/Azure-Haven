@@ -113,7 +113,7 @@
                                     <span>Filter</span>
                                 </button>
 
-                                <a href="{{ route('add-staff') }}" class="add-btn" style="text-decoration: none; color: white;">
+                                <a href="{{ route('add-staff', [], false) }}?back=staffs" class="add-btn" style="text-decoration: none; color: white;">
                                     <i class="fa-solid fa-plus"></i>
                                     <span>Add Staff</span>
                                 </a>
