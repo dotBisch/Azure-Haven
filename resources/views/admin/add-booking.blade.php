@@ -336,6 +336,22 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="booking_status" class="form-label">Booking Status</label>
+                        <select name="booking_status" id="booking_status" class="form-select" required>
+                            <option value="pending" selected>Pending</option>
+                            <option value="confirmed">Confirmed</option>
+                            <option value="checked_in">Checked In</option>
+                            <option value="checked_out">Checked Out</option>
+                            <option value="cancelled">Cancelled</option>
+                        </select>
+                        @error('booking_status')
+                            <div class="error-message">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
                         <label for="user_id" class="form-label">Guest</label>
                         <select name="user_id" id="user_id" class="form-select" required>
                             <option value="">Select a guest</option>
@@ -359,7 +375,6 @@
                             <div class="error-message">{{ $message }}</div>
                         @enderror
                     </div>
-
                     <div class="form-group">
                         <label for="check_out_date" class="form-label">Check-out Date</label>
                         <input type="date" name="check_out_date" id="check_out_date" class="form-input" required>
