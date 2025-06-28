@@ -151,6 +151,7 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        {!! $bookings->links('vendor.pagination.simple') !!}
                     </div>
                 </div>
             </div>
