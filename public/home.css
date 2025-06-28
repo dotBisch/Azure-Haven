@@ -183,6 +183,7 @@ nav a.active {
     align-items: end;
     justify-content: center;
     flex-wrap: wrap;
+    margin: 0 2rem;
 }
 
 .form-group {
@@ -413,6 +414,7 @@ nav a.active {
     object-fit: cover;
     object-position: center;
     transition: transform 0.3s ease;
+    border: 3px solid var(--primary-blue);
 }
 
 .facility-item:hover .facility-img {
@@ -434,6 +436,7 @@ nav a.active {
     object-fit: cover;
     object-position: center;
     transition: transform 0.3s ease;
+    border: 3px solid var(--primary-blue);
 }
 
 .facilities-hero:hover .hero-facility-img {
@@ -504,29 +507,84 @@ footer p {
 
 
 /* Responsive */
-@media (max-width: 768px) {
+@media (max-width: 1028px) {
     .header-container {
-        flex-direction: column;
+        justify-content: space-between;
         gap: 1rem;
-        padding: 10px;
+        padding: 10px 20px;
     }
     
     body {
         padding-top: 170px; 
     }
 
+    nav ul {
+        gap: 0;
+    }
+
+    nav a {
+        font-size: 0.8rem;
+    }
+
+    .hero-content {
+        margin: 0 2rem;
+    }
+
     .hero-content h1 {
-        font-size: 2.5rem;
+        font-size: 4rem;
+        line-height: 4rem;
+    }
+
+    .hero-content h2 {
+        font-size: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .hero-content p {
+        font-size: 1rem;
+        padding: 0 4rem;
     }
 
     .booking-form {
         flex-direction: column;
         align-items: stretch;
+        margin: 0 3rem;
+    }
+
+    .booking-container p {
+        font-size: 1rem;
+    }
+
+    .booking-container h2 {
+        font-size: 1.5rem;
+        text-shadow: none;
+    }
+
+    .search-btn {
+        margin: 0;
     }
 
     .about-container {
         flex-direction: column;
         text-align: center;
+    }
+
+    .about-content h2 {
+        margin-top: 1rem;
+        font-size: 1rem;
+        line-height: 2.5rem;
+    }
+
+    .about-content span {
+        font-size: 2.5rem;
+        line-height: 0;
+    }
+
+    .about-content p {
+        padding: 0 4rem;
+        margin-top: -1rem;
+        font-size: 0.8rem;
+        margin-bottom: 1.5rem;
     }
     
     .about-images, .about-content {
@@ -553,11 +611,38 @@ footer p {
     .facility-img { min-height: 140px; }
     .hero-facility-img { min-height: 250px; }
     .subtitle-line::before, .subtitle-line::after { max-width: 100px; }
-    .subtitle-line span { font-size: 0.9rem; }
-    .facilities-container h2 { font-size: 2rem; }
+    .subtitle-line span { 
+        font-size: 0.9rem; 
+        line-height: 0;
+    }
+    .facilities-container h2 { 
+        line-height: 1rem;
+        font-size: 1.5rem; 
+        text-shadow: none;
+    }
+}
+
+@media (max-width: 768px) { 
+    nav a {
+        display: none;
+    }
 }
 
 @media (max-width: 480px) {
+    .hero-content h1 {
+        font-size: 3rem;
+        line-height: 2.5rem;
+    }
+
+    .hero-content h2 {
+        font-size: 1.3rem;
+    }
+
+    .hero-content p {
+        font-size: 1rem;
+        padding: 0 0.5rem;
+    }
+
     .facilities-grid-left {
         grid-template-columns: 1fr;
         grid-template-rows: repeat(6, 140px);
