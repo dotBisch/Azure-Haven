@@ -164,7 +164,7 @@
                         <div class="recent-arrival">
                             <div class="ra-top">
                                 <span class="ra-title">Recent Arrivals</span>
-                                <a href="#">
+                                <a href="{{ route('bookings') }}">
                                     <span class="view">View All</span>
                                 </a>
                             </div>
