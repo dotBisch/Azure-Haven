@@ -334,4 +334,63 @@ class AdminController extends Controller
         $room->update($request->all());
         return redirect()->route('rooms')->with('success', 'Room updated successfully!');
     }
+
+    public function editStaff($id)
+    {
+        $staff = User::findOrFail($id);
+        return view('admin.edit-staff', compact('staff'));
+    }
+
+    public function updateStaff(Request $request, $id)
+    {
+        $staff = User::findOrFail($id);
+        $request->validate([
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users,email,' . $id,
+            'phone' => 'nullable|string|max:20',
+            'usertype' => 'required|in:admin',
+        ]);
+        $staff->update($request->all());
+        return redirect()->route('staffs')->with('success', 'Staff updated successfully!');
+    }
+
+    public function editGuest($id)
+    {
+        $guest = User::findOrFail($id);
+        return view('admin.edit-guest', compact('guest'));
+    }
+
+    public function updateGuest(Request $request, $id)
+    {
+        $guest = User::findOrFail($id);
+        $request->validate([
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users,email,' . $id,
+            'phone' => 'nullable|string|max:20',
+            'usertype' => 'required|in:user',
+        ]);
+        $guest->update($request->all());
+        return redirect()->route('guests')->with('success', 'Guest updated successfully!');
+    }
+
+    public function editService($id)
+    {
+        $service = Service::findOrFail($id);
+        return view('admin.edit-service', compact('service'));
+    }
+
+    public function updateService(Request $request, $id)
+    {
+        $service = Service::findOrFail($id);
+        $request->validate([
+            'service_name' => 'required|string|max:255',
+            'service_price' => 'required|numeric|min:0',
+            'service_description' => 'required|string',
+            'service_pax' => 'required|integer|min:1',
+        ]);
+        $service->update($request->all());
+        return redirect()->route('services')->with('success', 'Service updated successfully!');
+    }
 }
