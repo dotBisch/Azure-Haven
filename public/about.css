@@ -121,9 +121,10 @@ nav .update-profile-information {
 
 .about-container h2 {
     font-family: var(--heading-font);
-    font-size: 2.8rem;
+    font-size: 2.5rem;
     color: var(--text-color);
     font-weight: 700;
+    text-shadow: 0.5px 0.5px 1px rgb(0, 0, 0);
 }
 
 .about-container h2 .highlight-blue {
@@ -141,7 +142,7 @@ nav .update-profile-information {
 .about-container p {
     margin-top: 2rem;
     color: var(--text-color);
-    font-size: 1.1rem;
+    font-size: 1rem;
 }
 
 /* Room Section */
@@ -176,7 +177,7 @@ nav .update-profile-information {
 }
 
 .room-content p {
-    font-size: 1.2rem;
+    font-size: 1rem;
     line-height: 1.7;
     max-width: 500px;
 }
@@ -192,15 +193,16 @@ nav .update-profile-information {
 
 .story-section h2 {
     font-family: var(--heading-font);
-    font-size: 2.8rem;
+    font-size: 2rem;
     padding: 5rem 0 0 0;
     margin-bottom: 3rem;
     color: black;
+    text-shadow: 0.5px 0.5px 1px rgb(0, 0, 0);
 }
 
 .story-section h2 .highlight-blue {
     color: var(--primary-blue);
-    padding-left: 23rem;
+    padding-left: 15rem;
 }
 
 .story-container {
@@ -222,10 +224,11 @@ nav .update-profile-information {
 
 .story-content {
     flex: 1;
-    padding: 4rem;
+    padding: 0 4rem;
     display: flex;
     align-items: center;
     justify-content: center;
+    height: auto;
 }
 
 .story-section hr {
@@ -235,7 +238,7 @@ nav .update-profile-information {
 }
 
 .story-content p {
-    font-size: 1.1rem;
+    font-size: 1rem;
     max-width: 500px;
     text-align: left;
 }
@@ -256,7 +259,7 @@ nav .update-profile-information {
 .early-container p {
     max-width: 800px;
     margin: 0 auto;
-    font-size: 1.2rem;
+    font-size: 1rem;
 }
 
 /* Values Section */
@@ -281,10 +284,8 @@ nav .update-profile-information {
     justify-content: center;
 }
 
-
-
 .values-content p {
-    font-size: 1.1rem;
+    font-size: 1rem;
     max-width: 500px;
     text-align: left;
 }
@@ -301,11 +302,6 @@ nav .update-profile-information {
     width: 100vw;
     margin-left: calc(-50vw + 98%);
 }
-
-
-
-
-
 
 /* Footer */
 footer {
@@ -351,23 +347,47 @@ footer p {
         flex-direction: column;
     }
 
+    .story-section {
+        text-align: center;
+    }
+
+    .story-section h2 .highlight-blue {
+        padding-left: 0;
+    }
+
     .story-container {
         flex-direction: column-reverse;
+    }
+
+    .story-content p {
+        padding: 4rem 0;
+    }
+
+    nav ul {
+        gap: 0;
+    }
+
+    nav a {
+        font-size: 0.8rem;
+    }
+
+    .values-divider {
+        margin-left: 0;
     }
 }
 
 @media (max-width: 768px) {
     .header-container {
-        flex-direction: column;
+        justify-content: space-between;
         gap: 1rem;
-        padding: 10px;
+        padding: 0 20px;
     }
-    
-    body {
-        padding-top: 170px; 
+
+    nav a {
+        display: none;
     }
 
     .hero {
-        height: calc(100vh - 170px); /* Adjust hero height on mobile */
+        height: calc(100vh - 150px); /* Adjust hero height on mobile */
     }
 }

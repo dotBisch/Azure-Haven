@@ -132,13 +132,13 @@
             <x-responsive-nav-link href="{{ route('home') }}" :active="request()->routeIs('home')">
                 {{ __('Home') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link href="{{ route('aboutUs') }}" :active="request()->routeIs('home')">
+            <x-responsive-nav-link href="{{ route('aboutUs') }}" :active="request()->routeIs('aboutUs')">
                 {{ __('About Us') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link href="{{ route('roomsAndServices') }}" :active="request()->routeIs('home')">
+            <x-responsive-nav-link href="{{ route('roomsAndServices') }}" :active="request()->routeIs('roomsAndServices')">
                 {{ __('Rooms & Services') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link href="{{ route('contactUs') }}" :active="request()->routeIs('home')">
+            <x-responsive-nav-link href="{{ route('contactUs') }}" :active="request()->routeIs('contactUs')">
                 {{ __('Contact Us') }}
             </x-responsive-nav-link>
         </div>
