@@ -166,6 +166,7 @@ main {
 }
 
 .card-body img {
+    border-right: 3px solid var(--primary-blue);
     width: 40%;
     object-fit: cover;
     flex-shrink: 0;
