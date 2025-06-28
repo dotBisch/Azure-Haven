@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Azure Haven - Add Booking</title>
+    <title>Azure Haven - Edit Booking</title>
     <link rel="stylesheet" href="{{ asset('Admin/bookings.css') }}">
     <link href="https://fonts.googleapis.com/css?family=Manuale:700,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -45,6 +45,7 @@
             border-radius: 8px;
             font-size: 14px;
             transition: border-color 0.3s ease;
+            font-family: 'Manuale', serif;
         }
 
         .form-input:focus, .form-select:focus {
@@ -104,57 +105,6 @@
             font-weight: 600;
         }
 
-        .form-buttons {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            margin-top: 30px;
-        }
-
-        .btn {
-            padding: 12px 30px;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-            text-align: center;
-        }
-
-        .btn-primary {
-            background-color: var(--blue);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background-color: #3a6b8a;
-        }
-
-        .btn-secondary {
-            background-color: #6c757d;
-            color: white;
-        }
-
-        .btn-secondary:hover {
-            background-color: #5a6268;
-        }
-
-        .error-message {
-            color: #dc3545;
-            font-size: 12px;
-            margin-top: 5px;
-        }
-
-        .success-message {
-            background-color: #d4edda;
-            color: #155724;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-        }
-
         .price-breakdown {
             margin-top: 20px;
             background-color: #f8f9fa;
@@ -207,6 +157,91 @@
         .breakdown-item.total .breakdown-value {
             font-size: 18px;
             color: var(--blue);
+        }
+
+        .form-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: var(--blue);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #3a6b8a;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+
+        .error-message {
+            color: #dc3545;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        .success-message {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .booking-status {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .status-pending {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+
+        .status-confirmed {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .status-checked_in {
+            background-color: #cce5ff;
+            color: #004085;
+        }
+
+        .status-checked_out {
+            background-color: #e2e3e5;
+            color: #383d41;
+        }
+
+        .status-cancelled {
+            background-color: #f8d7da;
+            color: #721c24;
         }
 
         @media (max-width: 768px) {
@@ -308,7 +343,7 @@
 
     <section class="booking">
         <div class="form-container">
-            <h2 class="form-title">Add New Booking</h2>
+            <h2 class="form-title">Edit Booking</h2>
 
             @if(session('success'))
                 <div class="success-message">
@@ -316,8 +351,9 @@
                 </div>
             @endif
 
-            <form action="{{ route('store-booking') }}" method="POST">
+            <form action="{{ route('update-booking', $booking->booking_id) }}" method="POST">
                 @csrf
+                @method('PUT')
                 
                 <div class="form-row">
                     <div class="form-group">
@@ -325,7 +361,7 @@
                         <select name="room_id" id="room_id" class="form-select" required>
                             <option value="">Select a room</option>
                             @foreach($rooms as $room)
-                                <option value="{{ $room->id }}" data-price="{{ $room->room_price }}">
+                                <option value="{{ $room->id }}" data-price="{{ $room->room_price }}" {{ $booking->room_id == $room->id ? 'selected' : '' }}>
                                     {{ $room->room_number }} - {{ $room->room_type }} (₱{{ number_format($room->room_price, 2) }})
                                 </option>
                             @endforeach
@@ -338,11 +374,11 @@
                     <div class="form-group">
                         <label for="booking_status" class="form-label">Booking Status</label>
                         <select name="booking_status" id="booking_status" class="form-select" required>
-                            <option value="pending" selected>Pending</option>
-                            <option value="confirmed">Confirmed</option>
-                            <option value="checked_in">Checked In</option>
-                            <option value="checked_out">Checked Out</option>
-                            <option value="cancelled">Cancelled</option>
+                            <option value="pending" {{ $booking->booking_status == 'pending' ? 'selected' : '' }}>Pending</option>
+                            <option value="confirmed" {{ $booking->booking_status == 'confirmed' ? 'selected' : '' }}>Confirmed</option>
+                            <option value="checked_in" {{ $booking->booking_status == 'checked_in' ? 'selected' : '' }}>Checked In</option>
+                            <option value="checked_out" {{ $booking->booking_status == 'checked_out' ? 'selected' : '' }}>Checked Out</option>
+                            <option value="cancelled" {{ $booking->booking_status == 'cancelled' ? 'selected' : '' }}>Cancelled</option>
                         </select>
                         @error('booking_status')
                             <div class="error-message">{{ $message }}</div>
@@ -356,7 +392,7 @@
                         <select name="user_id" id="user_id" class="form-select" required>
                             <option value="">Select a guest</option>
                             @foreach($users as $user)
-                                <option value="{{ $user->id }}">
+                                <option value="{{ $user->id }}" {{ $booking->user_id == $user->id ? 'selected' : '' }}>
                                     {{ $user->first_name }} {{ $user->last_name }} ({{ $user->email }})
                                 </option>
                             @endforeach
@@ -370,14 +406,14 @@
                 <div class="form-row">
                     <div class="form-group">
                         <label for="check_in_date" class="form-label">Check-in Date</label>
-                        <input type="date" name="check_in_date" id="check_in_date" class="form-input" required min="{{ date('Y-m-d', strtotime('+1 day')) }}">
+                        <input type="date" name="check_in_date" id="check_in_date" class="form-input" required value="{{ $booking->check_in_date }}" min="{{ date('Y-m-d', strtotime('+1 day')) }}">
                         @error('check_in_date')
                             <div class="error-message">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="form-group">
                         <label for="check_out_date" class="form-label">Check-out Date</label>
-                        <input type="date" name="check_out_date" id="check_out_date" class="form-input" required>
+                        <input type="date" name="check_out_date" id="check_out_date" class="form-input" required value="{{ $booking->check_out_date }}">
                         @error('check_out_date')
                             <div class="error-message">{{ $message }}</div>
                         @enderror
@@ -389,7 +425,7 @@
                     <div class="services-grid">
                         @foreach($services as $service)
                             <div class="service-item">
-                                <input type="checkbox" name="services[]" id="service_{{ $service->id }}" value="{{ $service->id }}" data-price="{{ $service->service_price }}">
+                                <input type="checkbox" name="services[]" id="service_{{ $service->id }}" value="{{ $service->id }}" data-price="{{ $service->service_price }}" {{ $booking->services->contains($service->id) ? 'checked' : '' }}>
                                 <div class="service-info">
                                     <div class="service-name">{{ $service->service_name }}</div>
                                     <div class="service-price">₱{{ number_format($service->service_price, 2) }}</div>
@@ -427,7 +463,7 @@
 
                 <div class="form-buttons">
                     <button type="submit" class="btn btn-primary">
-                        <i class="fa-solid fa-plus"></i> Create Booking
+                        <i class="fa-solid fa-save"></i> Update Booking
                     </button>
                     <a href="{{ route('bookings') }}" class="btn btn-secondary">
                         <i class="fa-solid fa-arrow-left"></i> Back to Bookings
@@ -497,6 +533,9 @@
         document.querySelectorAll('input[name="services[]"]').forEach(checkbox => {
             checkbox.addEventListener('change', calculateTotal);
         });
+
+        // Calculate initial total on page load
+        calculateTotal();
     </script>
 </body>
 </html> 
