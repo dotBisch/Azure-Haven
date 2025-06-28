@@ -87,4 +87,8 @@ class AdminController extends Controller
     {
         return view('bookings.index');
     }
+    public function bookingHistory()
+    {
+        return view('bookings.index');
+    }
 }

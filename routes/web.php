@@ -60,6 +60,10 @@ route::get('/services', [
 route::get('/userbookings', [
     AdminController::class, 'userbookings'
 ])->name('userbookings');
+
+route::get('/bookingHistory', [
+    AdminController::class, 'bookingHistory'
+])->name('bookingHistory');
 // route::get('/home', [
 //      AdminController::class, 'home'
 // ])->name('home');
