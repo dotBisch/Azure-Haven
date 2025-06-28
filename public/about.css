@@ -113,7 +113,7 @@ nav .update-profile-information {
 }
 
 .about-container {
-    max-width: 800px;
+    max-width: 850px;
     margin: 0 auto;
     padding: 0 2rem;
     text-align: center;
@@ -142,7 +142,7 @@ nav .update-profile-information {
 .about-container p {
     margin-top: 2rem;
     color: var(--text-color);
-    font-size: 1rem;
+    font-size: 1.1rem;
 }
 
 /* Room Section */
@@ -177,7 +177,7 @@ nav .update-profile-information {
 }
 
 .room-content p {
-    font-size: 1rem;
+    font-size: 1.1rem;
     line-height: 1.7;
     max-width: 500px;
 }
@@ -193,7 +193,7 @@ nav .update-profile-information {
 
 .story-section h2 {
     font-family: var(--heading-font);
-    font-size: 2rem;
+    font-size: 2.5rem;
     padding: 5rem 0 0 0;
     margin-bottom: 3rem;
     color: black;
@@ -238,7 +238,7 @@ nav .update-profile-information {
 }
 
 .story-content p {
-    font-size: 1rem;
+    font-size: 1.1rem;
     max-width: 500px;
     text-align: left;
 }
@@ -259,7 +259,7 @@ nav .update-profile-information {
 .early-container p {
     max-width: 800px;
     margin: 0 auto;
-    font-size: 1rem;
+    font-size: 1.1rem;
 }
 
 /* Values Section */
@@ -285,7 +285,7 @@ nav .update-profile-information {
 }
 
 .values-content p {
-    font-size: 1rem;
+    font-size: 1.1rem;
     max-width: 500px;
     text-align: left;
 }
@@ -342,7 +342,17 @@ footer p {
 }
 
 /* Responsive */
-@media (max-width: 900px) {
+@media (max-width: 1024px) {
+    body {
+        padding-top: 0;
+    }
+
+    .header-container {
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 10px 20px;
+    }
+
     .room-container, .story-container, .values-container {
         flex-direction: column;
     }
@@ -377,12 +387,6 @@ footer p {
 }
 
 @media (max-width: 768px) {
-    .header-container {
-        justify-content: space-between;
-        gap: 1rem;
-        padding: 0 20px;
-    }
-
     nav a {
         display: none;
     }

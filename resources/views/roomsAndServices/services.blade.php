@@ -1,6 +1,6 @@
 <section class="services-section">
     <div class="container">
-        <h2>Our Services</h2>
+        <h2>Our <span>Services</span></h2>
         
         <div class="service-category">
             <h3>Transportation Services</h3>

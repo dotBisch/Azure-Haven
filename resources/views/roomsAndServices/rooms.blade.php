@@ -1,6 +1,6 @@
 <section class="rooms-section">
     <div class="container">
-        <h2>Our Rooms</h2>
+        <h2>Our <span>Rooms</span></h2><hr>
         <p class="section-intro">Choose from our thoughtfully designed rooms—each one a blend of style, comfort, and tranquility for a truly relaxing stay.</p>
         
         <div class="room-grid">
@@ -9,7 +9,7 @@
                 <div class="card-body">
                     <img src="assets/images/deluxe.png" alt="Deluxe Queen Room">
                     <div class="room-info">
-                        <div class="price-tag">₱ 3,200/night</div>
+                        <div class="price-tag">₱ 3,200 <span>/night</span></div>
                         <h3>Deluxe Queen Room</h3>
                         <p>Elegant room with a queen-size bed, city view, private bath, and workspace. Ideal for solo travelers or couples.</p>
                         <div class="guest-info">
@@ -26,7 +26,7 @@
                 <div class="card-body">
                     <img src="assets/images/superior.png" alt="Superior Twin Room">
                     <div class="room-info">
-                        <div class="price-tag">₱ 3,500/night</div>
+                        <div class="price-tag">₱ 3,500 <span>/night</span></div>
                         <h3>Superior Twin Room</h3>
                         <p>Two cozy single beds with modern decor, smart TV, and free breakfast. Great for friends or work trips.</p>
                         <div class="guest-info">
@@ -43,7 +43,7 @@
                 <div class="card-body">
                     <img src="assets/images/executive.png" alt="Executive King Suite">
                     <div class="room-info">
-                        <div class="price-tag">₱ 5,800/night</div>
+                        <div class="price-tag">₱ 5,800 <span>/night</span></div>
                         <h3>Executive King Suite</h3>
                         <p>Spacious suite with king-size bed, living area, large windows, mini bar, and premium toiletries.</p>
                         <div class="guest-info">
@@ -60,7 +60,7 @@
                 <div class="card-body">
                     <img src="assets/images/family.png" alt="Family Room">
                     <div class="room-info">
-                        <div class="price-tag">₱ 4,700/night</div>
+                        <div class="price-tag">₱ 4,700 <span>/night</span></div>
                         <h3>Family Room</h3>
                         <p>One queen bed and two single beds, perfect for small families. Comes with Netflix-ready smart TV and fridge.</p>
                         <div class="guest-info">
@@ -77,7 +77,7 @@
                 <div class="card-body">
                     <img src="assets/images/budget.png" alt="Budget Single Room">
                     <div class="room-info">
-                        <div class="price-tag">₱ 1,500/night</div>
+                        <div class="price-tag">₱ 1,500 <span>/night</span></div>
                         <h3>Budget Single Room</h3>
                         <p>Compact but clean and modern room with single bed, private shower, and desk. Great for short stays.</p>
                         <div class="guest-info">
@@ -94,7 +94,7 @@
                 <div class="card-body">
                     <img src="assets/images/junior.png" alt="Junior Suite">
                     <div class="room-info">
-                        <div class="price-tag">₱ 4,200/night</div>
+                        <div class="price-tag">₱ 4,200 <span>/night</span></div>
                         <h3>Junior Suite</h3>
                         <p>Stylish room with queen bed, small living area, bath tub, and balcony view.</p>
                         <div class="guest-info">
@@ -111,7 +111,7 @@
                 <div class="card-body">
                     <img src="assets/images/penthouse.png" alt="Penthouse Suite">
                     <div class="room-info">
-                        <div class="price-tag">₱ 12,000/night</div>
+                        <div class="price-tag">₱ 12,000 <span>/night</span></div>
                         <h3>Penthouse Suite</h3>
                         <p>Top-floor luxury suite with panoramic seaside view, king bed, sofa lounge, Jacuzzi, and dedicated concierge.</p>
                         <div class="guest-info">
@@ -128,7 +128,7 @@
                 <div class="card-body">
                     <img src="assets/images/barkada.png" alt="Barkada Room">
                     <div class="room-info">
-                        <div class="price-tag">₱ 3,800/night</div>
+                        <div class="price-tag">₱ 3,800 <span>/night</span></div>
                         <h3>Barkada Room</h3>
                         <p>Dorm-style room with 4 bunk beds, shared bath, lockers, and common lounge area.</p>
                         <div class="guest-info">
@@ -145,7 +145,7 @@
                 <div class="card-body">
                     <img src="assets/images/accessible.png" alt="Accessible Room">
                     <div class="room-info">
-                        <div class="price-tag">₱ 2,900/night</div>
+                        <div class="price-tag">₱ 2,900 <span>/night</span></div>
                         <h3>Accessible Room</h3>
                         <p>Queen-size bed with accessible layout, support rails in bathroom, wide doorway, and emergency alert system.</p>
                         <div class="guest-info">
@@ -162,7 +162,7 @@
                 <div class="card-body">
                     <img src="assets/images/honeymoon.png" alt="Honeymoon Suite">
                     <div class="room-info">
-                        <div class="price-tag">₱ 6,500/night</div>
+                        <div class="price-tag">₱ 6,500 <span>/night</span></div>
                         <h3>Honeymoon Suite</h3>
                         <p>Romantic suite with canopy king bed, mood lighting, tub for two, complimentary wine, and room service.</p>
                         <div class="guest-info">
