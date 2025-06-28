@@ -261,4 +261,51 @@ class AdminController extends Controller
         $service = Service::findOrFail($id);
         return view('admin.view-service', compact('service'));
     }
+
+    public function editBooking($id)
+    {
+        $booking = Booking::with(['services', 'room', 'guest'])->findOrFail($id);
+        $rooms = Room::where('room_status', 'available')->orWhere('id', $booking->room_id)->get();
+        $services = Service::all();
+        $users = User::where('usertype', 'user')->get();
+        return view('admin.edit-booking', compact('booking', 'rooms', 'services', 'users'));
+    }
+
+    public function updateBooking(Request $request, $id)
+    {
+        $booking = Booking::findOrFail($id);
+        $request->validate([
+            'room_id' => 'required|exists:rooms,id',
+            'user_id' => 'required|exists:users,id',
+            'check_in_date' => 'required|date|after:today',
+            'check_out_date' => 'required|date|after:check_in_date',
+            'services' => 'array',
+            'services.*' => 'exists:services,id'
+        ]);
+
+        $room = Room::find($request->room_id);
+        $checkIn = new \DateTime($request->check_in_date);
+        $checkOut = new \DateTime($request->check_out_date);
+        $numberOfNights = $checkIn->diff($checkOut)->days;
+        $roomTotal = $room->room_price * $numberOfNights;
+        $totalAmount = $roomTotal;
+        if ($request->has('services')) {
+            $selectedServices = Service::whereIn('id', $request->services)->get();
+            foreach ($selectedServices as $service) {
+                $totalAmount += $service->service_price;
+            }
+        }
+
+        $booking->update([
+            'room_id' => $request->room_id,
+            'user_id' => $request->user_id,
+            'booking_status' => $booking->booking_status, // keep current status
+            'total_amount' => $totalAmount,
+            'check_in_date' => $request->check_in_date,
+            'check_out_date' => $request->check_out_date,
+        ]);
+        $booking->services()->sync($request->services ?? []);
+        $room->update(['room_status' => 'occupied']);
+        return redirect()->route('bookings')->with('success', 'Booking updated successfully!');
+    }
 }
