@@ -114,8 +114,17 @@ class AdminController extends Controller
 
         // Calculate total amount
         $room = Room::find($request->room_id);
-        $totalAmount = $room->room_price;
         
+        // Calculate number of nights
+        $checkIn = new \DateTime($request->check_in_date);
+        $checkOut = new \DateTime($request->check_out_date);
+        $numberOfNights = $checkIn->diff($checkOut)->days;
+        
+        // Calculate room total (price per night * number of nights)
+        $roomTotal = $room->room_price * $numberOfNights;
+        $totalAmount = $roomTotal;
+        
+        // Add services total
         if ($request->has('services')) {
             $selectedServices = Service::whereIn('id', $request->services)->get();
             foreach ($selectedServices as $service) {

@@ -155,6 +155,60 @@
             margin-bottom: 20px;
         }
 
+        .price-breakdown {
+            margin-top: 20px;
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #e9ecef;
+        }
+
+        .breakdown-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .breakdown-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .breakdown-item:last-child {
+            border-bottom: none;
+        }
+
+        .breakdown-label {
+            font-weight: 600;
+            color: #495057;
+        }
+
+        .breakdown-value {
+            font-weight: 600;
+            color: var(--blue);
+        }
+
+        .breakdown-item.total {
+            border-top: 2px solid var(--blue);
+            border-bottom: none;
+            padding-top: 15px;
+            margin-top: 10px;
+        }
+
+        .breakdown-item.total .breakdown-label {
+            font-size: 18px;
+            color: var(--blue);
+        }
+
+        .breakdown-item.total .breakdown-value {
+            font-size: 18px;
+            color: var(--blue);
+        }
+
         @media (max-width: 768px) {
             .form-row {
                 grid-template-columns: 1fr;
@@ -330,6 +384,32 @@
                     </div>
                 </div>
 
+                <div class="price-breakdown">
+                    <label class="form-label">Price Breakdown</label>
+                    <div class="breakdown-container">
+                        <div class="breakdown-item">
+                            <span class="breakdown-label">Room Price per Night:</span>
+                            <span class="breakdown-value" id="room-price-per-night">₱0.00</span>
+                        </div>
+                        <div class="breakdown-item">
+                            <span class="breakdown-label">Number of Nights:</span>
+                            <span class="breakdown-value" id="number-of-nights">0</span>
+                        </div>
+                        <div class="breakdown-item">
+                            <span class="breakdown-label">Room Total:</span>
+                            <span class="breakdown-value" id="room-total">₱0.00</span>
+                        </div>
+                        <div class="breakdown-item">
+                            <span class="breakdown-label">Services Total:</span>
+                            <span class="breakdown-value" id="services-total">₱0.00</span>
+                        </div>
+                        <div class="breakdown-item total">
+                            <span class="breakdown-label">Total Amount:</span>
+                            <span class="breakdown-value" id="total-amount">₱0.00</span>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="form-buttons">
                     <button type="submit" class="btn btn-primary">
                         <i class="fa-solid fa-plus"></i> Create Booking
@@ -358,20 +438,47 @@
         // Calculate total amount when room or services change
         function calculateTotal() {
             const roomSelect = document.getElementById('room_id');
-            const selectedRoom = roomSelect.options[roomSelect.selectedIndex];
-            const roomPrice = selectedRoom ? parseFloat(selectedRoom.dataset.price) || 0 : 0;
+            const checkInDate = document.getElementById('check_in_date').value;
+            const checkOutDate = document.getElementById('check_out_date').value;
             
+            const selectedRoom = roomSelect.options[roomSelect.selectedIndex];
+            const roomPricePerNight = selectedRoom ? parseFloat(selectedRoom.dataset.price) || 0 : 0;
+            
+            // Calculate number of nights
+            let numberOfNights = 0;
+            if (checkInDate && checkOutDate) {
+                const checkIn = new Date(checkInDate);
+                const checkOut = new Date(checkOutDate);
+                const timeDiff = checkOut.getTime() - checkIn.getTime();
+                numberOfNights = Math.ceil(timeDiff / (1000 * 3600 * 24));
+            }
+            
+            // Calculate room total
+            const roomTotal = roomPricePerNight * numberOfNights;
+            
+            // Calculate services total
             let servicesTotal = 0;
             const selectedServices = document.querySelectorAll('input[name="services[]"]:checked');
             selectedServices.forEach(service => {
                 servicesTotal += parseFloat(service.dataset.price) || 0;
             });
             
-            const total = roomPrice + servicesTotal;
+            // Calculate final total
+            const total = roomTotal + servicesTotal;
+            
+            // Update display
+            document.getElementById('room-price-per-night').textContent = '₱' + roomPricePerNight.toFixed(2);
+            document.getElementById('number-of-nights').textContent = numberOfNights;
+            document.getElementById('room-total').textContent = '₱' + roomTotal.toFixed(2);
+            document.getElementById('services-total').textContent = '₱' + servicesTotal.toFixed(2);
+            document.getElementById('total-amount').textContent = '₱' + total.toFixed(2);
+            
             console.log('Total amount: ₱' + total.toFixed(2));
         }
 
         document.getElementById('room_id').addEventListener('change', calculateTotal);
+        document.getElementById('check_in_date').addEventListener('change', calculateTotal);
+        document.getElementById('check_out_date').addEventListener('change', calculateTotal);
         document.querySelectorAll('input[name="services[]"]').forEach(checkbox => {
             checkbox.addEventListener('change', calculateTotal);
         });
