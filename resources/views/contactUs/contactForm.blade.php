@@ -27,7 +27,7 @@
             <img src="assets/images/location-dot-solid.svg" alt="Location Icon">
             <div>
             <strong>Location</strong><br>
-            <span>123 Han River Street, Seoul District, Metro Manila, Philippines</span>
+            <span>123 Han River Street, Seoul District, <br>Metro Manila, Philippines</span>
             </div>
         </div>
 
