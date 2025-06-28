@@ -265,12 +265,16 @@
                         <label for="room_type" class="form-label">Room Type</label>
                         <select name="room_type" id="room_type" class="form-select" required>
                             <option value="">Select room type</option>
-                            <option value="Standard">Standard</option>
-                            <option value="Deluxe">Deluxe</option>
-                            <option value="Superior">Superior</option>
-                            <option value="Executive">Executive</option>
+                            <option value="Budget Single Room">Budget Single Room</option>
+                            <option value="Deluxe Queen Room">Deluxe Queen Room</option>
+                            <option value="Superior Twin Room">Superior Twin Room</option>
+                            <option value="Executive King Suite">Executive King Suite</option>
+                            <option value="Family Room">Family Room</option>
                             <option value="Junior Suite">Junior Suite</option>
-                            <option value="Penthouse">Penthouse</option>
+                            <option value="Penthouse Suite">Penthouse Suite</option>
+                            <option value="Barkada Room">Barkada Room</option>
+                            <option value="Accessible Room">Accessible Room</option>
+                            <option value="Honeymoon Suite">Honeymoon Suite</option>
                         </select>
                         @error('room_type')
                             <div class="error-message">{{ $message }}</div>
