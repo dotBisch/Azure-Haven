@@ -36,42 +36,65 @@
                 <div class="nav-list-wrapper">
                     <span class="nav-title">Dashboards</span>
                     <ul class="nav-wrapper">
+                        {{-- Summary: admin only --}}
+                        @if(auth()->user()->usertype === 'admin')
                         <li class="nav-link link-1">
                             <a href="{{ route('dashboard') }}">
                                 <i class="fa-solid fa-chart-pie"></i>
                                 <span class="nav-text">Summary</span>
                             </a>
                         </li>
+                        @endif
+
+                        {{-- Bookings: visible to all admin/receptionist --}}
+                        @if(auth()->user()->usertype === 'admin' || auth()->user()->usertype === 'receptionist')
                         <li class="nav-link link-2">
                             <a href="{{ route('bookings') }}">
                                 <i class="fa-solid fa-book-open"></i>
                                 <span class="nav-text">Bookings</span>
                             </a>
                         </li>
-                        <li class="nav-link link-3">
-                            <a href="{{ route('rooms') }}">
-                                <i class="fa-solid fa-door-closed"></i>
-                                <span class="nav-text">Manage Rooms</span>
-                            </a>
-                        </li>
-                        <li class="nav-link link-4">
-                            <a href="{{ route('staffs') }}">
-                                <i class="fa-solid fa-headset"></i>
-                                <span class="nav-text">Manage Staffs</span>
-                            </a>
-                        </li>
+                        @endif
+
+                        {{-- Guests: visible to all admin/receptionist --}}
+                        @if(auth()->user()->usertype === 'admin' || auth()->user()->usertype === 'receptionist')
                         <li class="nav-link link-5">
                             <a href="{{ route('guests') }}">
                                 <i class="fa-solid fa-users"></i>
                                 <span class="nav-text">Manage Guests</span>
                             </a>
                         </li>
+                        @endif
+
+                        {{-- Rooms: admin only --}}
+                        @if(auth()->user()->usertype === 'admin')
+                        <li class="nav-link link-3">
+                            <a href="{{ route('rooms') }}">
+                                <i class="fa-solid fa-door-closed"></i>
+                                <span class="nav-text">Manage Rooms</span>
+                            </a>
+                        </li>
+                        @endif
+
+                        {{-- Staffs: admin only --}}
+                        @if(auth()->user()->usertype === 'admin')
+                        <li class="nav-link link-4">
+                            <a href="{{ route('staffs') }}">
+                                <i class="fa-solid fa-headset"></i>
+                                <span class="nav-text">Manage Staffs</span>
+                            </a>
+                        </li>
+                        @endif
+
+                        {{-- Services: admin only --}}
+                        @if(auth()->user()->usertype === 'admin')
                         <li class="nav-link link-6">
                             <a href="{{ route('services') }}">
                                 <i class="fa-solid fa-clipboard-list"></i>
                                 <span class="nav-text">Services</span>
                             </a>
                         </li>
+                        @endif
                     </ul>
 
                     <div class="logout">
@@ -148,8 +171,12 @@
                                             </button>
                                             <div class="action-popup" style="display: none;">
                                                 <a href="{{ route('view-staff', $guest->id) }}?back=guests" class="popup-btn view-btn" title="Show"><i class="fa-solid fa-eye"></i></a>
-                                                <button class="popup-btn edit-btn" title="Edit"><i class="fa-solid fa-pen-to-square"></i></button>
-                                                <button class="popup-btn delete-btn" title="Delete"><i class="fa-solid fa-trash"></i></button>
+                                                <a href="{{ route('edit-guest', $guest->id) }}" class="popup-btn edit-btn" title="Edit"><i class="fa-solid fa-pen-to-square"></i></a>
+                                                <form action="{{ route('delete-guest', $guest->id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this guest?');">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button class="popup-btn delete-btn" title="Delete"><i class="fa-solid fa-trash"></i></button>
+                                                </form>
                                             </div>
                                         </td>
                                     </tr>

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Booking;
 use App\Models\Room;
 use App\Models\Service;
+use Carbon\Carbon;
 
 class AdminController extends Controller
 {
@@ -20,12 +21,9 @@ class AdminController extends Controller
             if ($usertype == 'user') {
                 return view('home.index');
             }
-            else if ($usertype == 'admin')
-            {
+            else if (in_array($usertype, ['admin', 'receptionist'])) {
                 return view('admin.index');
-            }
-            else 
-            {
+            } else {
                 return redirect()->back();
             }
         } 
@@ -53,33 +51,83 @@ class AdminController extends Controller
     }
     public function dashboard()
     {
-        if (Auth::check() && Auth::user()->usertype === 'admin') {
-            return view('admin.index');
+        if (auth()->user()->usertype !== 'admin') {
+            abort(403, 'Unauthorized');
         }
-        return redirect('/home');
+        $totalBookings = Booking::count();
+        $checkInCount = Booking::where('booking_status', 'checked_in')->count();
+        $checkOutCount = Booking::where('booking_status', 'checked_out')->count();
+
+        $totalRevenue = Booking::sum('total_amount');
+        $revenue30 = Booking::where('created_at', '>=', Carbon::now()->subDays(30))->sum('total_amount');
+        $revenue7 = Booking::where('created_at', '>=', Carbon::now()->subDays(7))->sum('total_amount');
+
+        $recentArrivals = Booking::with(['guest', 'room'])
+            ->where('booking_status', 'checked_in')
+            ->orderBy('updated_at', 'desc')
+            ->take(5)
+            ->get();
+
+        $notifications = Booking::with('room')
+            ->orderBy('updated_at', 'desc')
+            ->take(3)
+            ->get();
+
+        $receptionists = User::where('usertype', 'admin')->get();
+
+        $totalRooms = Room::count();
+        $availableRooms = Room::where('room_status', 'available')->count();
+        $occupiedRooms = Room::where('room_status', 'occupied')->count();
+        $maintenanceRooms = Room::where('room_status', 'maintenance')->count();
+
+        $totalServices = Service::count();
+        $topService = Service::orderBy('service_price', 'desc')->first();
+
+        return view('admin.index', compact(
+            'totalBookings', 'checkInCount', 'checkOutCount',
+            'totalRevenue', 'revenue30', 'revenue7',
+            'recentArrivals', 'notifications', 'receptionists',
+            'totalRooms', 'availableRooms', 'occupiedRooms', 'maintenanceRooms',
+            'totalServices', 'topService'
+        ));
     }
     public function bookings()
     {
+        if (!in_array(auth()->user()->usertype, ['admin', 'receptionist'])) {
+            abort(403, 'Unauthorized');
+        }
         $bookings = Booking::with(['services', 'room', 'guest'])->paginate(3);
         return view('admin.bookings', compact('bookings'));
     }
     public function rooms()
     {
+        if (auth()->user()->usertype !== 'admin') {
+            abort(403, 'Unauthorized');
+        }
         $rooms = Room::paginate(4);
         return view('admin.ManageRooms', compact('rooms'));
     }
     public function guests()
     {
+        if (!in_array(auth()->user()->usertype, ['admin', 'receptionist'])) {
+            abort(403, 'Unauthorized');
+        }
         $guests = User::where('usertype', 'user')->paginate(7);
         return view('admin.ManageGuests', compact('guests'));
     } 
     public function staffs()
     {
-        $staffs = User::where('usertype', 'admin')->paginate(4);
+        if (auth()->user()->usertype !== 'admin') {
+            abort(403, 'Unauthorized');
+        }
+        $staffs = User::whereIn('usertype', ['admin', 'receptionist'])->paginate(4);
         return view('admin.ManageStaffs', compact('staffs'));
     }
     public function services()
     {
+        if (auth()->user()->usertype !== 'admin') {
+            abort(403, 'Unauthorized');
+        }
         $services = Service::paginate(5);
         return view('admin.services', compact('services'));
     }
@@ -199,7 +247,7 @@ class AdminController extends Controller
             'last_name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email',
             'phone' => 'nullable|string|max:20',
-            'usertype' => 'required|in:user,admin',
+            'usertype' => 'required|in:user,admin,receptionist',
             'password' => 'required|string|min:8|confirmed',
         ]);
 
@@ -333,5 +381,94 @@ class AdminController extends Controller
         ]);
         $room->update($request->all());
         return redirect()->route('rooms')->with('success', 'Room updated successfully!');
+    }
+
+    public function editStaff($id)
+    {
+        $staff = User::findOrFail($id);
+        return view('admin.edit-staff', compact('staff'));
+    }
+
+    public function updateStaff(Request $request, $id)
+    {
+        $staff = User::findOrFail($id);
+        $request->validate([
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users,email,' . $id,
+            'phone' => 'nullable|string|max:20',
+            'usertype' => 'required|in:admin,receptionist',
+        ]);
+        $staff->update($request->all());
+        return redirect()->route('staffs')->with('success', 'Staff updated successfully!');
+    }
+
+    public function editGuest($id)
+    {
+        $guest = User::findOrFail($id);
+        return view('admin.edit-guest', compact('guest'));
+    }
+
+    public function updateGuest(Request $request, $id)
+    {
+        $guest = User::findOrFail($id);
+        $request->validate([
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users,email,' . $id,
+            'phone' => 'nullable|string|max:20',
+            'usertype' => 'required|in:user',
+        ]);
+        $guest->update($request->all());
+        return redirect()->route('guests')->with('success', 'Guest updated successfully!');
+    }
+
+    public function editService($id)
+    {
+        $service = Service::findOrFail($id);
+        return view('admin.edit-service', compact('service'));
+    }
+
+    public function updateService(Request $request, $id)
+    {
+        $service = Service::findOrFail($id);
+        $request->validate([
+            'service_name' => 'required|string|max:255',
+            'service_price' => 'required|numeric|min:0',
+            'service_description' => 'required|string',
+            'service_pax' => 'required|integer|min:1',
+        ]);
+        $service->update($request->all());
+        return redirect()->route('services')->with('success', 'Service updated successfully!');
+    }
+
+    public function deleteBooking($id) {
+        $booking = Booking::findOrFail($id);
+        // Set the room status to available
+        if ($booking->room_id) {
+            $room = Room::find($booking->room_id);
+            if ($room) {
+                $room->room_status = 'available';
+                $room->save();
+            }
+        }
+        $booking->delete();
+        return redirect()->route('bookings')->with('success', 'Booking deleted successfully and room set to available!');
+    }
+    public function deleteRoom($id) {
+        Room::findOrFail($id)->delete();
+        return redirect()->route('rooms')->with('success', 'Room deleted successfully!');
+    }
+    public function deleteStaff($id) {
+        User::where('usertype', 'admin')->findOrFail($id)->delete();
+        return redirect()->route('staffs')->with('success', 'Staff deleted successfully!');
+    }
+    public function deleteGuest($id) {
+        User::where('usertype', 'user')->findOrFail($id)->delete();
+        return redirect()->route('guests')->with('success', 'Guest deleted successfully!');
+    }
+    public function deleteService($id) {
+        Service::findOrFail($id)->delete();
+        return redirect()->route('services')->with('success', 'Service deleted successfully!');
     }
 }

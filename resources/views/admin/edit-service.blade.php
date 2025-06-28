@@ -1,10 +1,11 @@
+@php $service = $service ?? null; @endphp
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Azure Haven - Edit Room</title>
-    <link rel="stylesheet" href="{{ asset('Admin/rooms.css') }}">
+    <title>Azure Haven - Edit Service</title>
+    <link rel="stylesheet" href="{{ asset('Admin/services.css') }}">
     <link href="https://fonts.googleapis.com/css?family=Manuale:700,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.13.1/font/bootstrap-icons.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -38,7 +39,7 @@
             color: #333;
         }
 
-        .form-input, .form-select, .form-textarea {
+        .form-input, .form-select {
             width: 100%;
             padding: 12px 15px;
             border: 2px solid #ddd;
@@ -46,22 +47,53 @@
             font-size: 14px;
             transition: border-color 0.3s ease;
             font-family: 'Manuale', serif;
+            background-color: #fff;
+            color: #333;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
         }
 
-        .form-input:focus, .form-select:focus, .form-textarea:focus {
+        .form-select:focus {
             outline: none;
             border-color: var(--blue);
+            background-color: #f0f8ff;
         }
 
-        .form-textarea {
-            resize: vertical;
-            min-height: 100px;
+        .form-select option {
+            color: #333;
+            background: #fff;
         }
 
         .form-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 20px;
+        }
+
+        .password-requirements {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+            border-left: 4px solid var(--blue);
+        }
+
+        .password-requirements h4 {
+            margin: 0 0 10px 0;
+            color: var(--blue);
+            font-size: 14px;
+        }
+
+        .password-requirements ul {
+            margin: 0;
+            padding-left: 20px;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .password-requirements li {
+            margin-bottom: 5px;
         }
 
         .form-buttons {
@@ -115,31 +147,23 @@
             margin-bottom: 20px;
         }
 
-        .room-type-options {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 10px;
-            margin-top: 10px;
-        }
-
-        .room-type-option {
-            display: flex;
-            align-items: center;
-            padding: 10px;
-            border: 2px solid #ddd;
+        .staff-info {
+            background-color: #e3f2fd;
+            padding: 15px;
             border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--blue);
         }
 
-        .room-type-option:hover {
-            border-color: var(--blue);
-            background-color: #f8f9fa;
+        .staff-info h4 {
+            margin: 0 0 10px 0;
+            color: var(--blue);
         }
 
-        .room-type-option input[type="radio"] {
-            margin-right: 10px;
-            transform: scale(1.2);
+        .staff-info p {
+            margin: 0;
+            font-size: 14px;
+            color: #666;
         }
 
         @media (max-width: 768px) {
@@ -155,10 +179,47 @@
                 flex-direction: column;
             }
         }
+
+        /* Active navigation states */
+        .link-4 {
+            background-color: var(--background);
+            box-shadow: 0px 3px 5px var(--shadow-1);
+        }
+
+        .link-5 {
+            background-color: var(--background);
+            box-shadow: 0px 3px 5px var(--shadow-1);
+        }
+
+        .form-textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: 'Manuale', serif;
+            min-height: 100px;
+            resize: vertical;
+            background-color: #fff;
+            color: #333;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--blue);
+            background-color: #f0f8ff;
+        }
+
+        .form-label[for="service_description"] {
+            color: var(--blue);
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
     </style>
 </head>
 <body>
-<nav class="sidebar">
+    <nav class="sidebar">
         <header>
             <div class="user">
                 <div class="user-wrapper">
@@ -233,16 +294,6 @@
                         </a>
                     </li>
                     @endif
-
-                    {{-- Summary: admin only --}}
-                    @if(auth()->user()->usertype === 'admin')
-                    <li class="nav-link link-1">
-                        <a href="{{ route('dashboard') }}">
-                            <i class="fa-solid fa-chart-pie"></i>
-                            <span class="nav-text">Summary</span>
-                        </a>
-                    </li>
-                    @endif
                 </ul>
 
                 <div class="logout">
@@ -261,100 +312,55 @@
             </span>
         </div>
     </nav>
-    <section class="room">
+    <section class="service">
         <div class="form-container">
-            <h2 class="form-title">Edit Room</h2>
+            <h2 class="form-title">Edit Service</h2>
             @if(session('success'))
                 <div class="success-message">
                     {{ session('success') }}
                 </div>
             @endif
-            <form action="{{ route('update-room', $room->id) }}" method="POST">
+            <form action="{{ route('update-service', $service->id) }}" method="POST">
                 @csrf
                 @method('PUT')
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="room_number" class="form-label">Room Number</label>
-                        <input type="text" name="room_number" id="room_number" class="form-input" value="{{ old('room_number', $room->room_number) }}" required>
-                        @error('room_number')
+                        <label for="service_name" class="form-label">Service Name</label>
+                        <input type="text" name="service_name" id="service_name" class="form-input" value="{{ old('service_name', $service->service_name) }}" required>
+                        @error('service_name')
                             <div class="error-message">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="room_type" class="form-label">Room Type</label>
-                        <input type="text" name="room_type" id="room_type" class="form-input" value="{{ old('room_type', $room->room_type) }}" required>
-                        @error('room_type')
-                            <div class="error-message">{{ $message }}</div>
-                        @enderror
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="room_price" class="form-label">Room Price</label>
-                        <input type="number" name="room_price" id="room_price" class="form-input" value="{{ old('room_price', $room->room_price) }}" required min="0">
-                        @error('room_price')
-                            <div class="error-message">{{ $message }}</div>
-                        @enderror
-                    </div>
-                    <div class="form-group">
-                        <label for="room_pax" class="form-label">Room Pax</label>
-                        <input type="number" name="room_pax" id="room_pax" class="form-input" value="{{ old('room_pax', $room->room_pax) }}" required min="1">
-                        @error('room_pax')
+                        <label for="service_price" class="form-label">Service Price</label>
+                        <input type="number" name="service_price" id="service_price" class="form-input" value="{{ old('service_price', $service->service_price) }}" required min="0">
+                        @error('service_price')
                             <div class="error-message">{{ $message }}</div>
                         @enderror
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="room_description" class="form-label">Room Description</label>
-                        <textarea name="room_description" id="room_description" class="form-textarea" required>{{ old('room_description', $room->room_description) }}</textarea>
-                        @error('room_description')
+                        <label for="service_description" class="form-label">Service Description</label>
+                        <textarea name="service_description" id="service_description" class="form-textarea" required>{{ old('service_description', $service->service_description) }}</textarea>
+                        @error('service_description')
                             <div class="error-message">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="room_status" class="form-label">Room Status</label>
-                        <select name="room_status" id="room_status" class="form-select" required>
-                            <option value="available" {{ $room->room_status == 'available' ? 'selected' : '' }}>Available</option>
-                            <option value="occupied" {{ $room->room_status == 'occupied' ? 'selected' : '' }}>Occupied</option>
-                            <option value="maintenance" {{ $room->room_status == 'maintenance' ? 'selected' : '' }}>Maintenance</option>
-                        </select>
-                        @error('room_status')
-                            <div class="error-message">{{ $message }}</div>
-                        @enderror
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="room_features" class="form-label">Room Features</label>
-                        <input type="text" name="room_features" id="room_features" class="form-input" value="{{ old('room_features', $room->room_features) }}">
-                        @error('room_features')
-                            <div class="error-message">{{ $message }}</div>
-                        @enderror
-                    </div>
-                    <div class="form-group">
-                        <label for="room_inclusions" class="form-label">Room Inclusions</label>
-                        <input type="text" name="room_inclusions" id="room_inclusions" class="form-input" value="{{ old('room_inclusions', $room->room_inclusions) }}">
-                        @error('room_inclusions')
-                            <div class="error-message">{{ $message }}</div>
-                        @enderror
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="room_image" class="form-label">Room Image</label>
-                        <input type="text" name="room_image" id="room_image" class="form-input" value="{{ old('room_image', $room->room_image) }}">
-                        @error('room_image')
+                        <label for="service_pax" class="form-label">Service Pax</label>
+                        <input type="number" name="service_pax" id="service_pax" class="form-input" value="{{ old('service_pax', $service->service_pax) }}" required min="1">
+                        @error('service_pax')
                             <div class="error-message">{{ $message }}</div>
                         @enderror
                     </div>
                 </div>
                 <div class="form-buttons">
                     <button type="submit" class="btn btn-primary">
-                        <i class="fa-solid fa-save"></i> Update Room
+                        <i class="fa-solid fa-save"></i> Update Service
                     </button>
-                    <a href="{{ route('rooms') }}" class="btn btn-secondary">
-                        <i class="fa-solid fa-arrow-left"></i> Back to Rooms
+                    <a href="{{ route('services') }}" class="btn btn-secondary">
+                        <i class="fa-solid fa-arrow-left"></i> Back to Services
                     </a>
                 </div>
             </form>

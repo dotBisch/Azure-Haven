@@ -146,8 +146,12 @@
                                             </button>
                                             <div class="action-popup" style="display: none;">
                                                 <a href="{{ route('view-service', $service->id) }}" class="popup-btn view-btn" title="Show"><i class="fa-solid fa-eye"></i></a>
-                                                <button class="popup-btn edit-btn" title="Edit"><i class="fa-solid fa-pen-to-square"></i></button>
-                                                <button class="popup-btn delete-btn" title="Delete"><i class="fa-solid fa-trash"></i></button>
+                                                <a href="{{ route('edit-service', $service->id) }}" class="popup-btn edit-btn" title="Edit"><i class="fa-solid fa-pen-to-square"></i></a>
+                                                <form action="{{ route('delete-service', $service->id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this service?');">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button class="popup-btn delete-btn" title="Delete"><i class="fa-solid fa-trash"></i></button>
+                                                </form>
                                             </div>
                                         </td>
                                     </tr>

@@ -36,42 +36,65 @@
                 <div class="nav-list-wrapper">
                     <span class="nav-title">Dashboards</span>
                     <ul class="nav-wrapper">
+                        {{-- Summary: admin only --}}
+                        @if(auth()->user()->usertype === 'admin')
                         <li class="nav-link link-1">
                             <a href="{{ route('dashboard') }}">
                                 <i class="fa-solid fa-chart-pie"></i>
                                 <span class="nav-text">Summary</span>
                             </a>
                         </li>
+                        @endif
+
+                        {{-- Bookings: visible to all admin/receptionist --}}
+                        @if(auth()->user()->usertype === 'admin' || auth()->user()->usertype === 'receptionist')
                         <li class="nav-link link-2">
                             <a href="{{ route('bookings') }}">
                                 <i class="fa-solid fa-book-open"></i>
                                 <span class="nav-text">Bookings</span>
                             </a>
                         </li>
-                        <li class="nav-link link-3">
-                            <a href="{{ route('rooms') }}">
-                                <i class="fa-solid fa-door-closed"></i>
-                                <span class="nav-text">Manage Rooms</span>
-                            </a>
-                        </li>
-                        <li class="nav-link link-4">
-                            <a href="{{ route('staffs') }}">
-                                <i class="fa-solid fa-headset"></i>
-                                <span class="nav-text">Manage Staffs</span>
-                            </a>
-                        </li>
+                        @endif
+
+                        {{-- Guests: visible to all admin/receptionist --}}
+                        @if(auth()->user()->usertype === 'admin' || auth()->user()->usertype === 'receptionist')
                         <li class="nav-link link-5">
                             <a href="{{ route('guests') }}">
                                 <i class="fa-solid fa-users"></i>
                                 <span class="nav-text">Manage Guests</span>
                             </a>
                         </li>
+                        @endif
+
+                        {{-- Rooms: admin only --}}
+                        @if(auth()->user()->usertype === 'admin')
+                        <li class="nav-link link-3">
+                            <a href="{{ route('rooms') }}">
+                                <i class="fa-solid fa-door-closed"></i>
+                                <span class="nav-text">Manage Rooms</span>
+                            </a>
+                        </li>
+                        @endif
+
+                        {{-- Staffs: admin only --}}
+                        @if(auth()->user()->usertype === 'admin')
+                        <li class="nav-link link-4">
+                            <a href="{{ route('staffs') }}">
+                                <i class="fa-solid fa-headset"></i>
+                                <span class="nav-text">Manage Staffs</span>
+                            </a>
+                        </li>
+                        @endif
+
+                        {{-- Services: admin only --}}
+                        @if(auth()->user()->usertype === 'admin')
                         <li class="nav-link link-6">
                             <a href="{{ route('services') }}">
                                 <i class="fa-solid fa-clipboard-list"></i>
                                 <span class="nav-text">Services</span>
                             </a>
                         </li>
+                        @endif
                     </ul>
 
                     <div class="logout">
@@ -98,20 +121,45 @@
                     <div class="counter-wrapper">
                         <div class="total-booking">
                             <span class="tb-title">Total Bookings</span>
-                            <h2 class="tb-value">10, 215</h2>
+                            <h2 class="tb-value">{{ number_format($totalBookings) }}</h2>
                         </div>
                         <div class="check-in">
                             <span class="ci-title">Check-In</span>
-                            <h2 class="ci-value">201</h2>
+                            <h2 class="ci-value">{{ number_format($checkInCount) }}</h2>
                         </div>
                         <div class="check-out">
                             <span class="co-title">Check-Out</span>
-                            <h2 class="co-value">450</h2>
+                            <h2 class="co-value">{{ number_format($checkOutCount) }}</h2>
                         </div>
                     </div>
 
-                    <div class="chart">
-                        <div class="chart-wrapper"></div>
+                    <div class="summary-row" style="display: flex; gap: 20px; margin-bottom: 5px;">
+                        <!-- Room Summary -->
+                        <div class="summary-box" style="flex: 1; background: var(--background); border-radius: 15px; box-shadow: 0px 3px 5px var(--shadow-1); padding: 24px;">
+                            <span class="summary-box-title" style="font-weight: bold; color: var(--blue); font-size: 18px;">Room Summary</span>
+                            <div class="summary-box-content" style="margin-top: 16px;">
+                                <div>Total Rooms: <b>{{ $totalRooms }}</b></div>
+                                <div>Available: <span style="color: #28a745;"><b>{{ $availableRooms }}</b></span></div>
+                                <div>Occupied: <span style="color: #007bff;"><b>{{ $occupiedRooms }}</b></span></div>
+                                <div>Maintenance: <span style="color: #ffc107;"><b>{{ $maintenanceRooms }}</b></span></div>
+                            </div>
+                        </div>
+                        <!-- Service Summary -->
+                        <div class="summary-box" style="flex: 1; background: var(--background); border-radius: 15px; box-shadow: 0px 3px 5px var(--shadow-1); padding: 24px;">
+                            <span class="summary-box-title" style="font-weight: bold; color: var(--blue); font-size: 18px;">Service Summary</span>
+                            <div class="summary-box-content" style="margin-top: 16px;">
+                                <div>Total Services: <b>{{ $totalServices }}</b></div>
+                                <div style="margin-top: 10px;">Top Service:</div>
+                                @if($topService)
+                                    <div>
+                                        {{ $topService->service_name }}
+                                        <span style="color: var(--blue);">₱{{ number_format($topService->service_price, 2) }}</span>
+                                    </div>
+                                @else
+                                    <div>No services found.</div>
+                                @endif
+                            </div>
+                        </div>
                     </div>
 
                     <div class="bottom-panel">
@@ -119,18 +167,18 @@
                             <span class="ro-title">Revenue Overview</span>
                             <div class="total-revenue">
                                 <span class="tr-title">Total Revenue</span>
-                                <span class="tr-value">Php 1, 255, 615</span>
+                                <span class="tr-value">Php {{ number_format($totalRevenue, 2) }}</span>
                             </div>
                             <div class="tr-report">
                                 <div class="tr-increase">
                                     <i class="bi bi-graph-up-arrow"></i>
-                                    <span class="tri-value">Php 105, 517</span>
+                                    <span class="tri-value">Php {{ number_format($revenue30, 2) }}</span>
                                     <span class="tri-days">Last 30 Days</span>
                                 </div>
                                 <span class="tr-divider"></span>
                                 <div class="tr-decrease">
                                     <i class="bi bi-graph-down-arrow"></i>
-                                    <span class="trd-value">Php 21, 112</span>
+                                    <span class="trd-value">Php {{ number_format($revenue7, 2) }}</span>
                                     <span class="trd-days">Last 7 Days</span>
                                 </div>
                             </div>
@@ -139,7 +187,7 @@
                         <div class="recent-arrival">
                             <div class="ra-top">
                                 <span class="ra-title">Recent Arrivals</span>
-                                <a href="#">
+                                <a href="{{ route('bookings') }}">
                                     <span class="view">View All</span>
                                 </a>
                             </div>
@@ -154,36 +202,21 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td >401</td>
-                                        <td>Juan Dela Cruz</td>
-                                        <td>1 seconds ago</td>
-                                        <td>...</td>
-                                    </tr>
-                                    <tr>
-                                        <td >402</td>
-                                        <td>Pancho Pablete</td>
-                                        <td>1 minute ago</td>
-                                        <td>...</td>
-                                    </tr>
-                                    <tr>
-                                        <td >403</td>
-                                        <td>Mary Pops</td>
-                                        <td>1 minute ago</td>
-                                        <td>...</td>
-                                    </tr>
-                                    <tr>
-                                        <td >404</td>
-                                        <td>David Salon</td>
-                                        <td>6 minute ago</td>
-                                        <td>...</td>
-                                    </tr>
-                                    <tr>
-                                        <td >405</td>
-                                        <td>Harry Potter</td>
-                                        <td>1 hour ago</td>
-                                        <td>...</td>
-                                    </tr>
+                                    @foreach($recentArrivals as $arrival)
+                                        <tr>
+                                            <td>{{ $arrival->room->room_number ?? '-' }}</td>
+                                            <td>{{ $arrival->guest->first_name ?? '' }} {{ $arrival->guest->last_name ?? '' }}</td>
+                                            <td>{{ \Carbon\Carbon::parse($arrival->updated_at)->diffForHumans() }}</td>
+                                            <td>
+                                                <a href="{{ route('view-booking', $arrival->booking_id) }}" class="popup-btn view-btn" title="Show"><i class="fa-solid fa-eye"></i></a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                    @if($recentArrivals->isEmpty())
+                                        <tr>
+                                            <td colspan="4" style="text-align:center;">No recent arrivals.</td>
+                                        </tr>
+                                    @endif
                                 </tbody>
                             </table>
                         </div>
@@ -200,69 +233,34 @@
                     <div class="notif">
                         <span class="notif-title">Notifications</span>
                         <div class="notif-card-wrapper">
-                            <div class="notif-card">
-                                <div class="room-details">
-                                    <span class="room-number">Room 301</span>
-                                    <span class="room-status">Checked In</span>
+                            @foreach($notifications as $notif)
+                                <div class="notif-card">
+                                    <div class="room-details">
+                                        <span class="room-number">Room {{ $notif->room->room_number ?? '-' }}</span>
+                                        <span class="room-status">{{ ucfirst(str_replace('_', ' ', $notif->booking_status)) }}</span>
+                                    </div>
+                                    <span class="status-time">{{ \Carbon\Carbon::parse($notif->updated_at)->diffForHumans() }}</span>
                                 </div>
-                                <span class="status-time">Just Now</span>
-                            </div>
-                            <div class="notif-card">
-                                <div class="room-details">
-                                    <span class="room-number">Room 301</span>
-                                    <span class="room-status">Checked In</span>
-                                </div>
-                                <span class="status-time">Just Now</span>
-                            </div>
-                            <div class="notif-card">
-                                <div class="room-details">
-                                    <span class="room-number">Room 301</span>
-                                    <span class="room-status">Checked In</span>
-                                </div>
-                                <span class="status-time">Just Now</span>
-                            </div>
+                            @endforeach
+                            @if($notifications->isEmpty())
+                                <div class="notif-card" style="text-align:center;">No notifications.</div>
+                            @endif
                         </div>
 
                         <div class="receptionist-wrapper">
                             <span class="receptionist-title">Receptionists</span>
-                                <div class="receptionist-list">
+                            <div class="receptionist-list">
+                                @foreach($receptionists as $receptionist)
                                     <div class="receptionist">
                                         <span class="receptionist-image">
                                             <i class="fa-solid fa-circle-user"></i>
                                         </span>
-                                        <span class="receptionist-name">Natali Craig</span>
+                                        <span class="receptionist-name">{{ $receptionist->first_name }} {{ $receptionist->last_name }}</span>
                                     </div>
-                                    <div class="receptionist">
-                                        <span class="receptionist-image">
-                                            <i class="fa-solid fa-circle-user"></i>
-                                        </span>
-                                        <span class="receptionist-name">Natali Craig</span>
-                                    </div>
-                                    <div class="receptionist">
-                                        <span class="receptionist-image">
-                                            <i class="fa-solid fa-circle-user"></i>
-                                        </span>
-                                        <span class="receptionist-name">Kate Morrison</span>
-                                    </div>
-                                    <div class="receptionist">
-                                        <span class="receptionist-image">
-                                            <i class="fa-solid fa-circle-user"></i>
-                                        </span>
-                                        <span class="receptionist-name">Drew Cano</span>
-                                    </div>
-                                    <div class="receptionist">
-                                        <span class="receptionist-image">
-                                            <i class="fa-solid fa-circle-user"></i>
-                                        </span>
-                                        <span class="receptionist-name">Andi Lane</span>
-                                    </div>
-                                    <div class="receptionist">
-                                        <span class="receptionist-image">
-                                            <i class="fa-solid fa-circle-user"></i>
-                                        </span>
-                                        <span class="receptionist-name">Melody Macy</span>
-                                    </div>
-                                </div>
+                                @endforeach
+                                @if($receptionists->isEmpty())
+                                    <div class="receptionist" style="text-align:center;">No receptionists found.</div>
+                                @endif
                             </div>
                         </div>
                     </div>

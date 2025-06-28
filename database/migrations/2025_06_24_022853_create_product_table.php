@@ -40,7 +40,7 @@ return new class extends Migration
                 $table->id('booking_id');
                 $table->foreignId('room_id')->constrained('rooms');
                 $table->foreignId('user_id')->constrained('users');
-                $table->enum('booking_status', ['pending', 'confirmed', 'cancelled']);
+                $table->enum('booking_status', ['pending', 'confirmed', 'checked_in', 'checked_out', 'cancelled']);
                 $table->decimal('total_amount', 10, 2);
                 $table->date('check_in_date');
                 $table->date('check_out_date');

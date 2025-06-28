@@ -57,8 +57,28 @@
         }
 
         .form-textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: 'Manuale', serif;
+            min-height: 100px;
             resize: vertical;
-            min-height: 120px;
+            background-color: #fff;
+            color: #333;
+        }
+
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--blue);
+            background-color: #f0f8ff;
+        }
+
+        .form-label[for="service_description"] {
+            color: var(--blue);
+            font-weight: bold;
+            letter-spacing: 0.5px;
         }
 
         .form-row {
@@ -206,42 +226,65 @@
             <div class="nav-list-wrapper">
                 <span class="nav-title">Dashboards</span>
                 <ul class="nav-wrapper">
-                    <li class="nav-link link-1">
-                        <a href="{{ route('dashboard') }}">
-                            <i class="fa-solid fa-chart-pie"></i>
-                            <span class="nav-text">Summary</span>
-                        </a>
-                    </li>
+                    {{-- Bookings: visible to all admin/receptionist --}}
+                    @if(auth()->user()->usertype === 'admin' || auth()->user()->usertype === 'receptionist')
                     <li class="nav-link link-2">
                         <a href="{{ route('bookings') }}">
                             <i class="fa-solid fa-book-open"></i>
                             <span class="nav-text">Bookings</span>
                         </a>
                     </li>
-                    <li class="nav-link link-3">
-                        <a href="{{ route('rooms') }}">
-                            <i class="fa-solid fa-door-closed"></i>
-                            <span class="nav-text">Manage Rooms</span>
-                        </a>
-                    </li>
-                    <li class="nav-link link-4">
-                        <a href="{{ route('staffs') }}">
-                            <i class="fa-solid fa-headset"></i>
-                            <span class="nav-text">Manage Staffs</span>
-                        </a>
-                    </li>
+                    @endif
+
+                    {{-- Guests: visible to all admin/receptionist --}}
+                    @if(auth()->user()->usertype === 'admin' || auth()->user()->usertype === 'receptionist')
                     <li class="nav-link link-5">
                         <a href="{{ route('guests') }}">
                             <i class="fa-solid fa-users"></i>
                             <span class="nav-text">Manage Guests</span>
                         </a>
                     </li>
+                    @endif
+
+                    {{-- Rooms: admin only --}}
+                    @if(auth()->user()->usertype === 'admin')
+                    <li class="nav-link link-3">
+                        <a href="{{ route('rooms') }}">
+                            <i class="fa-solid fa-door-closed"></i>
+                            <span class="nav-text">Manage Rooms</span>
+                        </a>
+                    </li>
+                    @endif
+
+                    {{-- Staffs: admin only --}}
+                    @if(auth()->user()->usertype === 'admin')
+                    <li class="nav-link link-4">
+                        <a href="{{ route('staffs') }}">
+                            <i class="fa-solid fa-headset"></i>
+                            <span class="nav-text">Manage Staffs</span>
+                        </a>
+                    </li>
+                    @endif
+
+                    {{-- Services: admin only --}}
+                    @if(auth()->user()->usertype === 'admin')
                     <li class="nav-link link-6">
                         <a href="{{ route('services') }}">
                             <i class="fa-solid fa-clipboard-list"></i>
                             <span class="nav-text">Services</span>
                         </a>
                     </li>
+                    @endif
+
+                    {{-- Summary: admin only --}}
+                    @if(auth()->user()->usertype === 'admin')
+                    <li class="nav-link link-1">
+                        <a href="{{ route('dashboard') }}">
+                            <i class="fa-solid fa-chart-pie"></i>
+                            <span class="nav-text">Summary</span>
+                        </a>
+                    </li>
+                    @endif
                 </ul>
 
                 <div class="logout">
