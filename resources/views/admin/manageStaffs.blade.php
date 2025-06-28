@@ -36,12 +36,15 @@
                 <div class="nav-list-wrapper">
                     <span class="nav-title">Dashboards</span>
                     <ul class="nav-wrapper">
+                        {{-- Summary: admin only --}}
+                        @if(auth()->user()->usertype === 'admin')
                         <li class="nav-link link-1">
                             <a href="{{ route('dashboard') }}">
                                 <i class="fa-solid fa-chart-pie"></i>
                                 <span class="nav-text">Summary</span>
                             </a>
                         </li>
+                        @endif
                         <li class="nav-link link-2">
                             <a href="{{ route('bookings') }}">
                                 <i class="fa-solid fa-book-open"></i>

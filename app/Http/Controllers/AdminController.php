@@ -21,12 +21,9 @@ class AdminController extends Controller
             if ($usertype == 'user') {
                 return view('home.index');
             }
-            else if ($usertype == 'admin')
-            {
+            else if (in_array($usertype, ['admin', 'receptionist'])) {
                 return view('admin.index');
-            }
-            else 
-            {
+            } else {
                 return redirect()->back();
             }
         } 
@@ -54,6 +51,9 @@ class AdminController extends Controller
     }
     public function dashboard()
     {
+        if (auth()->user()->usertype !== 'admin') {
+            abort(403, 'Unauthorized');
+        }
         $totalBookings = Booking::count();
         $checkInCount = Booking::where('booking_status', 'checked_in')->count();
         $checkOutCount = Booking::where('booking_status', 'checked_out')->count();
@@ -93,26 +93,41 @@ class AdminController extends Controller
     }
     public function bookings()
     {
-        $bookings = Booking::with(['services', 'room', 'guest'])->paginate(4);
+        if (!in_array(auth()->user()->usertype, ['admin', 'receptionist'])) {
+            abort(403, 'Unauthorized');
+        }
+        $bookings = Booking::with(['services', 'room', 'guest'])->paginate(3);
         return view('admin.bookings', compact('bookings'));
     }
     public function rooms()
     {
+        if (auth()->user()->usertype !== 'admin') {
+            abort(403, 'Unauthorized');
+        }
         $rooms = Room::paginate(4);
         return view('admin.ManageRooms', compact('rooms'));
     }
     public function guests()
     {
+        if (!in_array(auth()->user()->usertype, ['admin', 'receptionist'])) {
+            abort(403, 'Unauthorized');
+        }
         $guests = User::where('usertype', 'user')->paginate(7);
         return view('admin.ManageGuests', compact('guests'));
     } 
     public function staffs()
     {
-        $staffs = User::where('usertype', 'admin')->paginate(4);
+        if (auth()->user()->usertype !== 'admin') {
+            abort(403, 'Unauthorized');
+        }
+        $staffs = User::whereIn('usertype', ['admin', 'receptionist'])->paginate(4);
         return view('admin.ManageStaffs', compact('staffs'));
     }
     public function services()
     {
+        if (auth()->user()->usertype !== 'admin') {
+            abort(403, 'Unauthorized');
+        }
         $services = Service::paginate(5);
         return view('admin.services', compact('services'));
     }
@@ -232,7 +247,7 @@ class AdminController extends Controller
             'last_name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email',
             'phone' => 'nullable|string|max:20',
-            'usertype' => 'required|in:user,admin',
+            'usertype' => 'required|in:user,admin,receptionist',
             'password' => 'required|string|min:8|confirmed',
         ]);
 
@@ -382,7 +397,7 @@ class AdminController extends Controller
             'last_name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,' . $id,
             'phone' => 'nullable|string|max:20',
-            'usertype' => 'required|in:admin',
+            'usertype' => 'required|in:admin,receptionist',
         ]);
         $staff->update($request->all());
         return redirect()->route('staffs')->with('success', 'Staff updated successfully!');
