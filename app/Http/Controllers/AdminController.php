@@ -106,6 +106,7 @@ class AdminController extends Controller
         $request->validate([
             'room_id' => 'required|exists:rooms,id',
             'user_id' => 'required|exists:users,id',
+            'booking_status' => 'required|in:pending,confirmed,checked_in,checked_out,cancelled',
             'check_in_date' => 'required|date|after:today',
             'check_out_date' => 'required|date|after:check_in_date',
             'services' => 'array',
@@ -136,7 +137,7 @@ class AdminController extends Controller
         $booking = Booking::create([
             'room_id' => $request->room_id,
             'user_id' => $request->user_id,
-            'booking_status' => 'pending',
+            'booking_status' => $request->booking_status,
             'total_amount' => $totalAmount,
             'check_in_date' => $request->check_in_date,
             'check_out_date' => $request->check_out_date,
@@ -277,6 +278,7 @@ class AdminController extends Controller
         $request->validate([
             'room_id' => 'required|exists:rooms,id',
             'user_id' => 'required|exists:users,id',
+            'booking_status' => 'required|in:pending,confirmed,checked_in,checked_out,cancelled',
             'check_in_date' => 'required|date|after:today',
             'check_out_date' => 'required|date|after:check_in_date',
             'services' => 'array',
@@ -299,7 +301,7 @@ class AdminController extends Controller
         $booking->update([
             'room_id' => $request->room_id,
             'user_id' => $request->user_id,
-            'booking_status' => $booking->booking_status, // keep current status
+            'booking_status' => $request->booking_status,
             'total_amount' => $totalAmount,
             'check_in_date' => $request->check_in_date,
             'check_out_date' => $request->check_out_date,

@@ -117,7 +117,7 @@ route::get('/edit-booking/{id}', [
     AdminController::class, 'editBooking'
 ])->name('edit-booking');
 
-route::post('/update-booking/{id}', [
+route::put('/update-booking/{id}', [
     AdminController::class, 'updateBooking'
 ])->name('update-booking');
 
