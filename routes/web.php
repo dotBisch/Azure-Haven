@@ -121,6 +121,15 @@ route::put('/update-booking/{id}', [
     AdminController::class, 'updateBooking'
 ])->name('update-booking');
 
+route::get('/edit-room/{id}', [AdminController::class, 'editRoom'])->name('edit-room');
+route::put('/update-room/{id}', [AdminController::class, 'updateRoom'])->name('update-room');
+route::get('/edit-staff/{id}', [AdminController::class, 'editStaff'])->name('edit-staff');
+route::put('/update-staff/{id}', [AdminController::class, 'updateStaff'])->name('update-staff');
+route::get('/edit-guest/{id}', [AdminController::class, 'editGuest'])->name('edit-guest');
+route::put('/update-guest/{id}', [AdminController::class, 'updateGuest'])->name('update-guest');
+route::get('/edit-service/{id}', [AdminController::class, 'editService'])->name('edit-service');
+route::put('/update-service/{id}', [AdminController::class, 'updateService'])->name('update-service');
+
 // route::get('/home', [
 //      AdminController::class, 'home'
 // ])->name('home');

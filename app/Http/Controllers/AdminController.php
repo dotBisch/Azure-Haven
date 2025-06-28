@@ -310,4 +310,28 @@ class AdminController extends Controller
         $room->update(['room_status' => 'occupied']);
         return redirect()->route('bookings')->with('success', 'Booking updated successfully!');
     }
+
+    public function editRoom($id)
+    {
+        $room = Room::findOrFail($id);
+        return view('admin.edit-room', compact('room'));
+    }
+
+    public function updateRoom(Request $request, $id)
+    {
+        $room = Room::findOrFail($id);
+        $request->validate([
+            'room_number' => 'required|string|unique:rooms,room_number,' . $id,
+            'room_type' => 'required|string',
+            'room_price' => 'required|numeric|min:0',
+            'room_description' => 'required|string',
+            'room_pax' => 'required|integer|min:1',
+            'room_features' => 'nullable|string',
+            'room_inclusions' => 'nullable|string',
+            'room_image' => 'nullable|string',
+            'room_status' => 'required|in:available,occupied,maintenance'
+        ]);
+        $room->update($request->all());
+        return redirect()->route('rooms')->with('success', 'Room updated successfully!');
+    }
 }
