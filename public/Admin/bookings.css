@@ -363,9 +363,9 @@ body {
   height: 36px;
   line-height: 36px;
   text-align: center;
-  border: 1px solid #007bff;
+  border: 1px solid var(--blue);
   border-radius: 4px;
-  color: #007bff;
+  color: var(--blue);
   background: #fff;
   text-decoration: none;
   font-size: 16px;
@@ -374,7 +374,7 @@ body {
 
 .simple-pagination .page-btn.active,
 .simple-pagination .page-btn:hover:not(.disabled) {
-  background: #007bff;
+  background: var(--blue);
   color: #fff;
 }
 
@@ -459,6 +459,66 @@ body {
     font-size: 14px;
     padding: 8px;
   }
+}
+
+.action-cell {
+  position: relative;
+}
+
+.action-menu-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  color: #333;
+  padding: 6px 10px;
+  border-radius: 6px;
+  transition: background 0.2s;
+}
+
+.action-menu-btn:hover {
+  background-color: var(--sidebar);
+}
+
+.action-popup {
+  position: absolute;
+  right: 0;
+  z-index: 1000;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(44, 62, 80, 0.15);
+  display: flex;
+  gap: 10px;
+  padding: 5px 16px;
+  align-items: center;
+  min-width: 120px;
+}
+
+.popup-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  padding: 6px;
+  border-radius: 6px;
+  transition: background 0.2s;
+  color: #333;
+}
+
+.popup-btn.view-btn i {
+  color: #222;
+}
+
+.popup-btn.edit-btn i {
+  color: #444;
+}
+
+.popup-btn.delete-btn i {
+  color: #d32f2f;
+}
+
+.popup-btn:hover {
+  background: #e4ecf3;
 }
 
 @media (max-width: 768px) {
