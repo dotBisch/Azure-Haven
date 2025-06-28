@@ -136,6 +136,11 @@ route::delete('/delete-staff/{id}', [AdminController::class, 'deleteStaff'])->na
 route::delete('/delete-guest/{id}', [AdminController::class, 'deleteGuest'])->name('delete-guest');
 route::delete('/delete-service/{id}', [AdminController::class, 'deleteService'])->name('delete-service');
 
+// Serve the room details page for Rooms & Services
+Route::get('/roomsAndServices/room-details', function () {
+    return view('roomsAndServices.room-details');
+});
+
 // route::get('/home', [
 //      AdminController::class, 'home'
 // ])->name('home');

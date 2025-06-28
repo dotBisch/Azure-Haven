@@ -179,7 +179,7 @@
                                                 <form action="{{ route('delete-booking', $booking->booking_id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this booking?');">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button class="popup-btn delete-btn" title="Delete"><i class="fa-solid fa-trash"></i></button>
+                                                <button class="popup-btn delete-btn" title="Delete"><i class="fa-solid fa-trash"></i></button>
                                                 </form>
                                             </div>
                                         </td>

@@ -6,14 +6,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (room) {
         document.title = `${room.name} - Azure Haven`;
-        document.getElementById('hero-details').style.backgroundImage = `url(${room.heroImage})`;
+        document.getElementById('hero-details').style.backgroundImage = `url(/${room.heroImage.replace(/^\//, '')})`;
 
         // Correctly populate the simplified gallery
         const galleryContainer = document.getElementById('gallery-grid');
         if (room.gallery && room.gallery.length >= 2) {
             galleryContainer.innerHTML = `
-                <img src="${room.gallery[0]}" alt="${room.name} view 1">
-                <img src="${room.gallery[1]}" alt="${room.name} view 2">
+                <img src="/${room.gallery[0].replace(/^\//, '')}" alt="${room.name} view 1">
+                <img src="/${room.gallery[1].replace(/^\//, '')}" alt="${room.name} view 2">
             `;
         }
 
