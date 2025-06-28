@@ -18,8 +18,8 @@
                             <i class="fa-solid fa-circle-user"></i>
                         </span>
                         <div class="user-details">
-                            <span class="user-name">USER NAME</span>
-                            <span class="user-admin">Admin</span>
+                            <span class="user-name">{{ Auth::user()->first_name ?? 'USER NAME' }}</span>
+                            <span class="user-admin">{{ ucfirst(Auth::user()->usertype ?? 'Admin') }}</span>
                         </div>
                     </div>
                 </div>
