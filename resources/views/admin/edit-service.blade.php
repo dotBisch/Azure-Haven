@@ -190,6 +190,32 @@
             background-color: var(--background);
             box-shadow: 0px 3px 5px var(--shadow-1);
         }
+
+        .form-textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: 'Manuale', serif;
+            min-height: 100px;
+            resize: vertical;
+            background-color: #fff;
+            color: #333;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--blue);
+            background-color: #f0f8ff;
+        }
+
+        .form-label[for="service_description"] {
+            color: var(--blue);
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
     </style>
 </head>
 <body>

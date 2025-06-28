@@ -148,7 +148,7 @@
                                             </button>
                                             <div class="action-popup" style="display: none;">
                                                 <a href="{{ route('view-staff', $staff->id) }}?back=staffs" class="popup-btn view-btn" title="Show"><i class="fa-solid fa-eye"></i></a>
-                                                <button class="popup-btn edit-btn" title="Edit"><i class="fa-solid fa-pen-to-square"></i></button>
+                                                <a href="{{ route('edit-staff', $staff->id) }}" class="popup-btn edit-btn" title="Edit"><i class="fa-solid fa-pen-to-square"></i></a>
                                                 <button class="popup-btn delete-btn" title="Delete"><i class="fa-solid fa-trash"></i></button>
                                             </div>
                                         </td>

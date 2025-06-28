@@ -243,7 +243,7 @@
                             <span class="nav-text">Manage Staffs</span>
                         </a>
                     </li>
-                    <li class="nav-link {{ request('back') === 'guests' ? 'link-5' : '' }}">
+                    <li class="nav-link link-5">
                         <a href="{{ route('guests') }}">
                             <i class="fa-solid fa-users"></i>
                             <span class="nav-text">Manage Guests</span>

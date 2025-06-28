@@ -57,8 +57,28 @@
         }
 
         .form-textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: 'Manuale', serif;
+            min-height: 100px;
             resize: vertical;
-            min-height: 120px;
+            background-color: #fff;
+            color: #333;
+        }
+
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--blue);
+            background-color: #f0f8ff;
+        }
+
+        .form-label[for="service_description"] {
+            color: var(--blue);
+            font-weight: bold;
+            letter-spacing: 0.5px;
         }
 
         .form-row {

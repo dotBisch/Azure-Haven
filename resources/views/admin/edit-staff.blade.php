@@ -237,7 +237,7 @@
                             <span class="nav-text">Manage Rooms</span>
                         </a>
                     </li>
-                    <li class="nav-link {{ request('back') === 'staffs' ? 'link-4' : '' }}">
+                    <li class="nav-link link-4">
                         <a href="{{ route('staffs') }}">
                             <i class="fa-solid fa-headset"></i>
                             <span class="nav-text">Manage Staffs</span>
