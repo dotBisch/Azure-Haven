@@ -64,6 +64,55 @@ route::get('/userbookings', [
 route::get('/bookingHistory', [
     AdminController::class, 'bookingHistory'
 ])->name('bookingHistory');
+
+route::get('/add-booking', [
+    AdminController::class, 'addBooking'
+])->name('add-booking');
+
+route::post('/store-booking', [
+    AdminController::class, 'storeBooking'
+])->name('store-booking');
+
+route::get('/add-room', [
+    AdminController::class, 'addRoom'
+])->name('add-room');
+
+route::post('/store-room', [
+    AdminController::class, 'storeRoom'
+])->name('store-room');
+
+route::get('/add-staff', [
+    AdminController::class, 'addStaff'
+])->name('add-staff');
+
+route::post('/store-staff', [
+    AdminController::class, 'storeStaff'
+])->name('store-staff');
+
+route::get('/add-service', [
+    AdminController::class, 'addService'
+])->name('add-service');
+
+route::post('/store-service', [
+    AdminController::class, 'storeService'
+])->name('store-service');
+
+route::get('/view-booking/{id}', [
+    AdminController::class, 'viewBooking'
+])->name('view-booking');
+
+route::get('/view-room/{id}', [
+    AdminController::class, 'viewRoom'
+])->name('view-room');
+
+route::get('/view-staff/{id}', [
+    AdminController::class, 'viewStaff'
+])->name('view-staff');
+
+route::get('/view-service/{id}', [
+    AdminController::class, 'viewService'
+])->name('view-service');
+
 // route::get('/home', [
 //      AdminController::class, 'home'
 // ])->name('home');

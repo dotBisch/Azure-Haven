@@ -18,5 +18,6 @@ class Room extends Model
         'room_features',
         'room_inclusions',
         'room_status',
+        'room_image',
     ];
 } 
