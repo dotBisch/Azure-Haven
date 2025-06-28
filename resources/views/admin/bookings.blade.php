@@ -125,9 +125,9 @@
                             <thead>
                                 <tr>
                                     <th>Booking ID</th>
-                                    <th>Room ID</th>
-                                    <th>Service ID</th>
-                                    <th>User ID</th>
+                                    <th>Room Type</th>
+                                    <th>Services</th>
+                                    <th>Guest</th>
                                     <th>Status</th>
                                     <th>Total Amount</th>
                                     <th>Check-In</th>
@@ -139,9 +139,9 @@
                                 @foreach($bookings as $booking)
                                     <tr>
                                         <td>{{ $booking->booking_id }}</td>
-                                        <td>{{ $booking->room_id }}</td>
-                                        <td>{{ $booking->services->pluck('id')->implode(', ') }}</td>
-                                        <td>{{ $booking->user_id }}</td>
+                                        <td>{{ $booking->room->room_type ?? 'N/A' }}</td>
+                                        <td>{{ $booking->services->pluck('service_name')->implode(', ') }}</td>
+                                        <td>{{ $booking->guest->first_name ?? 'N/A' }} <br> {{ $booking->guest->last_name ?? '' }}</td>
                                         <td>{{ $booking->booking_status }}</td>
                                         <td>{{ $booking->total_amount }}</td>
                                         <td>{{ $booking->check_in_date }}</td>
