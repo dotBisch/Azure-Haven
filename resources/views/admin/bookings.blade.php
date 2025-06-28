@@ -146,7 +146,16 @@
                                         <td>{{ $booking->total_amount }}</td>
                                         <td>{{ $booking->check_in_date }}</td>
                                         <td>{{ $booking->check_out_date }}</td>
-                                        <td><button class="edit">•••</button></td>
+                                        <td class="action-cell" style="position: relative;">
+                                            <button class="action-menu-btn" onclick="togglePopup(this)">
+                                                <i class="fa-solid fa-ellipsis"></i>
+                                            </button>
+                                            <div class="action-popup" style="display: none;">
+                                                <button class="popup-btn view-btn" title="Show"><i class="fa-solid fa-eye"></i></button>
+                                                <button class="popup-btn edit-btn" title="Edit"><i class="fa-solid fa-pen-to-square"></i></button>
+                                                <button class="popup-btn delete-btn" title="Delete"><i class="fa-solid fa-trash"></i></button>
+                                            </div>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -156,5 +165,20 @@
                 </div>
             </div>
         </section>
+
+        <script>
+            function togglePopup(btn) {
+                // Close any other open popups
+                document.querySelectorAll('.action-popup').forEach(p => p.style.display = 'none');
+                // Toggle this one
+                const popup = btn.nextElementSibling;
+                popup.style.display = (popup.style.display === 'flex') ? 'none' : 'flex';
+            }
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.action-cell')) {
+                    document.querySelectorAll('.action-popup').forEach(p => p.style.display = 'none');
+                }
+            });
+        </script>
     </body>
 </html>
