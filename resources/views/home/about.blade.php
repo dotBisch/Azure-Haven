@@ -6,7 +6,7 @@
     <div class="about-content">
     <h2>
         Discover Your Escape at<br>
-        <span class="highlight-main">AZURE <span class="highlight-yellow">HAVEN</span></span>
+        <span class="highlight-main">Azure <span class="highlight-yellow">Haven</span></span>
     </h2>
     <p>
         At Azure Haven, we blend luxury and comfort to create a personalized, memorable stay for every 

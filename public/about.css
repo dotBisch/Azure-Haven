@@ -58,13 +58,13 @@ nav ul {
 
 nav a {
     text-decoration: none;
-    color: var(--primary-blue);
+    color: black;
     font-size: 1rem;
     font-weight: 700;
     padding: 8px 16px;
     border-radius: 25px;
     transition: all 0.3s;
-    border: 1px solid transparent;
+    border: 3px solid transparent;
 }
 
 nav a:hover {
@@ -72,8 +72,8 @@ nav a:hover {
 }
 
 nav a.active {
-    background-color: var(--primary-blue);
-    color: var(--primary-white);
+    background-color: transparent;
+    color: var(--primary-blue);
     border-color: var(--primary-blue);
 }
 

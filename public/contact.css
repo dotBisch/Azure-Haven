@@ -1,147 +1,141 @@
 :root {
-    --primary-blue: #0A2E4C;
-    --primary-white: #FFFFFF;
-    --light-gray: #f8f9fa;
-    --text-color: #000000;
-    --heading-font: 'Playfair Display', serif;
-    --body-font: 'Lato', sans-serif;
-    --accent-yellow: #fbd40b;
+  --primary-blue: #0A2E4C;
+  --primary-white: #FFFFFF;
+  --light-gray: #f8f9fa;
+  --text-color: #000000;
+  --heading-font: 'Playfair Display', serif;
+  --body-font: 'Lato', sans-serif;
+  --accent-yellow: #fbd40b;
 }
 
 *, *::before, *::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-    font-family: var(--body-font);
-    line-height: 1.6;
-    color: #333;
-    padding-top: 90px;
+  font-family: var(--body-font);
+  line-height: 1.6;
+  color: #333;
+  padding-top: 90px;
 }
 
 .main-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: var(--primary-white);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-    display: flex;
-    justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--primary-white);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
 }
 
 .header-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 40px;
-    width: 100%;
-    max-width: 1400px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  width: 100%;
+  max-width: 1400px;
 }
 
 .logo img {
-    height: 50px;
-    width: auto;
+  height: 50px;
+  width: auto;
 }
 
 nav ul {
-    list-style: none;
-    display: flex;
-    gap: 1rem;
-    margin: 0;
-    padding: 0;
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
 }
 
 nav a {
-    text-decoration: none;
-    color: var(--primary-blue);
-    font-size: 1rem;
-    font-weight: 700;
-    padding: 8px 16px;
-    border-radius: 25px;
-    transition: all 0.3s;
-    border: 1px solid transparent;
+  text-decoration: none;
+  color: black;
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 8px 16px;
+  border-radius: 25px;
+  transition: all 0.3s;
+  border: 3px solid transparent;
 }
 
 nav a:hover {
-    color: #0056b3;
+  color: #0056b3;
 }
 
 nav a.active {
-    background-color: var(--primary-blue);
-    color: var(--primary-white);
-    border-color: var(--primary-blue);
+  background-color: transparent;
+  color: var(--primary-blue);
+  border-color: var(--primary-blue);
 }
 
 .btn-book-now {
-    background-color: var(--primary-blue);
-    color: var(--primary-white);
-    padding: 12px 25px;
-    border-radius: 25px;
-    text-decoration: none;
-    font-weight: 700;
-    transition: background-color 0.3s, transform 0.3s;
+  background-color: var(--primary-blue);
+  color: var(--primary-white);
+  padding: 12px 25px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: 700;
+  transition: background-color 0.3s, transform 0.3s;
 }
 
 .btn-book-now:hover {
-    background-color: #12456b;
-    transform: translateY(-2px);
+  background-color: #12456b;
+  transform: translateY(-2px);
 }
 
 
 /* Hero Section */
 .hero {
-    height: 100vh;
-    background: url(assets/images/contact_hero.png);
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: white;
-    position: relative;
+  height: 100vh;
+  background: url(assets/images/contact_hero.png);
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  position: relative;
 }
 
 /* Contact Us Section */
 .contact-section {
-    padding: 5rem 0;
-    background: white;
+  padding: 5rem 0;
+  background: white;
 }
 
 .contact-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
-    text-align: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  text-align: center;
 }
 
 .contact-container h2 {
-    font-size: 2.5rem;
-    color: black;
-    font-weight: 600;
+  font-size: 2.5rem;
+  color: black;
+  font-weight: 600;
 }
 
 .contact-container h2 .highlight-blue {
-    color: #013A67;
-    font-weight: 700;
-    font-family: 'Manuale', serif;
-    letter-spacing: 1px;
+  color: #013A67;
+  font-weight: 700;
+  font-family: 'Manuale', serif;
+  letter-spacing: 1px;
 }
 
 .contact-container p {
-    margin-top: 3rem;
-    color: black;
-    margin-bottom: 1rem;
+  margin-top: 3rem;
+  color: black;
+  margin-bottom: 1rem;
 }
 
 /* Contact Form Section */
