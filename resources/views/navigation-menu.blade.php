@@ -130,7 +130,16 @@
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link href="{{ route('home') }}" :active="request()->routeIs('home')">
-                {{ __('Dashboard') }}
+                {{ __('Home') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link href="{{ route('aboutUs') }}" :active="request()->routeIs('home')">
+                {{ __('About Us') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link href="{{ route('roomsAndServices') }}" :active="request()->routeIs('home')">
+                {{ __('Rooms & Services') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link href="{{ route('contactUs') }}" :active="request()->routeIs('home')">
+                {{ __('Contact Us') }}
             </x-responsive-nav-link>
         </div>
 
