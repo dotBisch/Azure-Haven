@@ -428,8 +428,17 @@ class AdminController extends Controller
     }
 
     public function deleteBooking($id) {
-        Booking::findOrFail($id)->delete();
-        return redirect()->route('bookings')->with('success', 'Booking deleted successfully!');
+        $booking = Booking::findOrFail($id);
+        // Set the room status to available
+        if ($booking->room_id) {
+            $room = Room::find($booking->room_id);
+            if ($room) {
+                $room->room_status = 'available';
+                $room->save();
+            }
+        }
+        $booking->delete();
+        return redirect()->route('bookings')->with('success', 'Booking deleted successfully and room set to available!');
     }
     public function deleteRoom($id) {
         Room::findOrFail($id)->delete();
