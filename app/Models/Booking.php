@@ -13,6 +13,15 @@ class Booking extends Model
     public $incrementing = true;
     protected $keyType = 'int';
 
+    protected $fillable = [
+        'room_id',
+        'user_id',
+        'booking_status',
+        'total_amount',
+        'check_in_date',
+        'check_out_date',
+    ];
+
     public function services()
     {
         return $this->belongsToMany(\App\Models\Service::class, 'booking_service', 'booking_id', 'service_id');

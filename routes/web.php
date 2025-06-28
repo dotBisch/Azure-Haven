@@ -64,6 +64,15 @@ route::get('/userbookings', [
 route::get('/bookingHistory', [
     AdminController::class, 'bookingHistory'
 ])->name('bookingHistory');
+
+route::get('/add-booking', [
+    AdminController::class, 'addBooking'
+])->name('add-booking');
+
+route::post('/store-booking', [
+    AdminController::class, 'storeBooking'
+])->name('store-booking');
+
 // route::get('/home', [
 //      AdminController::class, 'home'
 // ])->name('home');

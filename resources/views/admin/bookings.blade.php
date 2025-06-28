@@ -113,10 +113,10 @@
                                     <span>Filter</span>
                                 </button>
 
-                                <button class="add-btn">
+                                <a href="{{ route('add-booking') }}" class="add-btn" style="text-decoration: none; color: white;">
                                     <i class="fa-solid fa-plus"></i>
                                     <span>Add Booking</span>
-                                </button>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -127,7 +127,7 @@
                                     <th>Booking ID</th>
                                     <th>Room Type</th>
                                     <th>Services</th>
-                                    <th>Guest</th>
+                                    <th>Guest Name</th>
                                     <th>Status</th>
                                     <th>Total Amount</th>
                                     <th>Check-In</th>

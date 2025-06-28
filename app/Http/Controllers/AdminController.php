@@ -91,4 +91,56 @@ class AdminController extends Controller
     {
         return view('bookings.index');
     }
+
+    public function addBooking()
+    {
+        $rooms = Room::where('room_status', 'available')->get();
+        $services = Service::all();
+        $users = User::where('usertype', 'user')->get();
+        
+        return view('admin.add-booking', compact('rooms', 'services', 'users'));
+    }
+
+    public function storeBooking(Request $request)
+    {
+        $request->validate([
+            'room_id' => 'required|exists:rooms,id',
+            'user_id' => 'required|exists:users,id',
+            'check_in_date' => 'required|date|after:today',
+            'check_out_date' => 'required|date|after:check_in_date',
+            'services' => 'array',
+            'services.*' => 'exists:services,id'
+        ]);
+
+        // Calculate total amount
+        $room = Room::find($request->room_id);
+        $totalAmount = $room->room_price;
+        
+        if ($request->has('services')) {
+            $selectedServices = Service::whereIn('id', $request->services)->get();
+            foreach ($selectedServices as $service) {
+                $totalAmount += $service->service_price;
+            }
+        }
+
+        // Create booking
+        $booking = Booking::create([
+            'room_id' => $request->room_id,
+            'user_id' => $request->user_id,
+            'booking_status' => 'pending',
+            'total_amount' => $totalAmount,
+            'check_in_date' => $request->check_in_date,
+            'check_out_date' => $request->check_out_date,
+        ]);
+
+        // Attach services if any
+        if ($request->has('services')) {
+            $booking->services()->attach($request->services);
+        }
+
+        // Update room status to occupied
+        $room->update(['room_status' => 'occupied']);
+
+        return redirect()->route('bookings')->with('success', 'Booking created successfully!');
+    }
 }
