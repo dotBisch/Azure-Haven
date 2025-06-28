@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Booking;
 use App\Models\Room;
 use App\Models\Service;
+use Carbon\Carbon;
 
 class AdminController extends Controller
 {
@@ -53,10 +54,42 @@ class AdminController extends Controller
     }
     public function dashboard()
     {
-        if (Auth::check() && Auth::user()->usertype === 'admin') {
-            return view('admin.index');
-        }
-        return redirect('/home');
+        $totalBookings = Booking::count();
+        $checkInCount = Booking::where('booking_status', 'checked_in')->count();
+        $checkOutCount = Booking::where('booking_status', 'checked_out')->count();
+
+        $totalRevenue = Booking::sum('total_amount');
+        $revenue30 = Booking::where('created_at', '>=', Carbon::now()->subDays(30))->sum('total_amount');
+        $revenue7 = Booking::where('created_at', '>=', Carbon::now()->subDays(7))->sum('total_amount');
+
+        $recentArrivals = Booking::with(['guest', 'room'])
+            ->where('booking_status', 'checked_in')
+            ->orderBy('updated_at', 'desc')
+            ->take(5)
+            ->get();
+
+        $notifications = Booking::with('room')
+            ->orderBy('updated_at', 'desc')
+            ->take(3)
+            ->get();
+
+        $receptionists = User::where('usertype', 'admin')->get();
+
+        $totalRooms = Room::count();
+        $availableRooms = Room::where('room_status', 'available')->count();
+        $occupiedRooms = Room::where('room_status', 'occupied')->count();
+        $maintenanceRooms = Room::where('room_status', 'maintenance')->count();
+
+        $totalServices = Service::count();
+        $topService = Service::orderBy('service_price', 'desc')->first();
+
+        return view('admin.index', compact(
+            'totalBookings', 'checkInCount', 'checkOutCount',
+            'totalRevenue', 'revenue30', 'revenue7',
+            'recentArrivals', 'notifications', 'receptionists',
+            'totalRooms', 'availableRooms', 'occupiedRooms', 'maintenanceRooms',
+            'totalServices', 'topService'
+        ));
     }
     public function bookings()
     {
