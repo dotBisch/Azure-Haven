@@ -124,6 +124,7 @@
                         <table id="services-page">
                             <thead>
                                 <tr>
+                                    <th>ID</th>
                                     <th>Name</th>
                                     <th>Price</th>
                                     <th>Description</th>
@@ -134,6 +135,7 @@
                             <tbody>
                                 @foreach($services as $service)
                                     <tr>
+                                        <td>{{ $service->id }}</td>
                                         <td>{{ $service->service_name }}</td>
                                         <td>{{ $service->service_price }}</td>
                                         <td>{{ $service->service_description }}</td>
