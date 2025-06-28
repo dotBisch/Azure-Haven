@@ -86,7 +86,7 @@
                 </div>
 
                 <span class="hotel-logo">
-                    <img src="{{ asset('Admin/assets/search_icon.png') }}" alt="Azure Haven Logo">
+                    <img src="{{ asset('Admin/assets/AzureHaven_Logo.png') }}" alt="Azure Haven Logo">
                 </span>
             </div>
         </nav>
@@ -97,7 +97,7 @@
                     <span class="sd-title">Services</span>
                     <div class="st-panel">
                         <div class="search-wrapper">
-                            <img src="assets/search_icon.png" alt="">
+                            <img src="{{ asset('Admin/assets/search_icon.png') }}" alt="">
                             <input type="text" placeholder="Search">
                         </div>
 
