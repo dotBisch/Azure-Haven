@@ -339,6 +339,7 @@
                         <label for="usertype" class="form-label">User Type</label>
                         <select name="usertype" id="usertype" class="form-select" required>
                             <option value="admin" selected>Admin</option>
+                            <option value="receptionist" selected>Receptionist</option>
                         </select>
                         @error('usertype')
                             <div class="error-message">{{ $message }}</div>
