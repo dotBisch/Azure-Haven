@@ -92,6 +92,16 @@
                                 {{ __('Bookings') }}
                             </x-dropdown-link>
 
+                            @if (Auth::user()->usertype === 'admin')
+                            <x-dropdown-link href="{{ route('dashboard') }}">
+                                {{ __('Dashboard') }}
+                            </x-dropdown-link>
+                            @elseif (Auth::user()->usertype === 'receptionist')
+                            <x-dropdown-link href="{{ route('bookings') }}">
+                                {{ __('Dashboard') }}
+                            </x-dropdown-link>
+                            @endif
+
                             @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
                                 <x-dropdown-link href="{{ route('api-tokens.index') }}">
                                     {{ __('API Tokens') }}
