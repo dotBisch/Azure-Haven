@@ -18,7 +18,7 @@
                     <span class="title">Payment Successful!</span>
                     <span class="thanks">Thank you for your transaction.</span>
                 </div>
-                <a href="{{ route('home') }}" class="confirm-btn" style="display:inline-block;text-align:center;">Complete</a>
+                <a href="{{ route('home') }}" class="confirm-btn" style="display:inline-block;text-align:center;text-decoration:none;">Complete</a>
             </div>
         </div>
     </div>
