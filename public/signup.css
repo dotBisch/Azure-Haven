@@ -6,7 +6,6 @@
     --body-font: 'Lato', sans-serif;
 }
 
-
 *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
@@ -23,12 +22,9 @@ body {
     color: var(--text-color);
 }
 
-
 .auth-container {
     padding: 2rem;
 }
-
-
 
 .auth-card {
     display: flex;
@@ -47,6 +43,8 @@ body {
     background: url('/assets/images/Login/login_bg.png') no-repeat center center/cover;
     position: relative;
     align-self: stretch;
+    margin: 20px;
+    border-radius: 15px;
 }
 
 .toggle-buttons {
@@ -54,7 +52,6 @@ body {
     top: 25px;
     right: 25px;
     display: flex;
-    gap: 0.5rem;
 }
 
 .toggle-btn {
@@ -68,16 +65,21 @@ body {
     cursor: pointer;
     text-decoration: none;
     transition: all 0.3s;
+    font-size: 0.9rem;
 }
 
 .toggle-btn.active {
     border: 1px solid var(--primary-white);
+    padding: 0 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* Right Panel - Form Section */
 .auth-form-panel {
     flex-basis: 50%;
-    padding: 3rem;
+    padding: 3rem 1rem 1rem 1rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -88,6 +90,8 @@ body {
     height: 40px;
     width: auto;
     margin-bottom: 1.5rem;
+    align-self: flex-start;
+    margin-right: -10px;
 }
 
 .auth-form-panel h1 {
@@ -95,16 +99,20 @@ body {
     font-size: 2.8rem;
     color: var(--primary-blue);
     margin-bottom: 0.5rem;
+    text-shadow: 0.5px 0.5px 1px var(--primary-blue);
 }
 
 .auth-form-panel h2 {
     font-family: var(--body-font);
     font-size: 1.1rem;
     font-weight: 400;
-    margin-bottom: 2.5rem;
+    margin-bottom: 3rem;
+    color: black;
+    line-height: 0;
 }
 
 .auth-form-panel .highlight-blue {
+    font: var(--body-font);
     color: var(--primary-blue);
     font-weight: 700;
 }
@@ -126,7 +134,7 @@ form {
 
 .input-group input {
     width: 100%;
-    padding: 12px 15px;
+    padding: 10px 15px;
     border: 1px solid #ccc;
     border-radius: 10px;
     font-family: var(--body-font);
@@ -138,10 +146,13 @@ form {
     display: block;
     text-align: right;
     font-size: 0.8rem;
-    color: var(--text-color);
+    font-weight: 700;
+    color: var(--primary-blue);
+    line-height: 0;
     text-decoration: none;
+    margin-bottom: 2rem;
+    margin-right: 15px;
     margin-top: -0.5rem;
-    margin-bottom: 1.5rem;
 }
 
 /* Submit Button */
@@ -149,7 +160,7 @@ form {
     width: 100%;
     background-color: var(--primary-blue);
     color: var(--primary-white);
-    padding: 15px;
+    padding: 10px;
     border: none;
     border-radius: 50px;
     font-size: 1rem;
@@ -166,8 +177,9 @@ form {
 
 /* Bottom Link */
 .bottom-link {
-    margin-top: 1.5rem;
-    font-size: 0.9rem;
+    margin-top: 1rem;
+    font-size: 0.8rem;
+    color: black;
 }
 
 .bottom-link a {
@@ -178,8 +190,7 @@ form {
 
 /* Social Icons */
 .social-icons {
-    margin-top: auto;
-    padding-top: 2rem;
+    margin: 2rem 0;
     display: flex;
     gap: 1rem;
 }
