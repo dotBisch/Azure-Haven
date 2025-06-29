@@ -1,0 +1,103 @@
+:root {
+    --primary-blue: #0A2E4C;
+    --primary-white: #FFFFFF;
+    --light-gray: #f8f9fa;
+    --text-color: #000000;
+    --heading-font: 'Playfair Display', serif;
+    --body-font: 'Lato', sans-serif;
+    --accent-yellow: #fbd40b;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--body-font);
+    line-height: 1.6;
+}
+
+.payment {
+    min-height: 100vh;
+    width: 100%;
+    background-color: var(--primary-blue);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.payment-container {
+    background-color: white;
+    width: 90%;
+    max-width: 60%;
+    height: 550px;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.payment-details {
+    height: 90%;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.bank img {
+    height: 50px;
+}
+
+.image img {
+    height: 220px;
+    padding: 20px 0;
+}
+
+.title {
+    font-size: 1.5rem;
+    font-family:var(--body-font);
+    font-weight: 700;
+    color: var(--primary-blue);
+}
+
+.amount {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--primary-blue);
+    margin: 0 0 20px 0;
+}
+
+.confirm-btn {
+    width: 50%;
+    background-color: var(--primary-blue);
+    color: var(--primary-white);
+    padding: 15px;
+    margin-top: 15px;
+    border: none;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.confirm-btn:hover {
+    background-color: var(--accent-yellow);
+    color: black;
+    transform: translateY(-2px);
+}
+
+@media (max-width: 900px) {
+    .confirm-btn {
+        width: 90%;
+        padding: 10px;
+    }
+}
