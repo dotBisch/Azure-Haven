@@ -170,6 +170,16 @@
             color: #155724;
         }
 
+        .status-checked_in {
+            background-color: #d1ecf1;
+            color: #0c5460;
+        }
+
+        .status-checked_out {
+            background-color: #e2e3e5;
+            color: #383d41;
+        }
+
         .status-cancelled {
             background-color: #f8d7da;
             color: #721c24;
@@ -254,6 +264,17 @@
             <div class="nav-list-wrapper">
                 <span class="nav-title">Dashboards</span>
                 <ul class="nav-wrapper">
+                
+                    {{-- Summary: admin only --}}
+                    @if(auth()->user()->usertype === 'admin')
+                    <li class="nav-link link-1">
+                        <a href="{{ route('dashboard') }}">
+                            <i class="fa-solid fa-chart-pie"></i>
+                            <span class="nav-text">Summary</span>
+                        </a>
+                    </li>
+                    @endif
+
                     {{-- Bookings: visible to all admin/receptionist --}}
                     @if(auth()->user()->usertype === 'admin' || auth()->user()->usertype === 'receptionist')
                     <li class="nav-link link-2">
@@ -264,15 +285,6 @@
                     </li>
                     @endif
 
-                    {{-- Guests: visible to all admin/receptionist --}}
-                    @if(auth()->user()->usertype === 'admin' || auth()->user()->usertype === 'receptionist')
-                    <li class="nav-link link-5">
-                        <a href="{{ route('guests') }}">
-                            <i class="fa-solid fa-users"></i>
-                            <span class="nav-text">Manage Guests</span>
-                        </a>
-                    </li>
-                    @endif
 
                     {{-- Rooms: admin only --}}
                     @if(auth()->user()->usertype === 'admin')
@@ -294,6 +306,16 @@
                     </li>
                     @endif
 
+                    {{-- Guests: visible to all admin/receptionist --}}
+                    @if(auth()->user()->usertype === 'admin' || auth()->user()->usertype === 'receptionist')
+                    <li class="nav-link link-5">
+                        <a href="{{ route('guests') }}">
+                            <i class="fa-solid fa-users"></i>
+                            <span class="nav-text">Manage Guests</span>
+                        </a>
+                    </li>
+                    @endif
+
                     {{-- Services: admin only --}}
                     @if(auth()->user()->usertype === 'admin')
                     <li class="nav-link link-6">
@@ -303,6 +325,7 @@
                         </a>
                     </li>
                     @endif
+
                 </ul>
 
                 <div class="logout">

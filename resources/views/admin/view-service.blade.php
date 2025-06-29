@@ -113,6 +113,16 @@
             <div class="nav-list-wrapper">
                 <span class="nav-title">Dashboards</span>
                 <ul class="nav-wrapper">
+                    {{-- Summary: admin only --}}
+                    @if(auth()->user()->usertype === 'admin')
+                    <li class="nav-link link-1">
+                        <a href="{{ route('dashboard') }}">
+                            <i class="fa-solid fa-chart-pie"></i>
+                            <span class="nav-text">Summary</span>
+                        </a>
+                    </li>
+                    @endif
+
                     {{-- Bookings: visible to all admin/receptionist --}}
                     @if(auth()->user()->usertype === 'admin' || auth()->user()->usertype === 'receptionist')
                     <li class="nav-link link-2">
@@ -123,15 +133,7 @@
                     </li>
                     @endif
 
-                    {{-- Guests: visible to all admin/receptionist --}}
-                    @if(auth()->user()->usertype === 'admin' || auth()->user()->usertype === 'receptionist')
-                    <li class="nav-link link-5">
-                        <a href="{{ route('guests') }}">
-                            <i class="fa-solid fa-users"></i>
-                            <span class="nav-text">Manage Guests</span>
-                        </a>
-                    </li>
-                    @endif
+
 
                     {{-- Rooms: admin only --}}
                     @if(auth()->user()->usertype === 'admin')
@@ -149,6 +151,16 @@
                         <a href="{{ route('staffs') }}">
                             <i class="fa-solid fa-headset"></i>
                             <span class="nav-text">Manage Staffs</span>
+                        </a>
+                    </li>
+                    @endif
+
+                    {{-- Guests: visible to all admin/receptionist --}}
+                    @if(auth()->user()->usertype === 'admin' || auth()->user()->usertype === 'receptionist')
+                    <li class="nav-link link-5">
+                        <a href="{{ route('guests') }}">
+                            <i class="fa-solid fa-users"></i>
+                            <span class="nav-text">Manage Guests</span>
                         </a>
                     </li>
                     @endif
