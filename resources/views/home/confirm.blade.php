@@ -11,16 +11,13 @@
     <div class="payment">
         <div class="payment-container">
             <div class="payment-details">
-                <span class="bank">
-                    <img src="{{ asset('assets/images/bank_icon.png') }}" alt="Bank Logo">
-                </span>
                 <span class="title">Confirm Your Payment</span>
                 <span class="image">
                     <img src="{{ asset('assets/images/ewallet_qr.png') }}" alt="QR Code">
                 </span>
                 <div class="amount">
                     <span class="amount-title">Amount:</span>
-                    <span class="price">₱ 42,500</span>
+                    <span class="price" style="font-size:2.2rem;font-family:'Playfair Display',serif;">₱ 42,500</span>
                 </div>
                 <form action="{{ route('success') }}" method="GET" style="width:100%;display:flex;justify-content:center;">
                     <button type="submit" class="confirm-btn">Confirm</button>
@@ -29,39 +26,5 @@
         </div>
     </div>
 </body>
-
-<script>
-    window.addEventListener('DOMContentLoaded', () => {
-        const urlParams = new URLSearchParams(window.location.search);
-        const method = urlParams.get('method'); // 'ewallet' or 'card'
-        const bank = urlParams.get('bank');     // 'GCash', 'Maya'
-
-        const titleEl = document.querySelector('.title');
-        const bankLogoEl = document.querySelector('.bank img');
-        const imageEl = document.querySelector('.image img');
-        const imageContainer = document.querySelector('.image');
-
-        if (method === 'ewallet' && bank) {
-            // E-Wallet
-            titleEl.textContent = ``;
-            bankLogoEl.src = `assets/images/${bank.toLowerCase()}_logo.png`;
-            bankLogoEl.style.display = 'block';
-            imageEl.src = `assets/images/ewallet_qr.png`;
-            imageContainer.style.display = 'block';
-
-        } else if (method === 'card') {
-            // Card
-            titleEl.textContent = `Card Payment`;
-            bankLogoEl.style.display = 'none';
-            imageEl.src = `assets/images/bank_icon.png`;
-            imageContainer.style.display = 'block';
-
-        } else {
-            titleEl.textContent = 'Payment';
-            bankLogoEl.style.display = 'none';
-            imageContainer.style.display = 'none';
-        }
-    });
-</script>
 
 </html>
