@@ -28,6 +28,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const inclusionsList = document.getElementById('details-inclusions-list');
         inclusionsList.innerHTML = room.inclusions.map(item => `<li>${item}</li>`).join('');
 
+        // Set guest input max value based on room capacity
+        const guestInput = document.querySelector('.form-group-details input[type="number"]');
+        if (guestInput) {
+            guestInput.max = room.guests;
+            guestInput.placeholder = `Guest (max ${room.guests})`;
+        }
+
     } else {
         const mainContent = document.querySelector('main');
         mainContent.innerHTML = `<div class="container" style="text-align:center; padding: 5rem 0;"><h2>Room Not Found</h2><p>The room you are looking for does not exist.</p><a href="rooms.html" style="color: var(--primary-blue);">Back to Rooms</a></div>`;
