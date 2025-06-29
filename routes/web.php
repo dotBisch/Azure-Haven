@@ -150,7 +150,13 @@ Route::get('/payment', function () {
 })->middleware('auth')->name('payment');
 
 Route::get('/confirm', function () {
-    return view('home.confirm');
+    $booking = null;
+    if (auth()->check()) {
+        $booking = \App\Models\Booking::where('user_id', auth()->id())
+            ->orderBy('created_at', 'desc')
+            ->first();
+    }
+    return view('home.confirm', compact('booking'));
 })->name('confirm');
 
 Route::post('/checkout', [App\Http\Controllers\AdminController::class, 'userCheckout'])->name('user.checkout');

@@ -17,7 +17,9 @@
                 </span>
                 <div class="amount">
                     <span class="amount-title">Amount:</span>
-                    <span class="price" style="font-size:2.2rem;font-family:'Playfair Display',serif;">₱ 42,500</span>
+                    <span class="price" style="font-size:2.2rem;font-family:'Playfair Display',serif;">
+                        ₱ {{ $booking ? number_format($booking->total_amount, 2) : '0.00' }}
+                    </span>
                 </div>
                 <form action="{{ route('success') }}" method="GET" style="width:100%;display:flex;justify-content:center;">
                     <button type="submit" class="confirm-btn">Confirm</button>
