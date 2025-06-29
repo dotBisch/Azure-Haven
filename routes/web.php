@@ -155,6 +155,10 @@ Route::get('/confirm', function () {
 
 Route::post('/checkout', [App\Http\Controllers\AdminController::class, 'userCheckout'])->name('user.checkout');
 
+Route::get('/success', function () {
+    return view('home.success');
+})->name('success');
+
 // route::get('/home', [
 //      AdminController::class, 'home'
 // ])->name('home');

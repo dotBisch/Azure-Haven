@@ -24,7 +24,9 @@
                     <span class="amount-title">Amount:</span>
                     <span class="price">P 42,500</span>
                 </div>
-                <button class="confirm-btn">Confirm</button>
+                <form action="{{ route('success') }}" method="GET">
+                    <button type="submit" class="confirm-btn">Confirm</button>
+                </form>
             </div>
         </div>
     </div>
