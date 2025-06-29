@@ -540,6 +540,9 @@ class AdminController extends Controller
             $booking->services()->attach($request->services);
         }
 
+        // Set room status to occupied
+        $room->update(['room_status' => 'occupied']);
+
         // Redirect to confirm page (optionally pass booking id)
         return redirect()->route('confirm')->with('success', 'Booking submitted!');
     }

@@ -39,4 +39,19 @@ document.addEventListener('DOMContentLoaded', () => {
         const mainContent = document.querySelector('main');
         mainContent.innerHTML = `<div class="container" style="text-align:center; padding: 5rem 0;"><h2>Room Not Found</h2><p>The room you are looking for does not exist.</p><a href="rooms.html" style="color: var(--primary-blue);">Back to Rooms</a></div>`;
     }
+
+    document.querySelectorAll('.select-room-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const id = this.dataset.roomId;
+            // Only allow one room in the cart at a time
+            cart.length = 0;
+            cart.push({
+                id,
+                type: this.dataset.roomType,
+                price: Number(this.dataset.roomPrice),
+                pax: this.dataset.roomPax,
+            });
+            updateCartUI();
+        });
+    });
 });

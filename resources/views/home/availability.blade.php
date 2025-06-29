@@ -194,8 +194,8 @@ function updateCartUI() {
 document.querySelectorAll('.select-room-btn').forEach(btn => {
     btn.addEventListener('click', function() {
         const id = this.dataset.roomId;
-        // Prevent duplicate rooms in cart
-        if (cart.some(r => r.id === id)) return;
+        // Only allow one room in the cart at a time
+        cart.length = 0;
         cart.push({
             id,
             type: this.dataset.roomType,
