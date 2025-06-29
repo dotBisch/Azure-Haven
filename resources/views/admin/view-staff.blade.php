@@ -103,8 +103,22 @@
             }
         }
 
-        /* Active navigation states */
-        .link-4 {
+        /* Active navigation link styling */
+        .nav-link.active {
+            background-color: var(--background);
+            box-shadow: 0px 3px 5px var(--shadow-1);
+        }
+        
+        /* Override external CSS - ensure links are not active by default */
+        .nav-link.link-4,
+        .nav-link.link-5 {
+            background-color: transparent;
+            box-shadow: none;
+        }
+        
+        /* Only apply active styling when active class is present */
+        .nav-link.link-4.active,
+        .nav-link.link-5.active {
             background-color: var(--background);
             box-shadow: 0px 3px 5px var(--shadow-1);
         }
@@ -167,7 +181,7 @@
 
                     {{-- Staffs: admin only --}}
                     @if(auth()->user()->usertype === 'admin')
-                    <li class="nav-link link-4">
+                    <li class="nav-link link-4 {{ request('back') == 'guests' ? '' : 'active' }}">
                         <a href="{{ route('staffs') }}">
                             <i class="fa-solid fa-headset"></i>
                             <span class="nav-text">Manage Staffs</span>
@@ -177,7 +191,7 @@
 
                     {{-- Guests: visible to all admin/receptionist --}}
                     @if(auth()->user()->usertype === 'admin' || auth()->user()->usertype === 'receptionist')
-                    <li class="nav-link link-5">
+                    <li class="nav-link link-5 {{ request('back') == 'guests' ? 'active' : '' }}">
                         <a href="{{ route('guests') }}">
                             <i class="fa-solid fa-users"></i>
                             <span class="nav-text">Manage Guests</span>
