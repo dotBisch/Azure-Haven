@@ -86,10 +86,16 @@
                 </div>
             </aside>
         </div>
-    </div>
+</div>
 </section>
 
 @include('home.footer')
+
+<script>
+    const isLoggedIn = {{ auth()->check() ? 'true' : 'false' }};
+    const loginUrl = "{{ route('login') }}";
+    const paymentUrl = "{{ route('payment') }}";
+</script>
 
 <script>
 // --- Cart Logic ---
@@ -191,6 +197,16 @@ cartItemsList.addEventListener('click', function(e) {
         const idx = e.target.closest('.cart-remove-btn').dataset.idx;
         cart.splice(idx, 1);
         updateCartUI();
+    }
+});
+
+cartBookBtn.addEventListener('click', function() {
+    if (!this.disabled) {
+        if (isLoggedIn) {
+            window.location.href = paymentUrl;
+        } else {
+            window.location.href = loginUrl;
+        }
     }
 });
 

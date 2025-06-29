@@ -145,6 +145,10 @@ Route::get('/roomsAndServices/room-details', function () {
     return view('roomsAndServices.room-details');
 });
 
+Route::get('/payment', function () {
+    return view('home.payment');
+})->name('payment');
+
 // route::get('/home', [
 //      AdminController::class, 'home'
 // ])->name('home');

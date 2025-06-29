@@ -33,9 +33,9 @@
             @endif
 
             <!-- Page Content -->
-            <main>
+            <!-- <main>
                 {{ $slot }}
-            </main>
+            </main> -->
         </div>
 
         @stack('modals')
