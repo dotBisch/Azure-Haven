@@ -146,18 +146,19 @@ main {
 }
 
 .rooms-section {
-    padding: 5rem 0;
+    padding: 5rem 2rem;
 }
 
 .room-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 2.5rem;
+    gap: 2rem;
 }
 
 .room-card {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     background-color: var(--primary-white);
     border: 3px solid var(--primary-blue);
     border-radius: 12px;
@@ -168,10 +169,12 @@ main {
 .card-body {
     display: flex;
     flex-direction: row;
+    height: 100%;
 }
 
 .card-body img {
     border-right: 3px solid var(--primary-blue);
+    height: 100%px;
     width: 40%;
     object-fit: cover;
     flex-shrink: 0;
