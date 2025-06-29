@@ -34,16 +34,12 @@
         <section class="payment-section">
             <h2>Payment Method</h2>
             <div class="payment-options">
-                <button id="credit-card-btn" class="payment-option-btn">
-                    Credit/Debit Card
-                </button>
-                <button id="ewallet-btn" class="payment-option-btn active">
-                    E-wallet
-                </button>
+                <button id="credit-card-btn" class="payment-option-btn active">Credit/Debit Card</button>
+                <button id="ewallet-btn" class="payment-option-btn">E-wallet</button>
             </div>
 
             <!-- Credit Card Details (Initially Hidden) -->
-            <div id="credit-card-info" class="payment-details">
+            <div id="credit-card-info" class="payment-details active">
                 <form class="payment-form">
                     <div class="form-group"><input type="text" placeholder="Card Number:"></div>
                     <div class="form-row">
@@ -77,12 +73,12 @@
             </div>
 
             <!-- E-wallet Details (Initially Visible) -->
-            <div id="ewallet-info" class="payment-details active">
+            <div id="ewallet-info" class="payment-details">
                 <div class="ewallet-options">
-                    <button class="ewallet-btn"><img src="/assets/images/booking/paypal.png" alt="PayPal"></button>
-                    <button class="ewallet-btn"><img src="/assets/images/booking/grabpay.png" alt="GrabPay"></button>
-                    <button class="ewallet-btn"><img src="/assets/images/booking/maya.png" alt="Maya"></button>
-                    <button class="ewallet-btn"><img src="/assets/images/booking/gcash.png" alt="GCash"></button>
+                    <button class="ewallet-btn"><img src="{{ asset('assets/images/booking/paypal.png') }}" alt="PayPal"></button>
+                    <button class="ewallet-btn"><img src="{{ asset('assets/images/booking/grabpay.png') }}" alt="GrabPay"></button>
+                    <button class="ewallet-btn"><img src="{{ asset('assets/images/booking/maya.png') }}" alt="Maya"></button>
+                    <button class="ewallet-btn"><img src="{{ asset('assets/images/booking/gcash.png') }}" alt="GCash"></button>
                 </div>
             </div>
         </section>
@@ -93,7 +89,9 @@
         <div class="summary-card">
             <div class="summary-header">
                 <h3>Total: <strong>₱ 42,500.00</strong> <small>2 items</small></h3>
-                <a href="#" class="edit-link">Edit</a>
+                <button class="delete-cart-btn" title="Delete Cart" style="background:none;border:none;cursor:pointer;padding:0 0.5rem;">
+                    <svg width="22" height="22" fill="var(--primary-blue)" viewBox="0 0 16 16"><path d="M5.5 5.5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-1 0v-5a.5.5 0 0 1 .5-.5zm2.5.5a.5.5 0 0 0-1 0v5a.5.5 0 0 0 1 0v-5zm2 .5a.5.5 0 0 1 .5-.5.5.5 0 0 1 .5.5v5a.5.5 0 0 1-1 0v-5z"/><path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1 0-2h3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3a.5.5 0 0 0 0 1H3v9a3 3 0 0 0 3 3h6a3 3 0 0 0 3-3V4h.5a.5.5 0 0 0 0-1h-13z"/></svg>
+                </button>
             </div>
             <div class="summary-items-list">
                 <div class="summary-item">
