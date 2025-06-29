@@ -155,4 +155,91 @@
 </div>
 
 <script src="{{ asset('payment.js') }}"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const checkoutForm = document.getElementById('checkout-form');
+    const customerInfoForm = document.querySelector('.customer-info-form');
+    const creditCardBtn = document.getElementById('credit-card-btn');
+    const ewalletBtn = document.getElementById('ewallet-btn');
+    const creditCardInfo = document.getElementById('credit-card-info');
+    const ewalletInfo = document.getElementById('ewallet-info');
+    const ewalletOptions = ewalletInfo ? ewalletInfo.querySelectorAll('.ewallet-btn') : [];
+    const paymentOptionBtns = document.querySelectorAll('.payment-option-btn');
+
+    // Track selected payment method
+    let selectedPayment = 'credit'; // default
+    if (creditCardBtn && ewalletBtn) {
+        creditCardBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            selectedPayment = 'credit';
+            creditCardBtn.classList.add('active');
+            ewalletBtn.classList.remove('active');
+            creditCardInfo.classList.add('active');
+            ewalletInfo.classList.remove('active');
+        });
+        ewalletBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            selectedPayment = 'ewallet';
+            ewalletBtn.classList.add('active');
+            creditCardBtn.classList.remove('active');
+            ewalletInfo.classList.add('active');
+            creditCardInfo.classList.remove('active');
+        });
+    }
+
+    if (checkoutForm && customerInfoForm) {
+        checkoutForm.addEventListener('submit', function(e) {
+            // Validate contact info
+            const requiredFields = customerInfoForm.querySelectorAll('input[required]');
+            let allFilled = true;
+            requiredFields.forEach(function(input) {
+                if (!input.value.trim()) {
+                    allFilled = false;
+                    input.classList.add('input-error');
+                } else {
+                    input.classList.remove('input-error');
+                }
+            });
+            if (!allFilled) {
+                e.preventDefault();
+                alert('Please fill in all required contact details before proceeding to checkout.');
+                return;
+            }
+
+            // Validate payment method
+            if (selectedPayment === 'credit') {
+                // Require all credit card fields
+                const cardFields = creditCardInfo.querySelectorAll('input');
+                let cardFilled = true;
+                cardFields.forEach(function(input) {
+                    if (!input.value.trim()) {
+                        cardFilled = false;
+                        input.classList.add('input-error');
+                    } else {
+                        input.classList.remove('input-error');
+                    }
+                });
+                if (!cardFilled) {
+                    e.preventDefault();
+                    alert('Please fill in all credit/debit card details.');
+                    return;
+                }
+            } else if (selectedPayment === 'ewallet') {
+                // Require one e-wallet option selected
+                let ewalletSelected = false;
+                ewalletOptions.forEach(function(btn) {
+                    if (btn.classList.contains('ewallet-active')) {
+                        ewalletSelected = true;
+                    }
+                });
+                if (!ewalletSelected) {
+                    e.preventDefault();
+                    alert('Please select an E-wallet option.');
+                    return;
+                }
+            }
+        });
+    }
+});
+</script>
 @include('home.footer')
