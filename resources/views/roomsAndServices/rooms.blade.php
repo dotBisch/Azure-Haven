@@ -18,7 +18,7 @@
                         </div>
                     </div>
                 </div>
-                <a href="#" class="read-more">Read More →</a>
+                <a href="{{ url('roomsAndServices/room-details') }}?id=deluxe-queen" class="read-more">Read More →</a>
             </div>
 
             <!-- Superior Twin Room -->
@@ -35,7 +35,7 @@
                         </div>
                     </div>
                 </div>
-                <a href="#" class="read-more">Read More →</a>
+                <a href="{{ url('roomsAndServices/room-details') }}?id=superior-twin" class="read-more">Read More →</a>
             </div>
 
             <!-- Executive King Suite -->
@@ -52,7 +52,7 @@
                         </div>
                     </div>
                 </div>
-                <a href="#" class="read-more">Read More →</a>
+                <a href="{{ url('roomsAndServices/room-details') }}?id=executive-king" class="read-more">Read More →</a>
             </div>
 
             <!-- Family Room -->
@@ -69,7 +69,7 @@
                         </div>
                     </div>
                 </div>
-                <a href="#" class="read-more">Read More →</a>
+                <a href="{{ url('roomsAndServices/room-details') }}?id=family" class="read-more">Read More →</a>
             </div>
 
             <!-- Budget Single Room -->
@@ -86,7 +86,7 @@
                         </div>
                     </div>
                 </div>
-                <a href="#" class="read-more">Read More →</a>
+                <a href="{{ url('roomsAndServices/room-details') }}?id=budget-single" class="read-more">Read More →</a>
             </div>
 
             <!-- Junior Suite -->
@@ -103,7 +103,7 @@
                         </div>
                     </div>
                 </div>
-                <a href="#" class="read-more">Read More →</a>
+                <a href="{{ url('roomsAndServices/room-details') }}?id=junior-suite" class="read-more">Read More →</a>
             </div>
 
             <!-- Penthouse Suite -->
@@ -120,7 +120,7 @@
                         </div>
                     </div>
                 </div>
-                <a href="#" class="read-more">Read More →</a>
+                <a href="{{ url('roomsAndServices/room-details') }}?id=penthouse-suite" class="read-more">Read More →</a>
             </div>
 
             <!-- Barkada Room -->
@@ -137,7 +137,7 @@
                         </div>
                     </div>
                 </div>
-                <a href="#" class="read-more">Read More →</a>
+                <a href="{{ url('roomsAndServices/room-details') }}?id=barkada" class="read-more">Read More →</a>
             </div>
 
             <!-- Accessible Room -->
@@ -154,7 +154,7 @@
                         </div>
                     </div>
                 </div>
-                <a href="#" class="read-more">Read More →</a>
+                <a href="{{ url('roomsAndServices/room-details') }}?id=accessible" class="read-more">Read More →</a>
             </div>
 
             <!-- Honeymoon Suite -->
@@ -171,7 +171,7 @@
                         </div>
                     </div>
                 </div>
-                <a href="#" class="read-more">Read More →</a>
+                <a href="{{ url('roomsAndServices/room-details') }}?id=honeymoon-suite" class="read-more">Read More →</a>
             </div>
 
         </div>

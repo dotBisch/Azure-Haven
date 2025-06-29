@@ -203,19 +203,19 @@
                                 </thead>
                                 <tbody>
                                     @foreach($recentArrivals as $arrival)
-                                        <tr>
+                                    <tr>
                                             <td>{{ $arrival->room->room_number ?? '-' }}</td>
                                             <td>{{ $arrival->guest->first_name ?? '' }} {{ $arrival->guest->last_name ?? '' }}</td>
                                             <td>{{ \Carbon\Carbon::parse($arrival->updated_at)->diffForHumans() }}</td>
                                             <td>
                                                 <a href="{{ route('view-booking', $arrival->booking_id) }}" class="popup-btn view-btn" title="Show"><i class="fa-solid fa-eye"></i></a>
                                             </td>
-                                        </tr>
+                                    </tr>
                                     @endforeach
                                     @if($recentArrivals->isEmpty())
-                                        <tr>
+                                    <tr>
                                             <td colspan="4" style="text-align:center;">No recent arrivals.</td>
-                                        </tr>
+                                    </tr>
                                     @endif
                                 </tbody>
                             </table>
@@ -234,11 +234,11 @@
                         <span class="notif-title">Notifications</span>
                         <div class="notif-card-wrapper">
                             @foreach($notifications as $notif)
-                                <div class="notif-card">
-                                    <div class="room-details">
+                            <div class="notif-card">
+                                <div class="room-details">
                                         <span class="room-number">Room {{ $notif->room->room_number ?? '-' }}</span>
                                         <span class="room-status">{{ ucfirst(str_replace('_', ' ', $notif->booking_status)) }}</span>
-                                    </div>
+                                </div>
                                     <span class="status-time">{{ \Carbon\Carbon::parse($notif->updated_at)->diffForHumans() }}</span>
                                 </div>
                             @endforeach
@@ -249,7 +249,7 @@
 
                         <div class="receptionist-wrapper">
                             <span class="receptionist-title">Receptionists</span>
-                            <div class="receptionist-list">
+                                <div class="receptionist-list">
                                 @foreach($receptionists as $receptionist)
                                     <div class="receptionist">
                                         <span class="receptionist-image">
