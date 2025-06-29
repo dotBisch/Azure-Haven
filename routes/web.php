@@ -147,7 +147,7 @@ Route::get('/roomsAndServices/room-details', function () {
 
 Route::get('/payment', function () {
     return view('home.payment');
-})->name('payment');
+})->middleware('auth')->name('payment');
 
 // route::get('/home', [
 //      AdminController::class, 'home'

@@ -20,6 +20,20 @@
         }
         return 'room-details/room_details_hero.png';
     }
+
+    $roomTypeToId = [
+        'Deluxe Queen Room' => 'deluxe-queen',
+        'Superior Twin Room' => 'superior-twin',
+        'Executive King Suite' => 'executive-king',
+        'Family Room' => 'family',
+        'Budget Single Room' => 'budget-single',
+        'Junior Suite' => 'junior-suite',
+        'Penthouse Suite' => 'penthouse-suite',
+        'Barkada Room' => 'barkada',
+        'Accessible Room' => 'accessible',
+        'Honeymoon Suite' => 'honeymoon-suite',
+        // Add more mappings as needed
+    ];
 @endphp
 
 @include('home.header')
@@ -61,7 +75,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="{{ url('roomsAndServices/room-details') }}?id={{ strtolower(str_replace(' ', '-', $room->room_type)) }}" class="read-more">Learn More &nbsp;→</a>
+                            <a href="{{ url('roomsAndServices/room-details') }}?id={{ $roomTypeToId[$room->room_type] ?? strtolower(str_replace(' ', '-', $room->room_type)) }}" class="read-more">Learn More &nbsp;→</a>
                         </div>
                     @empty
                         <div style="grid-column: 1 / -1; text-align: center; padding: 3rem; background: #f8f9fa; border-radius: 12px; border: 2px dashed #ccc;">
