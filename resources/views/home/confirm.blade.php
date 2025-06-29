@@ -11,20 +11,18 @@
     <div class="payment">
         <div class="payment-container">
             <div class="payment-details">
-                <!--Ewallet-->
                 <span class="bank">
-                    <img src="" alt="Logo">
+                    <img src="{{ asset('assets/images/bank_icon.png') }}" alt="Bank Logo">
                 </span>
-                <!--Card-->
-                <span class="title">Card Payment</span>
+                <span class="title">Confirm Your Payment</span>
                 <span class="image">
-                    <img src="assets/images/bank_icon.png" alt="Qr Code">
+                    <img src="{{ asset('assets/images/ewallet_qr.png') }}" alt="QR Code">
                 </span>
                 <div class="amount">
                     <span class="amount-title">Amount:</span>
-                    <span class="price">P 42,500</span>
+                    <span class="price">₱ 42,500</span>
                 </div>
-                <form action="{{ route('success') }}" method="GET">
+                <form action="{{ route('success') }}" method="GET" style="width:100%;display:flex;justify-content:center;">
                     <button type="submit" class="confirm-btn">Confirm</button>
                 </form>
             </div>
