@@ -202,6 +202,11 @@ cartItemsList.addEventListener('click', function(e) {
 
 cartBookBtn.addEventListener('click', function() {
     if (!this.disabled) {
+        // Save cart and booking info to localStorage
+        localStorage.setItem('azureHavenCart', JSON.stringify(cart));
+        localStorage.setItem('azureHavenCheckin', checkin);
+        localStorage.setItem('azureHavenCheckout', checkout);
+        localStorage.setItem('azureHavenNights', nights);
         if (isLoggedIn) {
             window.location.href = paymentUrl;
         } else {

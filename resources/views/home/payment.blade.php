@@ -95,41 +95,41 @@
                 <h3>Total: <strong>₱ 42,500.00</strong> <small>2 items</small></h3>
                 <a href="#" class="edit-link">Edit</a>
             </div>
-
-            <div class="summary-item">
-                <h4>Barkada Room</h4>
-                <div class="item-detail"><span><svg width="12" height="12" viewBox="0 0 12 12"><path d="M6 6a2 2 0 100-4 2 2 0 000 4zM2 11s-1-1-1-2 2-4 5-4 5 3 5 5-1 2-1 2H2z"></path></svg>Guest: 8</span></div>
-                <div class="item-detail"><strong>Check In:</strong> <span>10/25/2025</span></div>
-                <div class="item-detail"><strong>Check Out:</strong> <span>10/30/2025</span></div>
-                <div class="item-detail"><strong>Guests:</strong> <span>5 pax</span></div>
-                <div class="item-price"><strong>5 Nights</strong><span>₱ 19,000.00</span></div>
-            </div>
-            
-            <div class="summary-item">
-                <h4>Family Room</h4>
-                <div class="item-detail"><span><svg width="12" height="12" viewBox="0 0 12 12"><path d="M6 6a2 2 0 100-4 2 2 0 000 4zM2 11s-1-1-1-2 2-4 5-4 5 3 5 5-1 2-1 2H2z"></path></svg>Guest: 4</span></div>
-                <div class="item-detail"><strong>Check In:</strong> <span>10/25/2025</span></div>
-                <div class="item-detail"><strong>Check Out:</strong> <span>10/30/2025</span></div>
-                <div class="item-detail"><strong>Guests:</strong> <span>3 pax</span></div>
-                <div class="item-price"><strong>5 Nights</strong><span>₱ 23,500.00</span></div>
+            <div class="summary-items-list">
+                <div class="summary-item">
+                    <h4>Barkada Room</h4>
+                    <div class="item-detail"><span><svg width="12" height="12" viewBox="0 0 12 12"><path d="M6 6a2 2 0 100-4 2 2 0 000 4zM2 11s-1-1-1-2 2-4 5-4 5 3 5 5-1 2-1 2H2z"></path></svg>Guest: 8</span></div>
+                    <div class="item-detail"><strong>Check In:</strong> <span>10/25/2025</span></div>
+                    <div class="item-detail"><strong>Check Out:</strong> <span>10/30/2025</span></div>
+                    <div class="item-detail"><strong>Guests:</strong> <span>5 pax</span></div>
+                    <div class="item-price"><strong>5 Nights</strong><span>₱ 19,000.00</span></div>
+                </div>
+                <div class="summary-item">
+                    <h4>Family Room</h4>
+                    <div class="item-detail"><span><svg width="12" height="12" viewBox="0 0 12 12"><path d="M6 6a2 2 0 100-4 2 2 0 000 4zM2 11s-1-1-1-2 2-4 5-4 5 3 5 5-1 2-1 2H2z"></path></svg>Guest: 4</span></div>
+                    <div class="item-detail"><strong>Check In:</strong> <span>10/25/2025</span></div>
+                    <div class="item-detail"><strong>Check Out:</strong> <span>10/30/2025</span></div>
+                    <div class="item-detail"><strong>Guests:</strong> <span>3 pax</span></div>
+                    <div class="item-price"><strong>5 Nights</strong><span>₱ 23,500.00</span></div>
+                </div>
             </div>
 
             <div class="additional-services">
                 <h4>Transportation Services</h4>
                 <ul>
-                    <li><label><input type="checkbox"> Regular Car - Pick-up</label><span>₱ 1,200</span></li>
-                    <li><label><input type="checkbox"> Regular Car - Drop-off</label><span>₱ 1,200</span></li>
-                    <li><label><input type="checkbox"> Van - Pick-up</label><span>₱ 2,000</span></li>
-                    <li><label><input type="checkbox"> Van - Drop-off</label><span>₱ 2,000</span></li>
+                    <li><label><input type="checkbox" data-price="1200"> Regular Car - Pick-up</label><span>₱ 1,200</span></li>
+                    <li><label><input type="checkbox" data-price="1200"> Regular Car - Drop-off</label><span>₱ 1,200</span></li>
+                    <li><label><input type="checkbox" data-price="2000"> Van - Pick-up</label><span>₱ 2,000</span></li>
+                    <li><label><input type="checkbox" data-price="2000"> Van - Drop-off</label><span>₱ 2,000</span></li>
                 </ul>
             </div>
 
             <div class="additional-services">
                 <h4>Massage Services</h4>
                 <ul>
-                    <li><label><input type="checkbox"> Relaxation Massage</label><span>₱ 800</span></li>
-                    <li><label><input type="checkbox"> Tissue Massage</label><span>₱ 1,200</span></li>
-                    <li><label><input type="checkbox"> Couples Massage</label><span>₱ 2,000</span></li>
+                    <li><label><input type="checkbox" data-price="800"> Relaxation Massage</label><span>₱ 800</span></li>
+                    <li><label><input type="checkbox" data-price="1200"> Tissue Massage</label><span>₱ 1,200</span></li>
+                    <li><label><input type="checkbox" data-price="2000"> Couples Massage</label><span>₱ 2,000</span></li>
                 </ul>
             </div>
 
@@ -143,4 +143,5 @@
     </div>
 </div>
 
+<script src="{{ asset('payment.js') }}"></script>
 @include('home.footer')
