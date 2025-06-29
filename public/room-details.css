@@ -139,13 +139,13 @@ nav a.active {
 /* Page Title */
 .section-title {
     font-family: var(--heading-font);
-    font-size: 2.8rem;
+    font-size: 2.5rem;
     color: var(--primary-blue);
     margin-top: 4rem;
 }
 
 .title-divider {
-    height: 2px;
+    height: 1px;
     background-color: var(--text-color);
     width: 100%;
     margin: 1rem 0 3rem 0;
@@ -154,16 +154,18 @@ nav a.active {
 
 .gallery-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 2fr;
     gap: 1rem;
     margin-bottom: 3rem;
 }
 
 .gallery-grid img {
+    display: block;
+    height: auto;
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border: 5px solid var(--primary-blue);
+    object-fit:cover;
+    border: 3px solid var(--primary-blue);
+    height: 400px;
 }
 
 
@@ -196,12 +198,14 @@ nav a.active {
     font-size: 2.5rem;
     color: var(--primary-blue);
     margin-bottom: 1rem;
+    text-shadow: 0.5px 0.5px 1px var(--primary-blue);
 }
 
 .details-left-panel p {
     font-size: 1.1rem;
     margin-bottom: 1.5rem;
     line-height: 1.7;
+    color: black;
 }
 .guest-info {
     display: flex;
@@ -224,6 +228,7 @@ nav a.active {
     font-size: 1.5rem;
     margin-bottom: 1rem;
     color: var(--primary-blue);
+    text-shadow: 0.5px 0.5px 1px var(--primary-blue);
 }
 .amenities-column ul {
     list-style: none;
@@ -233,6 +238,7 @@ nav a.active {
     margin-bottom: 0.5rem;
     position: relative;
     padding-left: 1.5rem;
+    color: black;
 }
 .amenities-column li::before {
     content: '•';
@@ -253,11 +259,15 @@ nav a.active {
 }
 .booking-widget h4 {
     font-family: var(--heading-font);
-    font-size: 2rem;
+    font-size: 2.5rem;
     color: var(--primary-blue);
+    text-shadow: 0.5px 0.5px 1px var(--primary-blue);
+    line-height: 3rem;
 }
 .booking-widget p {
-    margin-bottom: 1.5rem;
+    margin-bottom: 3rem;
+    color: black;
+    line-height: 0;
 }
 .form-group-details {
     position: relative;
@@ -331,6 +341,21 @@ footer p {
 
 /* Responsive Styles */
 @media(max-width: 900px){
+    .header-container {
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 10px 20px;
+    }
+
+    nav ul {
+        gap: 0;
+    }
+
+    nav a {
+        font-size: 0.8rem;
+    }
+
     .details-content-wrapper {
         flex-direction: column;
     }
@@ -344,14 +369,10 @@ footer p {
 }
 
 @media (max-width: 768px) {
-    .header-container {
-        flex-direction: column;
-        gap: 1rem;
-        padding: 10px;
+    nav a {
+        display: none;
     }
-    body {
-        padding-top: 170px; 
-    }
+
     .booking-widget {
         top: 30px;
     }
