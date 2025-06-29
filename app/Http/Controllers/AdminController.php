@@ -96,7 +96,7 @@ class AdminController extends Controller
         if (!in_array(auth()->user()->usertype, ['admin', 'receptionist'])) {
             abort(403, 'Unauthorized');
         }
-        $bookings = Booking::with(['services', 'room', 'guest'])->paginate(3);
+        $bookings = Booking::with(['services', 'room', 'guest'])->paginate(4);
         return view('admin.bookings', compact('bookings'));
     }
     public function rooms()
