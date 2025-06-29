@@ -5,7 +5,7 @@
         <form class="booking-form" action="{{ route('userbookings') }}" method="GET">
             <div class="form-group">
                 <label for="checkin">Check-In</label>
-                <input type="date" id="checkin" name="checkin" required min="{{ date('Y-m-d') }}">
+                <input type="date" id="checkin" name="checkin" required min="{{ date('Y-m-d', strtotime('+1 day')) }}">
             </div>
             <div class="form-group">
                 <label for="checkout">Check-Out</label>

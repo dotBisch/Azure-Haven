@@ -79,7 +79,7 @@
                         <form action="{{ route('userbookings') }}" method="GET">
                             <div class="form-group-details">
                                 <label for="checkin-details" style="display:none;">Check-In</label>
-                                <input type="date" id="checkin-details" name="checkin" placeholder="Check-In" required min="{{ date('Y-m-d') }}">
+                                <input type="date" id="checkin-details" name="checkin" placeholder="Check-In" required min="{{ date('Y-m-d', strtotime('+1 day')) }}">
                             </div>
                             <div class="form-group-details">
                                 <label for="checkout-details" style="display:none;">Check-Out</label>
