@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+    <link rel="icon" href="{{ asset('Admin/assets/AzureHaven_Logo_2.png') }}" type="image/png">
+    <link rel="stylesheet" href="{{ asset('confirm-payment.css') }}">
+</head>
+<body>
+    <div class="payment">
+        <div class="payment-container">
+            <div class="payment-details">
+                <!--Ewallet-->
+                <span class="bank">
+                    <img src="" alt="Logo">
+                </span>
+                <!--Card-->
+                <span class="title">Card Payment</span>
+                <span class="image">
+                    <img src="assets/images/bank_icon.png" alt="Qr Code">
+                </span>
+                <div class="amount">
+                    <span class="amount-title">Amount:</span>
+                    <span class="price">P 42,500</span>
+                </div>
+                <button class="confirm-btn">Confirm</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const method = urlParams.get('method'); // 'ewallet' or 'card'
+        const bank = urlParams.get('bank');     // 'GCash', 'Maya'
+
+        const titleEl = document.querySelector('.title');
+        const bankLogoEl = document.querySelector('.bank img');
+        const imageEl = document.querySelector('.image img');
+        const imageContainer = document.querySelector('.image');
+
+        if (method === 'ewallet' && bank) {
+            // E-Wallet
+            titleEl.textContent = ``;
+            bankLogoEl.src = `assets/images/${bank.toLowerCase()}_logo.png`;
+            bankLogoEl.style.display = 'block';
+            imageEl.src = `assets/images/ewallet_qr.png`;
+            imageContainer.style.display = 'block';
+
+        } else if (method === 'card') {
+            // Card
+            titleEl.textContent = `Card Payment`;
+            bankLogoEl.style.display = 'none';
+            imageEl.src = `assets/images/bank_icon.png`;
+            imageContainer.style.display = 'block';
+
+        } else {
+            titleEl.textContent = 'Payment';
+            bankLogoEl.style.display = 'none';
+            imageContainer.style.display = 'none';
+        }
+    });
+</script>
+
+</html>

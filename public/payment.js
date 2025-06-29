@@ -138,4 +138,62 @@ document.addEventListener('DOMContentLoaded', function() {
             this.classList.add('ewallet-active');
         });
     });
+
+    // --- Add logic to populate checkout form hidden fields ---
+    const checkoutForm = document.getElementById('checkout-form');
+    if (checkoutForm) {
+        checkoutForm.addEventListener('submit', function(e) {
+            // Remove any previous hidden fields except CSRF token
+            Array.from(checkoutForm.querySelectorAll('input[type="hidden"]')).forEach(el => {
+                if (el.name !== '_token') el.remove();
+            });
+
+            // Only support single-room booking for now (first item in cart)
+            const item = cart[0];
+            if (item) {
+                // Room ID
+                const roomIdInput = document.createElement('input');
+                roomIdInput.type = 'hidden';
+                roomIdInput.name = 'room_id';
+                roomIdInput.value = item.id;
+                checkoutForm.appendChild(roomIdInput);
+
+                // Guests
+                const guestsInput = document.createElement('input');
+                guestsInput.type = 'hidden';
+                guestsInput.name = 'guests';
+                guestsInput.value = item.guests || 1;
+                checkoutForm.appendChild(guestsInput);
+
+                // Number of rooms (always 1 for now)
+                const roomsInput = document.createElement('input');
+                roomsInput.type = 'hidden';
+                roomsInput.name = 'rooms';
+                roomsInput.value = 1;
+                checkoutForm.appendChild(roomsInput);
+            }
+            // Check-in/out
+            const checkinInput = document.createElement('input');
+            checkinInput.type = 'hidden';
+            checkinInput.name = 'check_in_date';
+            checkinInput.value = checkin;
+            checkoutForm.appendChild(checkinInput);
+
+            const checkoutInput = document.createElement('input');
+            checkoutInput.type = 'hidden';
+            checkoutInput.name = 'check_out_date';
+            checkoutInput.value = checkout;
+            checkoutForm.appendChild(checkoutInput);
+
+            // Add selected services
+            const selectedServices = Array.from(document.querySelectorAll('.additional-services input[type="checkbox"]:checked'));
+            selectedServices.forEach(cb => {
+                const serviceInput = document.createElement('input');
+                serviceInput.type = 'hidden';
+                serviceInput.name = 'services[]';
+                serviceInput.value = cb.value || cb.getAttribute('data-id') || cb.getAttribute('data-price'); // Preferably use service ID
+                checkoutForm.appendChild(serviceInput);
+            });
+        });
+    }
 }); 

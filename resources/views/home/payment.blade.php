@@ -115,19 +115,19 @@
             <div class="additional-services">
                 <h4>Transportation Services</h4>
                 <ul>
-                    <li><label><input type="checkbox" data-price="1200"> Regular Car - Pick-up</label><span>₱ 1,200</span></li>
-                    <li><label><input type="checkbox" data-price="1200"> Regular Car - Drop-off</label><span>₱ 1,200</span></li>
-                    <li><label><input type="checkbox" data-price="2000"> Van - Pick-up</label><span>₱ 2,000</span></li>
-                    <li><label><input type="checkbox" data-price="2000"> Van - Drop-off</label><span>₱ 2,000</span></li>
+                    <li><label><input type="checkbox" value="1" data-price="1200"> Regular Car - Pick-up</label><span>₱ 1,200</span></li>
+                    <li><label><input type="checkbox" value="2" data-price="1200"> Regular Car - Drop-off</label><span>₱ 1,200</span></li>
+                    <li><label><input type="checkbox" value="3" data-price="2000"> Van - Pick-up</label><span>₱ 2,000</span></li>
+                    <li><label><input type="checkbox" value="4" data-price="2000"> Van - Drop-off</label><span>₱ 2,000</span></li>
                 </ul>
             </div>
 
             <div class="additional-services">
                 <h4>Massage Services</h4>
                 <ul>
-                    <li><label><input type="checkbox" data-price="800"> Relaxation Massage</label><span>₱ 800</span></li>
-                    <li><label><input type="checkbox" data-price="1200"> Tissue Massage</label><span>₱ 1,200</span></li>
-                    <li><label><input type="checkbox" data-price="2000"> Couples Massage</label><span>₱ 2,000</span></li>
+                    <li><label><input type="checkbox" value="5" data-price="800"> Relaxation Massage</label><span>₱ 800</span></li>
+                    <li><label><input type="checkbox" value="6" data-price="1200"> Tissue Massage</label><span>₱ 1,200</span></li>
+                    <li><label><input type="checkbox" value="7" data-price="2000"> Couples Massage</label><span>₱ 2,000</span></li>
                 </ul>
             </div>
 
@@ -136,7 +136,20 @@
                 <h2>₱ 42,500.00</h2>
             </div>
             
-            <button class="checkout-btn">Checkout</button>
+            @if ($errors->any())
+                <div style="color: red; margin-bottom: 1rem;">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+            <form id="checkout-form" action="{{ route('user.checkout') }}" method="POST">
+                @csrf
+                <!-- Hidden fields for booking/cart data will be added here by JS or server-side -->
+                <button type="submit" class="checkout-btn">Checkout</button>
+            </form>
         </div>
     </div>
 </div>

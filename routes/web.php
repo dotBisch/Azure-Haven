@@ -149,6 +149,12 @@ Route::get('/payment', function () {
     return view('home.payment');
 })->middleware('auth')->name('payment');
 
+Route::get('/confirm', function () {
+    return view('home.confirm');
+})->name('confirm');
+
+Route::post('/checkout', [App\Http\Controllers\AdminController::class, 'userCheckout'])->name('user.checkout');
+
 // route::get('/home', [
 //      AdminController::class, 'home'
 // ])->name('home');

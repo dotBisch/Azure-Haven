@@ -495,4 +495,48 @@ class AdminController extends Controller
         Service::findOrFail($id)->delete();
         return redirect()->route('services')->with('success', 'Service deleted successfully!');
     }
+
+    public function userCheckout(Request $request)
+    {
+        // Validate input (adjust as needed for your form fields)
+        $request->validate([
+            'room_id' => 'required|exists:rooms,id',
+            'check_in_date' => 'required|date|after:today',
+            'check_out_date' => 'required|date|after:check_in_date',
+            'guests' => 'required|integer|min:1',
+            'rooms' => 'required|integer|min:1|max:3',
+            // Add more validation as needed
+        ]);
+
+        // Find the room
+        $room = Room::find($request->room_id);
+        if (!$room) {
+            return back()->withErrors(['room_id' => 'Selected room not found.']);
+        }
+
+        // Calculate number of nights
+        $checkIn = new \DateTime($request->check_in_date);
+        $checkOut = new \DateTime($request->check_out_date);
+        $numberOfNights = $checkIn->diff($checkOut)->days;
+        $roomTotal = $room->room_price * $numberOfNights * $request->rooms;
+        $totalAmount = $roomTotal; // Add services if needed
+
+        // Create booking with status 'pending'
+        $booking = Booking::create([
+            'room_id' => $room->id,
+            'user_id' => auth()->id(),
+            'booking_status' => 'pending',
+            'total_amount' => $totalAmount,
+            'check_in_date' => $request->check_in_date,
+            'check_out_date' => $request->check_out_date,
+        ]);
+
+        // Attach services if any
+        if ($request->has('services')) {
+            $booking->services()->attach($request->services);
+        }
+
+        // Redirect to confirm page (optionally pass booking id)
+        return redirect()->route('confirm')->with('success', 'Booking submitted!');
+    }
 }
