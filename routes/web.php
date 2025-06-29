@@ -145,7 +145,23 @@ Route::get('/roomsAndServices/room-details', function () {
     return view('roomsAndServices.room-details');
 });
 
-Route::get('/payment', function () {
+Route::get('/payment', function (\Illuminate\Http\Request $request) {
+    if (auth()->check()) {
+        $roomId = $request->query('room_id');
+        $checkIn = $request->query('check_in_date');
+        $checkOut = $request->query('check_out_date');
+        if ($roomId && $checkIn && $checkOut) {
+            $pendingBooking = \App\Models\Booking::where('user_id', auth()->id())
+                ->where('booking_status', 'pending')
+                ->where('room_id', $roomId)
+                ->where('check_in_date', $checkIn)
+                ->where('check_out_date', $checkOut)
+                ->first();
+            if ($pendingBooking) {
+                return redirect()->route('home');
+            }
+        }
+    }
     return view('home.payment');
 })->middleware('auth')->name('payment');
 

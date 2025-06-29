@@ -196,4 +196,18 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     }
+
+    // On page load, if cart has an item, update the URL with cart info for backend check
+    if (cart.length > 0) {
+        const item = cart[0];
+        const params = new URLSearchParams({
+            room_id: item.id,
+            check_in_date: checkin,
+            check_out_date: checkout
+        });
+        const currentUrl = window.location.pathname + '?' + params.toString();
+        if (window.location.search !== '?' + params.toString()) {
+            window.location.replace(currentUrl);
+        }
+    }
 }); 
