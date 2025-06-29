@@ -161,7 +161,11 @@ class AdminController extends Controller
     }
     public function bookingHistory()
     {
-        return view('bookings.index');
+        $bookings = Booking::with(['services', 'room'])
+            ->where('user_id', auth()->id())
+            ->orderBy('created_at', 'desc')
+            ->get();
+        return view('bookings.index', compact('bookings'));
     }
 
     public function addBooking()
