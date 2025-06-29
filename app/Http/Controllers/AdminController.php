@@ -73,7 +73,7 @@ class AdminController extends Controller
             ->take(3)
             ->get();
 
-        $receptionists = User::where('usertype', 'admin')->get();
+        $receptionists = User::where('usertype', 'receptionist')->get();
 
         $totalRooms = Room::count();
         $availableRooms = Room::where('room_status', 'available')->count();

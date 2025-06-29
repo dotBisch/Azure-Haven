@@ -103,13 +103,22 @@
             }
         }
 
-        /* Active navigation states */
-        .link-4 {
+        /* Active navigation link styling */
+        .nav-link.active {
             background-color: var(--background);
             box-shadow: 0px 3px 5px var(--shadow-1);
         }
-
-        .link-5 {
+        
+        /* Override external CSS - ensure links are not active by default */
+        .nav-link.link-4,
+        .nav-link.link-5 {
+            background-color: transparent;
+            box-shadow: none;
+        }
+        
+        /* Only apply active styling when active class is present */
+        .nav-link.link-4.active,
+        .nav-link.link-5.active {
             background-color: var(--background);
             box-shadow: 0px 3px 5px var(--shadow-1);
         }
@@ -140,22 +149,22 @@
             <div class="nav-list-wrapper">
                 <span class="nav-title">Dashboards</span>
                 <ul class="nav-wrapper">
+                    {{-- Summary: admin only --}}
+                    @if(auth()->user()->usertype === 'admin')
+                    <li class="nav-link link-1">
+                        <a href="{{ route('dashboard') }}">
+                            <i class="fa-solid fa-chart-pie"></i>
+                            <span class="nav-text">Summary</span>
+                        </a>
+                    </li>
+                    @endif
+
                     {{-- Bookings: visible to all admin/receptionist --}}
                     @if(auth()->user()->usertype === 'admin' || auth()->user()->usertype === 'receptionist')
                     <li class="nav-link link-2">
                         <a href="{{ route('bookings') }}">
                             <i class="fa-solid fa-book-open"></i>
                             <span class="nav-text">Bookings</span>
-                        </a>
-                    </li>
-                    @endif
-
-                    {{-- Guests: visible to all admin/receptionist --}}
-                    @if(auth()->user()->usertype === 'admin' || auth()->user()->usertype === 'receptionist')
-                    <li class="nav-link link-5">
-                        <a href="{{ route('guests') }}">
-                            <i class="fa-solid fa-users"></i>
-                            <span class="nav-text">Manage Guests</span>
                         </a>
                     </li>
                     @endif
@@ -172,10 +181,20 @@
 
                     {{-- Staffs: admin only --}}
                     @if(auth()->user()->usertype === 'admin')
-                    <li class="nav-link link-4">
+                    <li class="nav-link link-4 {{ request('back') == 'guests' ? '' : 'active' }}">
                         <a href="{{ route('staffs') }}">
                             <i class="fa-solid fa-headset"></i>
                             <span class="nav-text">Manage Staffs</span>
+                        </a>
+                    </li>
+                    @endif
+
+                    {{-- Guests: visible to all admin/receptionist --}}
+                    @if(auth()->user()->usertype === 'admin' || auth()->user()->usertype === 'receptionist')
+                    <li class="nav-link link-5 {{ request('back') == 'guests' ? 'active' : '' }}">
+                        <a href="{{ route('guests') }}">
+                            <i class="fa-solid fa-users"></i>
+                            <span class="nav-text">Manage Guests</span>
                         </a>
                     </li>
                     @endif
