@@ -61,6 +61,10 @@ route::get('/userbookings', [
     AdminController::class, 'userbookings'
 ])->name('userbookings');
 
+route::get('/availability', [
+    AdminController::class, 'userbookings'
+])->name('availability');
+
 route::get('/bookingHistory', [
     AdminController::class, 'bookingHistory'
 ])->name('bookingHistory');
@@ -140,6 +144,10 @@ route::delete('/delete-service/{id}', [AdminController::class, 'deleteService'])
 Route::get('/roomsAndServices/room-details', function () {
     return view('roomsAndServices.room-details');
 });
+
+Route::get('/payment', function () {
+    return view('home.payment');
+})->name('payment');
 
 // route::get('/home', [
 //      AdminController::class, 'home'

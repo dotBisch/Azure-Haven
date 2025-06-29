@@ -92,6 +92,18 @@ nav a.active {
     transform: translateY(-2px);
 }
 
+.hero-section {
+    background: url('assets/images/rooms_hero.png') no-repeat center center/cover;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    position: relative;
+}
 
 /* Hero Section */
 .hero {
@@ -504,6 +516,105 @@ footer p {
     color: var(--accent-yellow);
     transform: translateY(-3px);
 }
+
+.room-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+}
+
+.room-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: var(--primary-white);
+    border: 3px solid var(--primary-blue);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+}
+
+.card-body {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
+
+.card-body img {
+    border-right: 3px solid var(--primary-blue);
+    height: 100%px;
+    width: 40%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.room-info {
+    width: 60%;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.price-tag {
+    align-self: flex-start;
+    background-color: var(--primary-blue);
+    color: var(--primary-white);
+    padding: 8px 30px;
+    border-radius: 50px;
+    font-family: var(--heading-font);
+    font-weight: 500;
+    font-size: 1.3rem;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.price-tag span {
+    font-family: var(--body-font);
+    font-size: 0.8rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.room-info h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+    text-shadow: 0.5px 0.5px 1px var(--primary-blue);
+}
+
+.room-info p {
+    flex-grow: 1;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    color: black;
+    line-height: 1.5;
+}
+
+.guest-info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+    color: var(--primary-blue);
+    font-weight: 800;
+    padding: 0 1rem 0 0;
+}
+
+.read-more {
+    display: block;
+    background-color: var(--primary-blue);
+    color: var(--primary-white);
+    text-align: right;
+    padding: 0.8rem 1.5rem 0.8rem 0.8rem;
+    text-decoration: none;
+    font-weight: 700;
+    transition: background-color 0.3s;
+}
+
+.read-more:hover {
+    background-color: #12456b;
+}
+
 
 
 /* Responsive */

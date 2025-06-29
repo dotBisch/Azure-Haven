@@ -1,7 +1,7 @@
 <section class="about-section">
 <div class="about-container">
     <div class="about-images">
-    <img src="assets/images/home_discover.png" class="about-img about-img-large" alt="Living Room">
+        <img src="assets/images/home_discover.png" class="about-img about-img-large" alt="Living Room">
     </div>
     <div class="about-content">
     <h2>
