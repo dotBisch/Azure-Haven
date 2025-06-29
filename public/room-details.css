@@ -23,7 +23,7 @@ body {
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 100px;
 }
 
 h2, h3, h4 {
@@ -262,7 +262,7 @@ nav a.active {
     font-size: 2.5rem;
     color: var(--primary-blue);
     text-shadow: 0.5px 0.5px 1px var(--primary-blue);
-    line-height: 3rem;
+    line-height: 4rem;
 }
 .booking-widget p {
     margin-bottom: 3rem;
@@ -337,6 +337,12 @@ footer p {
 .social-icons a:hover {
     color: var(--accent-yellow);
     transform: translateY(-3px);
+}
+
+@media(max-width: 1028px){
+    .container {
+        padding: 0 30px;
+    }
 }
 
 /* Responsive Styles */
