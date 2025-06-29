@@ -46,6 +46,17 @@ document.addEventListener('DOMContentLoaded', function() {
     const itemsList = summaryCard.querySelector('.summary-items-list');
     if (itemsList) itemsList.innerHTML = itemsHtml;
 
+    // Helper to enable/disable service checkboxes
+    function setServiceCheckboxesEnabled(enabled) {
+        document.querySelectorAll('.additional-services input[type="checkbox"]').forEach(cb => {
+            cb.disabled = !enabled;
+            if (!enabled) cb.checked = false;
+        });
+    }
+
+    // After rendering summary, set checkbox state
+    setServiceCheckboxesEnabled(cart.length > 0);
+
     // Calculate and update final total (including services)
     function updateFinalTotal() {
         let serviceTotal = 0;
@@ -61,8 +72,70 @@ document.addEventListener('DOMContentLoaded', function() {
         cb.addEventListener('change', updateFinalTotal);
     });
 
+    // Delete cart functionality
+    const deleteBtn = summaryCard.querySelector('.delete-cart-btn');
+    if (deleteBtn) {
+        deleteBtn.addEventListener('click', function() {
+            localStorage.removeItem('azureHavenCart');
+            localStorage.removeItem('azureHavenCheckin');
+            localStorage.removeItem('azureHavenCheckout');
+            localStorage.removeItem('azureHavenNights');
+            // Uncheck and disable all services
+            setServiceCheckboxesEnabled(false);
+            // Clear summary
+            if (itemsList) itemsList.innerHTML = '';
+            summaryCard.querySelector('.summary-header h3').innerHTML = 'Total: <strong>₱ 0.00</strong> <small>0 items</small>';
+            summaryCard.querySelector('.final-total h2').textContent = '₱ 0.00';
+        });
+    }
+
     // Optionally, clear cart on successful checkout
     // document.querySelector('.checkout-btn').addEventListener('click', function() {
     //     localStorage.removeItem('azureHavenCart');
     // });
+
+    // Payment method toggle logic
+    const creditBtn = document.getElementById('credit-card-btn');
+    const ewalletBtn = document.getElementById('ewallet-btn');
+    const creditInfo = document.getElementById('credit-card-info');
+    const ewalletInfo = document.getElementById('ewallet-info');
+    if (creditBtn && ewalletBtn && creditInfo && ewalletInfo) {
+        creditBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            creditBtn.classList.add('active');
+            ewalletBtn.classList.remove('active');
+            creditInfo.classList.add('active');
+            ewalletInfo.classList.remove('active');
+        });
+        ewalletBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            ewalletBtn.classList.add('active');
+            creditBtn.classList.remove('active');
+            ewalletInfo.classList.add('active');
+            creditInfo.classList.remove('active');
+        });
+    }
+
+    // Card expiry validation (MM/YYYY)
+    document.querySelectorAll('.form-group.expiry input').forEach(input => {
+        input.addEventListener('input', function() {
+            if (this.placeholder === 'MM' && (this.value.length > 2 || Number(this.value) < 1 || Number(this.value) > 12)) {
+                this.value = '';
+            }
+            if (this.placeholder === 'YYYY' && this.value.length > 4) {
+                this.value = this.value.slice(0, 4);
+            }
+        });
+    });
+
+    // E-wallet selection logic
+    const ewalletBtns = document.querySelectorAll('.ewallet-btn');
+    ewalletBtns.forEach(btn => {
+        btn.classList.remove('ewallet-active'); // Ensure none are selected by default
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            ewalletBtns.forEach(b => b.classList.remove('ewallet-active'));
+            this.classList.add('ewallet-active');
+        });
+    });
 }); 

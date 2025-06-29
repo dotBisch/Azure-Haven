@@ -282,6 +282,17 @@ h2 {
 .ewallet-btn:hover { border-color: var(--primary-blue); box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
 .ewallet-btn img { height: 30px; max-width: 100px; }
 
+.ewallet-btn.ewallet-active {
+    outline: 2.5px solid var(--primary-blue);
+    outline-offset: 2px;
+    background: #f0f8ff;
+    /* No transition for instant selection */
+}
+.ewallet-btn.active {
+    background: #f8f9fa;
+    color: var(--text-color);
+}
+
 /* Order Summary Card */
 .summary-card {
     border: 2px solid var(--primary-blue);
