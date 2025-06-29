@@ -131,9 +131,33 @@ class AdminController extends Controller
         $services = Service::paginate(5);
         return view('admin.services', compact('services'));
     }
-    public function userbookings()
+    public function userbookings(Request $request)
     {
-        return view('bookings.index');
+        // Get form data from the request
+        $checkin = $request->get('checkin');
+        $checkout = $request->get('checkout');
+        $guests = $request->get('guests');
+        $numberOfRooms = $request->get('rooms');
+
+        // Get available rooms that match the criteria
+        $availableRooms = Room::where('room_status', 'available')
+            ->where('room_pax', '>=', $guests ?? 1)
+            ->get();
+
+        // If dates are provided, filter out rooms that are already booked for those dates
+        if ($checkin && $checkout) {
+            $bookedRoomIds = Booking::where(function($query) use ($checkin, $checkout) {
+                $query->where(function($q) use ($checkin, $checkout) {
+                    $q->where('check_in_date', '<=', $checkout)
+                      ->where('check_out_date', '>=', $checkin);
+                })
+                ->whereIn('booking_status', ['confirmed', 'checked_in']);
+            })->pluck('room_id');
+
+            $availableRooms = $availableRooms->whereNotIn('id', $bookedRoomIds);
+        }
+
+        return view('home.availability', compact('availableRooms', 'checkin', 'checkout', 'guests', 'numberOfRooms'));
     }
     public function bookingHistory()
     {

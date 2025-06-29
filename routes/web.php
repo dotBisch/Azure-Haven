@@ -61,6 +61,10 @@ route::get('/userbookings', [
     AdminController::class, 'userbookings'
 ])->name('userbookings');
 
+route::get('/availability', [
+    AdminController::class, 'userbookings'
+])->name('availability');
+
 route::get('/bookingHistory', [
     AdminController::class, 'bookingHistory'
 ])->name('bookingHistory');

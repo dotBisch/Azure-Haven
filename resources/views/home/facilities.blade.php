@@ -21,7 +21,7 @@
             </div>
         </div>
         
-        <a href="rooms.html">
+        <a href="{{route('roomsAndServices')}}">
             <button class="check-rooms-btn">Check Rooms</button>
         </a>
     </div>
