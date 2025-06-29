@@ -23,8 +23,7 @@
 @endphp
 
 @include('home.header')
-<link rel="stylesheet" href="{{ asset('rooms.css') }}">
-<link rel="stylesheet" href="{{ asset('home.css') }}">
+<link rel="stylesheet" href="{{ asset('availability.css') }}">
 
 <div class="hero-section"></div>
 @include('home.booking')
@@ -44,6 +43,7 @@
                     <div class="card-body">
                         <img src="assets/images/{{ getRoomImage($room->room_type, $roomImages) }}" alt="{{ $room->room_type }}">
                         <div class="room-info">
+                            <button class="select-room-btn">Select Room</button>
                             <div class="price-tag">₱ {{ number_format($room->room_price, 0) }} <span>/night</span></div>
                             <h3>{{ $room->room_type }}</h3>
                             <p>{{ $room->room_description }}</p>
@@ -53,7 +53,7 @@
                             </div>
                         </div>
                     </div>
-                    <a href="{{ url('roomsAndServices/room-details') }}?id={{ strtolower(str_replace(' ', '-', $room->room_type)) }}" class="read-more">Read More →</a>
+                    <a href="{{ url('roomsAndServices/room-details') }}?id={{ strtolower(str_replace(' ', '-', $room->room_type)) }}" class="read-more">Learn More &nbsp;→</a>
                 </div>
             @empty
                 <div style="grid-column: 1 / -1; text-align: center; padding: 3rem; background: #f8f9fa; border-radius: 12px; border: 2px dashed #ccc;">
