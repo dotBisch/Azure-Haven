@@ -77,8 +77,16 @@
                         <h4>Interested?</h4>
                         <p>Plan your stay!</p>
                         <form>
-                            <div class="form-group-details"><i class="fa-solid fa-calendar-days"></i><input type="text" placeholder="Check-In" onfocus="(this.type='date')"></div>
-                            <div class="form-group-details"><i class="fa-solid fa-calendar-days"></i><input type="text" placeholder="Check-Out" onfocus="(this.type='date')"></div>
+                            <div class="form-group-details">
+                                
+                                <label for="checkin-details" style="display:none;">Check-In</label>
+                                <input type="date" id="checkin-details" name="checkin" placeholder="Check-In" required min="{{ date('Y-m-d') }}">
+                            </div>
+                            <div class="form-group-details">
+
+                                <label for="checkout-details" style="display:none;">Check-Out</label>
+                                <input type="date" id="checkout-details" name="checkout" placeholder="Check-Out" required min="{{ date('Y-m-d', strtotime('+1 day')) }}">
+                            </div>
                             <div class="form-group-details"><i class="fa-solid fa-user"></i><input type="number" placeholder="Guest" min="1"></div>
                             <button type="submit" class="check-availability-btn">Check Availability</button>
                         </form>
@@ -100,6 +108,30 @@
 
     <script src="/room-data.js"></script>
     <script src="/room-details.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const checkinInput = document.getElementById('checkin-details');
+        const checkoutInput = document.getElementById('checkout-details');
+        if (checkinInput && checkoutInput) {
+            checkinInput.addEventListener('change', function() {
+                if (this.value) {
+                    const nextDay = new Date(this.value);
+                    nextDay.setDate(nextDay.getDate() + 1);
+                    checkoutInput.min = nextDay.toISOString().split('T')[0];
+                    if (checkoutInput.value && checkoutInput.value <= this.value) {
+                        checkoutInput.value = '';
+                    }
+                }
+            });
+            checkoutInput.addEventListener('change', function() {
+                if (checkinInput.value && this.value <= checkinInput.value) {
+                    alert('Check-out date must be after check-in date');
+                    this.value = '';
+                }
+            });
+        }
+    });
+    </script>
 
 </body>
 </html> 
