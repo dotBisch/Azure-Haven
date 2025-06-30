@@ -75,10 +75,10 @@
             <!-- E-wallet Details (Initially Visible) -->
             <div id="ewallet-info" class="payment-details">
                 <div class="ewallet-options">
-                    <button class="ewallet-btn"><img src="{{ asset('assets/images/booking/paypal.png') }}" alt="PayPal"></button>
-                    <button class="ewallet-btn"><img src="{{ asset('assets/images/booking/grabpay.png') }}" alt="GrabPay"></button>
-                    <button class="ewallet-btn"><img src="{{ asset('assets/images/booking/maya.png') }}" alt="Maya"></button>
-                    <button class="ewallet-btn"><img src="{{ asset('assets/images/booking/gcash.png') }}" alt="GCash"></button>
+                    <button class="ewallet-btn"><img src="{{ asset('assets/images/paypal_logo.png') }}" alt="PayPal"></button>
+                    <button class="ewallet-btn"><img src="{{ asset('assets/images/grabpay_logo.png') }}" alt="GrabPay"></button>
+                    <button class="ewallet-btn"><img src="{{ asset('assets/images/maya_logo.png') }}" alt="Maya"></button>
+                    <button class="ewallet-btn"><img src="{{ asset('assets/images/gcash_logo.png') }}" alt="GCash"></button>
                 </div>
             </div>
         </section>
