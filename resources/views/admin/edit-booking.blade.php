@@ -431,7 +431,7 @@
                 <div class="form-row">
                     <div class="form-group">
                         <label for="check_in_date" class="form-label">Check-in Date</label>
-                        <input type="date" name="check_in_date" id="check_in_date" class="form-input" required value="{{ $booking->check_in_date }}" min="{{ date('Y-m-d', strtotime('+1 day')) }}">
+                        <input type="date" name="check_in_date" id="check_in_date" class="form-input" required value="{{ $booking->check_in_date }}" min="{{ date('Y-m-d') }}">
                         @error('check_in_date')
                             <div class="error-message">{{ $message }}</div>
                         @enderror
@@ -503,11 +503,13 @@
         document.getElementById('check_in_date').addEventListener('change', function() {
             const checkInDate = this.value;
             const checkOutInput = document.getElementById('check_out_date');
-            checkOutInput.min = checkInDate;
-            
-            // If check-out date is before check-in date, clear it
-            if (checkOutInput.value && checkOutInput.value <= checkInDate) {
-                checkOutInput.value = '';
+            if (checkInDate) {
+                const nextDay = new Date(checkInDate);
+                nextDay.setDate(nextDay.getDate() + 1);
+                checkOutInput.min = nextDay.toISOString().split('T')[0];
+                if (checkOutInput.value && checkOutInput.value <= checkInDate) {
+                    checkOutInput.value = '';
+                }
             }
         });
 

@@ -79,7 +79,7 @@
                         <form action="{{ route('userbookings') }}" method="GET">
                             <div class="form-group-details">
                                 <label for="checkin-details" style="display:none;">Check-In</label>
-                                <input type="date" id="checkin-details" name="checkin" placeholder="Check-In" required min="{{ date('Y-m-d', strtotime('+1 day')) }}">
+                                <input type="date" id="checkin-details" name="checkin" placeholder="Check-In" required min="{{ date('Y-m-d') }}">
                             </div>
                             <div class="form-group-details">
                                 <label for="checkout-details" style="display:none;">Check-Out</label>
@@ -111,24 +111,22 @@
     document.addEventListener('DOMContentLoaded', function() {
         const checkinInput = document.getElementById('checkin-details');
         const checkoutInput = document.getElementById('checkout-details');
-        if (checkinInput && checkoutInput) {
-            checkinInput.addEventListener('change', function() {
-                if (this.value) {
-                    const nextDay = new Date(this.value);
-                    nextDay.setDate(nextDay.getDate() + 1);
-                    checkoutInput.min = nextDay.toISOString().split('T')[0];
-                    if (checkoutInput.value && checkoutInput.value <= this.value) {
-                        checkoutInput.value = '';
-                    }
+        checkinInput.addEventListener('change', function() {
+            if (this.value) {
+                const nextDay = new Date(this.value);
+                nextDay.setDate(nextDay.getDate() + 1);
+                checkoutInput.min = nextDay.toISOString().split('T')[0];
+                if (checkoutInput.value && checkoutInput.value <= this.value) {
+                    checkoutInput.value = '';
                 }
-            });
-            checkoutInput.addEventListener('change', function() {
-                if (checkinInput.value && this.value <= checkinInput.value) {
-                    alert('Check-out date must be after check-in date');
-                    this.value = '';
-                }
-            });
-        }
+            }
+        });
+        checkoutInput.addEventListener('change', function() {
+            if (checkinInput.value && this.value <= checkinInput.value) {
+                alert('Check-out date must be after check-in date');
+                this.value = '';
+            }
+        });
     });
     </script>
 

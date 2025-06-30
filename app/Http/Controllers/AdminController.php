@@ -183,7 +183,7 @@ class AdminController extends Controller
             'room_id' => 'required|exists:rooms,id',
             'user_id' => 'required|exists:users,id',
             'booking_status' => 'required|in:pending,confirmed,checked_in,checked_out,cancelled',
-            'check_in_date' => 'required|date|after:today',
+            'check_in_date' => 'required|date|after_or_equal:today',
             'check_out_date' => 'required|date|after:check_in_date',
             'services' => 'array',
             'services.*' => 'exists:services,id'
@@ -355,7 +355,7 @@ class AdminController extends Controller
             'room_id' => 'required|exists:rooms,id',
             'user_id' => 'required|exists:users,id',
             'booking_status' => 'required|in:pending,confirmed,checked_in,checked_out,cancelled',
-            'check_in_date' => 'required|date|after:today',
+            'check_in_date' => 'required|date|after_or_equal:today',
             'check_out_date' => 'required|date|after:check_in_date',
             'services' => 'array',
             'services.*' => 'exists:services,id'
@@ -505,7 +505,7 @@ class AdminController extends Controller
         // Validate input (adjust as needed for your form fields)
         $request->validate([
             'room_id' => 'required|exists:rooms,id',
-            'check_in_date' => 'required|date|after:today',
+            'check_in_date' => 'required|date|after_or_equal:today',
             'check_out_date' => 'required|date|after:check_in_date',
             'guests' => 'required|integer|min:1',
             'rooms' => 'required|integer|min:1|max:3',
