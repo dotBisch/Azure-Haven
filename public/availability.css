@@ -517,6 +517,8 @@ footer p {
 .cart-col {
     width: 100%;
     min-width: 320px;
+    position: sticky;
+    top: 120px;
 }
 .cart-box {
     background: #fff;
